@@ -12,6 +12,7 @@
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^4.19.2",
+    "joi": "^17.13.3",
     "method-override": "^3.0.0",
     "mongoose": "^8.5.1"
   }
