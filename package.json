@@ -9,9 +9,11 @@
   "author": "Vignesh J",
   "license": "MIT",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "joi": "^17.13.3",
     "method-override": "^3.0.0",
     "mongoose": "^8.5.1"
