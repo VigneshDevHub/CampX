@@ -11,8 +11,8 @@ const LocalStrategy=require('passport-local');
 const User = require('./models/user');
 
 const userRoutes= require('./routes/users');
-const campgroundRoutes=require('./routes/campgrounds.js');
-const reviewRoutes=require('./routes/reviews.js');
+const campgroundRoutes=require('./routes/campgrounds');
+const reviewRoutes=require('./routes/reviews');
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/campfinderx');
