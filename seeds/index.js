@@ -24,9 +24,22 @@ const seedDB=async()=>{
             author:'66b1d30b0cbf0bfba9990116',
             location:`${cities[random1000].city},${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: `https://picsum.photos/400?random=${Math.random()}`,
             description: 'Amazing Place to hangout',
-            price
+            price,
+            geometry:{
+              type:"Point",
+              coordinates:[-113.1331,47.0202]
+            },
+            images:[
+                {
+                  url: 'https://res.cloudinary.com/dgr21eiov/image/upload/v1723104228/CampX/uz1w3sbimexznhvh9aqk.jpg',
+                  filename: 'CampX/uz1w3sbimexznhvh9aqk',
+                },
+                {
+                  url: 'https://res.cloudinary.com/dgr21eiov/image/upload/v1723104230/CampX/hqhssbovvo47cbz6b37g.jpg',
+                  filename: 'CampX/hqhssbovvo47cbz6b37g',
+                }
+              ]
         })
         await camp.save();
     }

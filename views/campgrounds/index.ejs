@@ -7,7 +7,11 @@
     <div class="card" mb-3>
         <div class="row">
             <div class="col-md-4">
-                <img class="img-fluid" alt="" src="<%= campground.image %>">
+                <% if(campground.images.length) {%>
+                <img class="img-fluid" alt="" src="<%= campground.images[0].url %>">
+                <% }else { %>
+                    <img src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
+                <% } %>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
