@@ -9,11 +9,11 @@ module.exports = [
         title: "Ganga River Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/9f3f3d530d33f4ea2e42f352ecb0d8fa/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409219/CampX/fyagx6bav08zvvkztxyy.jpg',
                 filename:'CampX/fyagx6bav08zvvkztxyy',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/391c3ade6570217e9a681e3f1d7015a7/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409220/CampX/tqzpadvjoxmpvntzrrin.jpg',
                 filename:'CampX/tqzpadvjoxmpvntzrrin',
             }
         ]
@@ -28,11 +28,11 @@ module.exports = [
         title: "Desert Night Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/6cb25acbd9858e8d12117e9701ce37aa/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409596/CampX/Desert%20Night%20Camp-1.jpg',
                 filename:'CampX/Desert Night Camp-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/dbb181ba6b6ea1b21f5833926b931854/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409597/CampX/Desert%20Night%20Camp-2.jpg',
                 filename:'CampX/Desert Night Camp-2',
             }
         ]
@@ -47,11 +47,11 @@ module.exports = [
         title: "Mountain View Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/7847d471eccaa6b149b6aa904a072911/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409903/CampX/MountainViewCamp-1.jpg',
                 filename:'CampX/MountainViewCamp-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/28d9a546cfe3ba8b3033042c12731be9/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724409903/CampX/MountainViewCamp-2.jpg',
                 filename:'CampX/MountainViewCamp-2',
             }
         ]
@@ -66,11 +66,11 @@ module.exports = [
         title: "Coffee Plantation Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/6ccd51b1b20e1f1b11e1f4ecf638c8d4/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410122/CampX/Coffeecamp-1.webp',
                 filename:'CampX/Coffeecamp-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/d4f40fd982f01370fec987c26930461e/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410122/CampX/Coffeecamp-2.webp',
                 filename:'CampX/Coffeecamp-2',
             }
         ]
@@ -85,11 +85,11 @@ module.exports = [
         title: "Hilltop Adventure Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/f5897d15d8c84927c86c3d391800b2df/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410322/CampX/lonavala-1.jpg',
                 filename:'CampX/lonavala-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/1d4a8698d1cb2e5da1137139cd0d3404/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410323/CampX/lonavala-2.jpg',
                 filename:'CampX/lonavala-2',
             }
         ]
@@ -104,11 +104,11 @@ module.exports = [
         title: "Spiti Desert Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/8c97d3482a8e51edc1a82743b444e93c/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410518/CampX/spitivalley-1.jpg',
                 filename:'CampX/spitivalley-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/6f7d358878c755a2e4791c0da167be8f/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410518/CampX/spitivalley-2.jpg',
                 filename:'CampX/spitivalley-2',
             }
         ]
@@ -123,11 +123,11 @@ module.exports = [
         title: "Backwater Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/5969bd0a467fce22f8154a9db8ea63b8/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410742/CampX/backwater-1.webp',
                 filename:'CampX/backwater-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/0550660bcc27e5492285b0f5ebdb65cd/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410742/CampX/backwater-2.jpg',
                 filename:'CampX/backwater-2',
             }
         ]
@@ -142,11 +142,11 @@ module.exports = [
         title: "Golden Sand Dune Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/d105e0189f10d5d556c1527ea236507a/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410923/CampX/jaisalmer-1.webp',
                 filename:'CampX/jaisalmer-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/eba890a8b0cfbf650d8affcf41ea1d55/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724410920/CampX/jaisalmer-2.jpg',
                 filename:'CampX/jaisalmer-2',
             }
         ]
@@ -161,11 +161,11 @@ module.exports = [
         title: "Tea Garden Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/34263fb13e0e9a418e8e4f55645c3654/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411098/CampX/Munnar-1.jpg',
                 filename:'CampX/Munnar-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/c440781ae0d5730f48a90e6a37019d18/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411099/CampX/Munnar-2.jpg',
                 filename:'CampX/Munnar-2',
             }
         ]
@@ -180,11 +180,11 @@ module.exports = [
         title: "Himalayan Ski Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/2a261f61721c289a657da45296a2de93/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411316/CampX/Auli-1.jpg',
                 filename:'CampX/Auli-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/a4d948d2b8bdbe3f44db468a8bb80100/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411317/CampX/Auli-2.jpg',
                 filename:'CampX/Auli-2',
             }
         ]
@@ -199,11 +199,11 @@ module.exports = [
         title: "Monastery View Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/cd8ef3be51c9f86578b59ec1c9e96426/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411602/CampX/tawang-1.webp',
                 filename:'CampX/tawang-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/6c742d184ba6427a047b292038dc3416/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724411602/CampX/tawang-2.jpg',
                 filename:'CampX/tawang-2',
             }
         ]
@@ -218,11 +218,11 @@ module.exports = [
         title: "Snow Adventure Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/75024d4c90ed8b4f8be49a439a02a065/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724413984/CampX/Gulmarg-1.webp',
                 filename:'CampX/Gulmarg-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/febebed7db600b9bb5ec17877297f9b2/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724413985/CampX/Gulmarg-2.jpg',
                 filename:'CampX/Gulmarg-2',
             }
         ]
@@ -237,11 +237,11 @@ module.exports = [
         title: "Jungle Safari Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/d5050d875ff3ea28a8f3a7e1e4c818ca/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414126/CampX/kanha-1.jpg',
                 filename:'CampX/kanha-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/4234e7f252f388f0762b7a4b553a2e38/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414127/CampX/kanha-2.jpg',
                 filename:'CampX/kanha-2',
             }
         ]
@@ -256,11 +256,11 @@ module.exports = [
         title: "Tiger Reserve Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/24e0f67cdc582dcce93241fb0c50b208/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414283/CampX/Tadoba-1.jpg',
                 filename:'CampX/Tadoba-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/6da38de9ccb4e0d5eda274add57c515c/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414283/CampX/Tadoba-2.jpg',
                 filename:'CampX/Tadoba-2',
             }
         ]
@@ -275,11 +275,11 @@ module.exports = [
         title: "Hilltop Retreat Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/990e40f24d7b1354834a93a3de6f6cd2/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414453/CampX/panchgani-1.jpg',
                 filename:'CampX/panchgani-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/b345dd568fdf1922d22ab411e6c4963d/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414455/CampX/panchgani-2.webp',
                 filename:'CampX/panchgani-2',
             }
         ]
@@ -294,11 +294,11 @@ module.exports = [
         title: "Lake View Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/9774548fe821b44797e2cb2026801e64/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414630/CampX/nainital-1.jpg',
                 filename:'CampX/nainital-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/cade4b50dca51e559564e3232a09a4a6/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414631/CampX/nainital-2.jpg',
                 filename:'CampX/nainital-2',
             }
         ]
@@ -313,11 +313,11 @@ module.exports = [
         title: "Rhinoceros Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/0bf3b241940c1fcfb4372c3b1dbd4525/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414788/CampX/kaziranga-1.jpg',
                 filename:'CampX/kaziranga-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/9863ab617eefa943d4b2a51eb5a5fc8f/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414788/CampX/kaziranga-2.jpg',
                 filename:'CampX/kaziranga-2',
             }
         ]
@@ -332,11 +332,11 @@ module.exports = [
         title: "Mangrove Forest Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/9a091d8461e2f35f8961571e95131756/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414971/CampX/sundarbans-1.jpg',
                 filename:'CampX/sundarbans-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/7ed2c6811f1cbc140bf3bca9a8cde1c3/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724414972/CampX/sundarbans-2.jpg',
                 filename:'CampX/sundarbans-2',
             }
         ]
@@ -351,11 +351,11 @@ module.exports = [
         title: "Luxury Jungle Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/374fb3c7ee31ac3a83a43973338e934f/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724415135/CampX/ranthambore-1.jpg',
                 filename:'CampX/ranthambore-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/1abc11647d7e714c17c2d5704179fc4d/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724415136/CampX/ranthambore-2.jpg',
                 filename:'CampX/ranthambore-2',
             }
         ]
@@ -370,11 +370,11 @@ module.exports = [
         title: "Hill Country Camp",
         images: [
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/32d08475adc29d5ebc1d4f485f8d7705/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724415278/CampX/chik-1.jpg',
                 filename:'CampX/chik-1',
             },
             {
-                url:'https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/77e4cb82b9d027f1e0916e3d60638fce/detailed',
+                url:'https://res.cloudinary.com/dgr21eiov/image/upload/v1724415279/CampX/chik-2.jpg',
                 filename:'CampX/chik-2',
             }
         ]
