@@ -7,9 +7,9 @@
 <% for(let campground of campgrounds){ %>
     <div class="card mb-3">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" id="campgroundhomeimage">
                 <% if(campground.images.length) {%>
-                <img crossorigin="anonymous" class="img-fluid" alt="" src="<%= campground.images[0].url %>">
+                <img crossorigin="anonymous" class="" style="max-width:100%" width="500px" height="300px" alt="" src="<%= campground.images[0].url %>">
                 <% }else { %>
                     <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
                 <% } %>
