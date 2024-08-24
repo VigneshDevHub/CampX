@@ -1,7 +1,7 @@
 <%layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/stylesheets/stars.css">
 
-    <div class="row">
+    <div class="row" id="showinfo">
         <div class="col-6">
             <div id="campgroundCarousel" class="carousel slide">
                 <div class="carousel-inner">
@@ -22,7 +22,7 @@
                 </button>
                 <% } %>
             </div>
-            <div class="card mb-3">
+            <div class="card text-white bg-dark mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= campground.title %>
@@ -32,13 +32,13 @@
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted">
+                    <li class="list-group-item bg-dark border-dark" id="showlocation">
                         <%= campground.location %>
                     </li>
-                    <li class="list-group-item">Submitted by
+                    <li class="list-group-item text-white bg-dark border-dark">Submitted by
                         <%= campground.author.username %>
                     </li>
-                    <li class="list-group-item">₹<%= campground.price %>/night</li>
+                    <li class="list-group-item text-white bg-dark">₹<%= campground.price %>/night</li>
                 </ul>
                 <% if(currentUser && campground.author.equals(currentUser._id)) {%>
                     <div class="card-body">
@@ -87,7 +87,7 @@
                 </form>
                 <% } %>
                     <% for (let review of campground.reviews) {%>
-                        <div class="card mb-3">
+                        <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2 text-body-secondary">
                                     <%= review.author.username %>
