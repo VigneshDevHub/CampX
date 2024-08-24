@@ -53,7 +53,7 @@
                         </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-6 text-white">
             <div id="map"></div>
             <% if(currentUser){ %>
                 <h2>Leave a Review</h2>
@@ -89,14 +89,14 @@
                     <% for (let review of campground.reviews) {%>
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-body-secondary">
+                                <h6 class="card-subtitle mb-2 text-grey">
                                     <%= review.author.username %>
                                 </h6>
                                 <p class="starability-result" data-rating="<%= review.rating %>">
                                     Rated: <%= review.rating %> stars
                                 </p>
                                 <p class="card-text">
-                                    Review:<%= review.body %>
+                                    Review: <%= review.body %>
                                 </p>
                                 <% if(currentUser && review.author.equals(currentUser._id)) {%>
                                     <form

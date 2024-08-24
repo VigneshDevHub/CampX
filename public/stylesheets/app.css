@@ -7,6 +7,7 @@
 #map{
     width:100%;
     height:300px;
+    margin-bottom: 2rem;
 }
 
 body{
@@ -43,4 +44,17 @@ h1{
 
 #showlocation{
     color: grey;
+}
+
+#log{
+    box-shadow:0 0 1rem rgba(255, 255, 255, 0.5);
+}
+
+#reg{
+    box-shadow:0 0 1rem rgba(255, 255, 255, 0.5);
+}
+
+#newcamp{
+    background-color: black;
+    color: white;
 }
