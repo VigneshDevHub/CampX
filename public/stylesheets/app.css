@@ -12,9 +12,10 @@
 
 body{
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724481214/stars-3.gif");
+    url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724754425/s6xla8gbzb5jtkzay7qr.jpg");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 h1{
