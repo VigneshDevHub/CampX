@@ -12,7 +12,6 @@
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
-- [Examples](#examples)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
 - [License](#license)
@@ -85,20 +84,13 @@ Key dependencies used in the project include:
 
 You can view all dependencies in the `package.json` file.
 
-## Examples
-To explore how the app works, you can:
-
-1. Add a new campground with details and images.
-2. Browse other campgrounds and add your reviews.
-3. Edit or delete your campgrounds to see the permission feature in action.
-
 ## Contributing
 We welcome contributions to CampX! To get started, follow these steps:
 
 1. **Fork the Repository**: Click on the "Fork" button at the top right of this page.
 2. **Clone Your Fork**: Clone your forked repository to your local machine.
     ```bash
-    git clone https://github.com/yourusername/CampX.git
+    git clone https://github.com/Vignesh025/CampX.git
     ```
 3. **Create a Branch**: Create a new branch for your feature or bugfix.
     ```bash
