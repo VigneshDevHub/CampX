@@ -85,7 +85,7 @@ Key dependencies used in the project include:
 You can view all dependencies in the `package.json` file.
 
 ## Contributing
-We welcome contributions to CampX! To get started, follow the guidelines in the [CONTRIBUTING](CONTRIBUTING) file.
+We welcome contributions to CampX! To get started, follow the guidelines in the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ### Guidelines
 - Ensure your code follows the existing style and conventions.
