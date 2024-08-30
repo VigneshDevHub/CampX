@@ -126,10 +126,10 @@ We're always looking to improve the UI of CampX. If you have an idea for enhanci
 
 ### Security Vulnerabilities
 
-If you discover a security vulnerability, please report it directly via the [issue tracker](https://github.com/Vignesh025/CampX/issues) or by contacting us at [CampX](https://discord.gg/Ma9GMqYppf). Do not post security issues publicly.
+If you discover a security vulnerability, please report it directly via the [issue tracker](https://github.com/Vignesh025/CampX/issues) or by contacting us at [CampX](https://discord.gg/p3Aa7pd2P5). Do not post security issues publicly.
 
 ## Thank You!
 
 Thank you for your interest in contributing to CampX! We're excited to see how you can help improve the platform for everyone.
 
-If you have any questions or need help, feel free to reach out by opening an issue or contacting us directly at [CampX](https://discord.gg/Ma9GMqYppf) Discord channel.
+If you have any questions or need help, feel free to reach out by opening an issue or contacting us directly at [CampX](https://discord.gg/Wq6MZ88ecf) Discord channel.
