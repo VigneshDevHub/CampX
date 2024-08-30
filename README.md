@@ -85,27 +85,7 @@ Key dependencies used in the project include:
 You can view all dependencies in the `package.json` file.
 
 ## Contributing
-We welcome contributions to CampX! To get started, follow these steps:
-
-1. **Fork the Repository**: Click on the "Fork" button at the top right of this page.
-2. **Clone Your Fork**: Clone your forked repository to your local machine.
-    ```bash
-    git clone https://github.com/Vignesh025/CampX.git
-    ```
-3. **Create a Branch**: Create a new branch for your feature or bugfix.
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-4. **Make Your Changes**: Implement your feature or bugfix.
-5. **Commit Your Changes**: Write a clear, concise commit message.
-    ```bash
-    git commit -m "Add feature X"
-    ```
-6. **Push to Your Fork**: Push your changes to your forked repository.
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-7. **Submit a Pull Request**: Open a pull request to the main repository, describing the changes you made.
+We welcome contributions to CampX! To get started, follow the guidelines in the [CONTRIBUTING](CONTRIBUTING) file.
 
 ### Guidelines
 - Ensure your code follows the existing style and conventions.
