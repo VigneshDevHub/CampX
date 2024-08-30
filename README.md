@@ -60,15 +60,14 @@ You can view all dependencies in the `package.json` file.
 ## Contributing
 We welcome contributions to CampX! To get started, follow the guidelines in the [CONTRIBUTING](CONTRIBUTING.md) file.
 
-### Guidelines
-- Ensure your code follows the existing style and conventions.
-- Include relevant documentation updates.
-- Write tests for new features or bugfixes if applicable.
-
-We appreciate your contributions and look forward to working together to improve CampX!
-
 ## Contributors
 - **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
+
+## Code of Conduct
+
+We are committed to fostering a welcoming and inclusive environment for everyone. Please take a moment to review our [Code of Conduct](CODE_OF_CONDUCT.md), which outlines our expectations for participant behavior and how we handle reports of misconduct.
+
+By participating in this project, you agree to abide by our Code of Conduct.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
