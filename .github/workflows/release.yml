@@ -12,8 +12,8 @@ concurrency:
   group: "main-branch"
 
 jobs:
-  release:
-    if: github.repository == 'EddieHubCommunity/BioDrop'
+  changelog:
+    if: github.repository == 'VigneshDevHub/CampX'
     runs-on: ubuntu-latest
 
     steps:
@@ -43,9 +43,19 @@ jobs:
           npm version patch -m "Release version %s"
           git push origin "release-from-${{ github.sha }}"
 
+      # Create changelog based on commits
+      - name: Generate changelog
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version-file: "./package.json"
+          git-branch: "release-from-${{ github.sha }}"
+          skip-git-pull: true
+
       # Create PR with release info
       - name: Create PR with release info
-        if: github.event_name == 'workflow_dispatch'
+        if: steps.changelog.outputs.skipped == 'false'
         id: create-pr
         run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
         env:
@@ -53,7 +63,7 @@ jobs:
 
       # Merge PR with release info
       - name: Merge PR with release info
-        if: github.event_name == 'workflow_dispatch'
+        if: steps.changelog.outputs.skipped == 'false' && github.event_name == 'workflow_dispatch'
         id: merge-pr
         run: gh pr merge --admin --merge --subject 'Merge release info'
         env:
@@ -61,11 +71,10 @@ jobs:
 
       # Create a GitHub release with the last commit
       - name: Create GitHub release
-        if: github.event_name == 'workflow_dispatch'
+        if: steps.changelog.outputs.skipped == 'false'
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.package-version.outputs.current-version }}
-          name: Release ${{ steps.package-version.outputs.current-version }}
-          body: |
-            Automated release for version ${{ steps.package-version.outputs.current-version }}
+          tag: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
