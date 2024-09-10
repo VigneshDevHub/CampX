@@ -56,7 +56,7 @@ jobs:
         id: create-pr
         run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       # Merge PR with release info
       - name: Merge PR with release info
@@ -64,14 +64,14 @@ jobs:
         id: merge-pr
         run: gh pr merge --admin --merge --subject 'Merge release info'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       # Create a GitHub release with the last commit
       - name: Create GitHub release
         if: github.event_name == 'workflow_dispatch'
         uses: ncipollo/release-action@v1
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           tag: ${{ steps.package-version.outputs.current-version }}
           name: Release ${{ steps.package-version.outputs.current-version }}
           body: |
