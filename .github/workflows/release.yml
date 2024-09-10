@@ -12,7 +12,7 @@ concurrency:
   group: "main-branch"
 
 jobs:
-  changelog:
+  release:
     if: github.repository == 'VigneshDevHub/CampX'
     runs-on: ubuntu-latest
 
@@ -21,6 +21,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # Configure Git with a user name and email
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
       # Create a temporary, uniquely named branch for the release
       - name: Create temporary branch
@@ -43,19 +49,9 @@ jobs:
           npm version patch -m "Release version %s"
           git push origin "release-from-${{ github.sha }}"
 
-      # Create changelog based on commits
-      - name: Generate changelog
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          version-file: "./package.json"
-          git-branch: "release-from-${{ github.sha }}"
-          skip-git-pull: true
-
       # Create PR with release info
       - name: Create PR with release info
-        if: steps.changelog.outputs.skipped == 'false'
+        if: github.event_name == 'workflow_dispatch'
         id: create-pr
         run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
         env:
@@ -63,7 +59,7 @@ jobs:
 
       # Merge PR with release info
       - name: Merge PR with release info
-        if: steps.changelog.outputs.skipped == 'false' && github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch'
         id: merge-pr
         run: gh pr merge --admin --merge --subject 'Merge release info'
         env:
@@ -71,10 +67,11 @@ jobs:
 
       # Create a GitHub release with the last commit
       - name: Create GitHub release
-        if: steps.changelog.outputs.skipped == 'false'
+        if: github.event_name == 'workflow_dispatch'
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.changelog.outputs.tag }}
-          name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          tag: ${{ steps.package-version.outputs.current-version }}
+          name: Release ${{ steps.package-version.outputs.current-version }}
+          body: |
+            Automated release for version ${{ steps.package-version.outputs.current-version }}
