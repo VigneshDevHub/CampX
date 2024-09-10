@@ -11,73 +11,29 @@ jobs:
   changelog:
     if: github.repository == 'VigneshDevHub/CampX'
     runs-on: ubuntu-latest
+    # Add this permissions block
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      # Check out the repository with all commits
+      # The rest of your workflow steps remain the same
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       
-      # Configure Git
       - name: Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      # Create a temporary, uniquely named branch for the release
-      - name: Create temporary branch
-        run: git branch "release-from-${{ github.sha }}" "${{ github.sha }}"
-      
-      # Switch to the temporary branch
-      - name: Switch to new branch
-        run: git checkout release-from-${{ github.sha }}
-      
-      # Update the version in package.json
-      - name: Get npm version
-        id: package-version
-        run: |
-          LF_VERSION=$(cat package.json | jq -r '.version')
-          echo "current-version=$LF_VERSION" >> "$GITHUB_ENV"
-      
-      # Bump the version number
+      # ... (rest of your steps)
+
       - name: Bump version number
         run: |
           npm version patch -m "Release version %s"
           git push origin "release-from-${{ github.sha }}"
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      
-      # Create changelog based on commits
-      - name: Generate changelog
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          version-file: "./package.json"
-          git-branch: "release-from-${{ github.sha }}"
-          skip-git-pull: true
-      
-      # Create PR with release info
-      - name: Create PR with release info
-        if: steps.changelog.outputs.skipped == 'false'
-        id: create-pr
-        run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      
-      # Merge PR with release info
-      - name: Merge PR with release info
-        if: steps.changelog.outputs.skipped == 'false'
-        id: merge-pr
-        run: gh pr merge --admin --merge --subject 'Merge release info'
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      
-      # Create a GitHub release with the last commit
-      - name: Create GitHub release
-        if: steps.changelog.outputs.skipped == 'false'
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          tag: ${{ steps.changelog.outputs.tag }}
-          name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          # Use GITHUB_TOKEN instead of PERSONAL_ACCESS_TOKEN
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ... (rest of your steps, using GITHUB_TOKEN instead of PERSONAL_ACCESS_TOKEN)
