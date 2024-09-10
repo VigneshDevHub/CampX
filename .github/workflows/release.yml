@@ -27,7 +27,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}.git
 
       # Create a temporary, uniquely named branch for the release
       - name: Create temporary branch
@@ -56,7 +56,7 @@ jobs:
         id: create-pr
         run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT }}
 
       # Merge PR with release info
       - name: Merge PR with release info
@@ -64,14 +64,14 @@ jobs:
         id: merge-pr
         run: gh pr merge --admin --merge --subject 'Merge release info'
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT }}
 
       # Create a GitHub release with the last commit
       - name: Create GitHub release
         if: github.event_name == 'workflow_dispatch'
         uses: ncipollo/release-action@v1
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PAT }}
           tag: ${{ steps.package-version.outputs.current-version }}
           name: Release ${{ steps.package-version.outputs.current-version }}
           body: |
