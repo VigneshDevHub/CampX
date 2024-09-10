@@ -1,0 +1,35 @@
+name: CampX Build
+
+on:
+  pull_request:
+    paths:
+      - '**/*'  # Trigger workflow on changes to any file
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:latest  # Start a MongoDB service
+        ports:
+          - 27017:27017      # Expose the MongoDB port
+    steps:
+      - uses: actions/checkout@v4  # Check out the code
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'              # Cache npm dependencies
+          
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Lint step (if you'd like to add linting)
+      - name: Set up ESLint
+        run: |
+          npx eslint --init  # Initialize ESLint if not set up already
+          npx eslint .        # Lint all files in the repo
+          
+      # Build step
+      - name: Start the application
+        run: node app.js
