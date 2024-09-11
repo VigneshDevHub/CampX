@@ -1,18 +1,6 @@
 # .gitpod.yml
-image:
-  file: .gitpod.Dockerfile  # Optional: Use a Dockerfile for custom environments
+image: gitpod/workspace-full
 
 tasks:
-  - name: Initialize
-    init: yarn install # or npm install
-    command: yarn start # or any other command to run your project
-
-ports:
-  - port: 3000
-    onOpen: open-preview
-  - port: 8000
-
-vscode:
-  extensions:
-    - esbenp.prettier-vscode
-    - dbaeumer.vscode-eslint
+  - command: npm install
+    init: npm install
