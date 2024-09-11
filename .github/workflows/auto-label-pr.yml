@@ -1,0 +1,52 @@
+name: Auto Label PR Based on Checkboxes
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  auto-label:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Apply labels based on checked boxes in PR description
+      id: labeler
+      run: |
+        if [[ "${{ github.event.pull_request.body }}" =~ "- \[x\] Bug fix" ]]; then
+          echo "Adding 'bug' label"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels":["bug"]}'
+        fi
+
+        if [[ "${{ github.event.pull_request.body }}" =~ "- \[x\] New feature" ]]; then
+          echo "Adding 'enhancement' label"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels":["enhancement"]}'
+        fi
+
+        if [[ "${{ github.event.pull_request.body }}" =~ "- \[x\] UI enhancement" ]]; then
+          echo "Adding 'ui-enhancement' label"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels":["ui-enhancement"]}'
+        fi
+
+        if [[ "${{ github.event.pull_request.body }}" =~ "- \[x\] Documentation update" ]]; then
+          echo "Adding 'documentation' label"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels":["documentation"]}'
+        fi
