@@ -24,12 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Lint step (if you'd like to add linting)
-      - name: Set up ESLint
-        run: |
-          npx eslint --init  # Initialize ESLint if not set up already
-          npx eslint .        # Lint all files in the repo
-          
       # Build step
       - name: Start the application
         run: node app.js
