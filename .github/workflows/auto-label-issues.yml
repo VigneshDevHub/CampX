@@ -1,0 +1,45 @@
+name: Auto Label Issues
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Automatically label issues based on keywords
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueTitle = context.payload.issue.title.toLowerCase();
+            const issueBody = context.payload.issue.body.toLowerCase();
+
+            // Define keywords and corresponding labels
+            const labelMap = {
+              'bug': 'BUG',
+              'doc': 'DOC',
+              'feature': 'FEATURE',
+              'ui': 'UI'
+            };
+
+            // Create an array to hold labels to add
+            let labelsToAdd = [];
+
+            // Check for keywords in the issue title or body
+            for (const [keyword, label] of Object.entries(labelMap)) {
+              if (issueTitle.includes(keyword) || issueBody.includes(keyword)) {
+                labelsToAdd.push(label);
+              }
+            }
+
+            // If labels are found, add them to the issue
+            if (labelsToAdd.length > 0) {
+              github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labelsToAdd
+              });
+            }
