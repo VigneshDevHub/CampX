@@ -23,7 +23,7 @@
 - **Interactive UI**: Engaging interface built with HTML, CSS, and JavaScript.
 
 ## Hosted Website
-Visit the live version of CampX here: [CampX Website](https://campx-ztww.onrender.com/)
+Visit the live version of CampX here: [CampX Website](https://campx-f9sv.onrender.com)
 
 ## Tech Stack
 - **Frontend**: HTML, CSS, JavaScript
@@ -32,34 +32,7 @@ Visit the live version of CampX here: [CampX Website](https://campx-ztww.onrende
 - **Media Storage**: Cloudinary
 
 ## Installation
-To set up the project locally, follow these steps:
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/CampX.git
-    cd CampX
-    ```
-
-2. Install the necessary dependencies:
-    ```bash
-    npm install
-    ```
-
-3. Set up environment variables:
-    Create a `.env` file in the root directory with the following variables:
-    ```env
-    DATABASE_URL=your_mongo_atlas_url
-    CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-    CLOUDINARY_API_KEY=your_cloudinary_api_key
-    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-    ```
-
-4. Start the server:
-    ```bash
-    npm start
-    ```
-
-5. Open your browser and navigate to `http://localhost:3000` to view the app.
+To set up the project locally, follow the steps mentioned in the [INSTALLATION](INSTALLATION.md) Guide.
 
 ## Usage
 - **Adding a Campground**: Users can submit new campgrounds by filling out a form with details such as location, description, and uploading images.
@@ -85,37 +58,16 @@ Key dependencies used in the project include:
 You can view all dependencies in the `package.json` file.
 
 ## Contributing
-We welcome contributions to CampX! To get started, follow these steps:
-
-1. **Fork the Repository**: Click on the "Fork" button at the top right of this page.
-2. **Clone Your Fork**: Clone your forked repository to your local machine.
-    ```bash
-    git clone https://github.com/Vignesh025/CampX.git
-    ```
-3. **Create a Branch**: Create a new branch for your feature or bugfix.
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-4. **Make Your Changes**: Implement your feature or bugfix.
-5. **Commit Your Changes**: Write a clear, concise commit message.
-    ```bash
-    git commit -m "Add feature X"
-    ```
-6. **Push to Your Fork**: Push your changes to your forked repository.
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-7. **Submit a Pull Request**: Open a pull request to the main repository, describing the changes you made.
-
-### Guidelines
-- Ensure your code follows the existing style and conventions.
-- Include relevant documentation updates.
-- Write tests for new features or bugfixes if applicable.
-
-We appreciate your contributions and look forward to working together to improve CampX!
+We welcome contributions to CampX! To get started, follow the guidelines in the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## Contributors
 - **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
+
+## Code of Conduct
+
+We are committed to fostering a welcoming and inclusive environment for everyone. Please take a moment to review our [Code of Conduct](CODE_OF_CONDUCT.md), which outlines our expectations for participant behavior and how we handle reports of misconduct.
+
+By participating in this project, you agree to abide by our Code of Conduct.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

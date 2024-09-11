@@ -46,5 +46,5 @@ We believe in responsible disclosure. If you report a vulnerability and agree to
 We appreciate the efforts of the security community and our users in helping us maintain the security of CampX. Your contributions make our platform safer for everyone.
 
 ## Contact
-For any questions or concerns regarding this security policy, please contact us via the issue tracker or at [CampX](https://discord.gg/k6mQ42uu).
+For any questions or concerns regarding this security policy, please contact us via the issue tracker or at [CampX](https://discord.gg/p3Aa7pd2P5).
 

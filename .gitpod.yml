@@ -1,0 +1,6 @@
+# .gitpod.yml
+image: gitpod/workspace-full
+
+tasks:
+  - command: npm install
+    init: npm install

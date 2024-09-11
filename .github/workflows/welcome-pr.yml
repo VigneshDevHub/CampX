@@ -1,0 +1,27 @@
+name: Welcome Pull Request
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure full history is available
+
+      # Set up GitHub CLI
+      - name: Set up GitHub CLI
+        uses: cli/cli-action@v2
+
+      # Add a welcome message
+      - name: Add a Welcome Message
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "👋 Welcome! Thank you for your contribution. We will review your pull request shortly!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
