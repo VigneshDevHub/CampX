@@ -1,5 +1,6 @@
 <div align="center">
-<h1>CampX</h1>
+  <h1>CampX</h1>
+  <img src="https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png" />
 </div>
 
 ## Introduction
