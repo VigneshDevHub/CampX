@@ -1,4 +1,6 @@
-# CampX
+<div align="center">
+<h1>CampX</h1>
+</div>
 
 ## Introduction
 **CampX** is a web application designed to help users discover and share campgrounds from around the world. Users can browse through a collection of campgrounds, read reviews, and contribute by adding their own. Each user has control over the campgrounds they add, with the ability to edit or delete them. The platform encourages a community-driven approach to exploring the great outdoors.
