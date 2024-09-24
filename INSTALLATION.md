@@ -23,7 +23,7 @@ To set up the project locally, follow these steps:
 
 4. Start the server:
     ```bash
-    npm start
+    node app.js
     ```
 
 5. Open your browser and navigate to `http://localhost:3000` to view the app.
