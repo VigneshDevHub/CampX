@@ -34,8 +34,8 @@ git checkout -b feature/your-feature-name
 
 ```
 
-### 4. Edit The .env.example File
-After loading up the codebase, rename the `.env.example` file to `.env` and fill in the required secrets from the corresponding sites linked.
+### 4. Create An .env File
+After loading up the codebase, create `.env` file, copy everything from the `.env.example` file and fill in the required secrets from the corresponding sites linked.
 
 ### 5. Make Your Changes
 
