@@ -34,7 +34,10 @@ git checkout -b feature/your-feature-name
 
 ```
 
-### 4. Make Your Changes
+### 4. Edit The .env.example File
+After loading up the codebase, rename the `.env.example` file to `.env` and fill in the required secrets from the corresponding sites linked.
+
+### 5. Make Your Changes
 
 Make the necessary changes to the codebase, documentation, or any other part of the project.
 
@@ -44,7 +47,7 @@ Make the necessary changes to the codebase, documentation, or any other part of 
 
 - If you're adding a new feature or making a significant change, consider updating the documentation as well.
 
-### 5. Test Your Changes
+### 6. Test Your Changes
 
 Before submitting your changes, make sure they work as expected:
 
@@ -52,7 +55,7 @@ Before submitting your changes, make sure they work as expected:
 
 - Add new tests if applicable.
 
-### 6. Commit Your Changes
+### 7. Commit Your Changes
 
 Once you're satisfied with your changes, commit them to your branch.
 
@@ -64,7 +67,7 @@ git commit -m "Add [feature/fix]: [brief description of your changes]"
 
 ```
 
-### 7. Push to Your Fork
+### 8. Push to Your Fork
 
 Push your changes to your forked repository.
 
@@ -74,7 +77,7 @@ git push origin feature/your-feature-name
 
 ```
 
-### 8. Open a Pull Request
+### 9. Open a Pull Request
 
 Submit a pull request (PR) to the main CampX repository.
 
@@ -86,11 +89,11 @@ Submit a pull request (PR) to the main CampX repository.
 
 4\. Provide a clear and concise description of your changes in the PR template.
 
-### 9. Review Process
+### 10. Review Process
 
 Your pull request will be reviewed by the maintainers of CampX. They may request changes or ask for further clarification. Be responsive to feedback and make any necessary updates.
 
-### 10. Merge and Celebrate
+### 11. Merge and Celebrate
 
 Once your pull request is approved and merged, congratulations! You've successfully contributed to CampX. Your contribution will be credited in the project's contributors list.
 
