@@ -1,0 +1,29 @@
+name: Add Gitpod Link
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add Gitpod link comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.issue.number;
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+
+            const gitpodLink = `https://gitpod.io/#https://github.com/${owner}/${repo}/pull/${prNumber}`;
+
+            const commentBody = `💻 Open this pull request in Gitpod: [Open in Gitpod](${gitpodLink})`;
+
+            await github.rest.issues.createComment({
+              owner: owner,
+              repo: repo,
+              issue_number: prNumber,
+              body: commentBody
+            });
