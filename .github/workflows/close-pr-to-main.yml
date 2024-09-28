@@ -1,0 +1,20 @@
+name: Close PR to Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  close-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
+      - name: Close PR and Add Comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided token
+        run: |
+          gh pr close ${{ github.event.pull_request.number }} --comment "Please submit this PR to the \`test\` branch, not \`main\`."
