@@ -1,4 +1,11 @@
-# CampX
+<div align="center">
+  <h1>CampX</h1>
+  <img src="https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png" />
+  <h3><i>⭐Star our Repository</i></h3>
+  <a href="https://discord.gg/Ma9GMqYppf">
+    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+  </a>
+</div>
 
 ## Introduction
 **CampX** is a web application designed to help users discover and share campgrounds from around the world. Users can browse through a collection of campgrounds, read reviews, and contribute by adding their own. Each user has control over the campgrounds they add, with the ability to edit or delete them. The platform encourages a community-driven approach to exploring the great outdoors.
