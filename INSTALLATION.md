@@ -5,17 +5,21 @@ Before starting the installation process, **fork the repository** to your GitHub
 To set up the project locally, follow these steps:
 
 1. **Clone the forked repository**:
+    
     ```bash
     git clone https://github.com/yourusername/CampX.git
     cd CampX
     ```
 
+
 2. **Install the necessary dependencies**:
+
     ```bash
     npm install
     ```
 
 3. **Set up environment variables**:
+
     Create a `.env` file in the root directory with the following variables:
     ```env
     DATABASE_URL=your_mongo_atlas_url
@@ -31,3 +35,4 @@ To set up the project locally, follow these steps:
 
 5. **View the app**:
    Open your browser and navigate to `http://localhost:3000` to view the app.
+
