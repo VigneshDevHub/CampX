@@ -26,7 +26,7 @@
 ## Features
 - **Global Campground Discovery**: Browse campgrounds from various locations worldwide.
 - **User-Generated Content**: Users can add campgrounds and reviews.
-- **Edit and Delete Permissions**: Only the original author of a campground can edit or delete their entry.
+- **Edit and Delete Permissions**: Only the original author of a campground can edit or delete their entry.     Admins/Maintainers of CampX can edit or delete campgrounds and delete reviews upon spam detection.
 - **Interactive UI**: Engaging interface built with HTML, CSS, and JavaScript.
 
 ## Hosted Website
