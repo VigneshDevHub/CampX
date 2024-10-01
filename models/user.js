@@ -6,6 +6,10 @@ const UserSchema= new Schema({
     email:{
         type: String,
         required:true
+    },
+    role:{
+        type:String,
+        default:"user"
     }
 });
 UserSchema.plugin(passportLocalMongoose);
