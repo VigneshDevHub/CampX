@@ -5,9 +5,11 @@ module.exports.renderRegister = (req, res) => {
 }
 
 module.exports.register = async (req, res,next) => {
+    let userCount = await User.countDocuments();
+    let role = userCount === 0 ? "admin" : "user";
     try{
         const { email, username, password } = req.body;
-        const user = new User({ email, username });
+        const user = new User({ email, username,role });
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err=>{
             if(err) return next(err);
