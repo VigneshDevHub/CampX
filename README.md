@@ -51,6 +51,7 @@ The application requires a few configurations to run:
 
 - **MongoDB Atlas**: Set up a cluster and obtain the connection string.
 - **Cloudinary**: Create an account to manage image uploads.
+- **Mapbox**:Create an account and get the MAPBOX TOKEN.
 
 Ensure that your environment variables are correctly set in the `.env` file as shown in the [Installation](#installation) section.
 
