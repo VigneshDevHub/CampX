@@ -2,6 +2,9 @@
   <h1>CampX</h1>
   <img src="https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png" />
   <h3><i>⭐Star our Repository</i></h3>
+  <a href="https://discord.gg/Ma9GMqYppf">
+    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+  </a>
 </div>
 
 ## Introduction
@@ -23,7 +26,7 @@
 ## Features
 - **Global Campground Discovery**: Browse campgrounds from various locations worldwide.
 - **User-Generated Content**: Users can add campgrounds and reviews.
-- **Edit and Delete Permissions**: Only the original author of a campground can edit or delete their entry.
+- **Edit and Delete Permissions**: Only the original author of a campground can edit or delete their entry.     Admins/Maintainers of CampX can edit or delete campgrounds and delete reviews upon spam detection.
 - **Interactive UI**: Engaging interface built with HTML, CSS, and JavaScript.
 
 ## Hosted Website
@@ -48,6 +51,7 @@ The application requires a few configurations to run:
 
 - **MongoDB Atlas**: Set up a cluster and obtain the connection string.
 - **Cloudinary**: Create an account to manage image uploads.
+- **Mapbox**:Create an account and get the MAPBOX TOKEN.
 
 Ensure that your environment variables are correctly set in the `.env` file as shown in the [Installation](#installation) section.
 
