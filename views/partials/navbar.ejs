@@ -1,24 +1,106 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">CampX</a>
+<nav class="navbar sticky-top navbar-expand-lg" id="mainNavbar" style="background-color: transparent; transition: background-color 0.3s ease-in-out;">
+    <div class="container-fluid d-flex justify-content-lg-start justify-content-center">
+        <a class="navbar-brand mx-auto mx-lg-0" href="/" style="font-weight: bold; color: white; font-size: 2rem; text-align: center;" id="campxLogo">
+            Camp<span id="rotateX" style="display: inline-block; animation: rotation 3s infinite; color: white;">X</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                <a class="nav-link <%= currentPath === '/' ? 'active' : '' %>" href="/" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">&nbsp;Home</a>
+                <a class="nav-link <%= currentPath === '/campgrounds' ? 'active' : '' %>" href="/campgrounds" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">Campgrounds</a>
+                <a class="nav-link <%= currentPath === '/campgrounds/new' ? 'active' : '' %>" href="/campgrounds/new" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">New Campground</a>
             </div>
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser) { %>
-                <a class="nav-link" href="/login">Login</a>
-                <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link <%= currentPath === '/login' ? 'active' : '' %>" href="/login" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">Login</a>
+                    <a class="nav-link <%= currentPath === '/register' ? 'active' : '' %>" href="/register" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">Register</a>
                 <% } else { %>
-                <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link <%= currentPath === '/logout' ? 'active' : '' %>" href="/logout" style="color: rgba(255, 255, 255, 0.5); font-weight: 700; padding: 0.25rem 0; margin-left: 1rem; border-bottom: 0.25rem solid transparent;">Logout</a>
                 <% } %>
             </div>
         </div>
     </div>
+    <style>
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        .navbar-nav .nav-link {
+            transition: border-bottom 0.3s ease, color 0.3s ease;
+            border-bottom: 0.25rem solid transparent;
+        }
+
+        .navbar-nav .nav-link:hover {
+            border-bottom: 0.25rem solid rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            border-bottom: 0.25rem solid white !important;
+        }
+
+        .scrolled .nav-link {
+            color: grey;
+        }
+
+        .scrolled .nav-link.active {
+            color: black !important;
+            border-bottom: 0.25rem solid black !important;
+        }
+
+        .scrolled .nav-link:hover {
+            border-bottom: 0.25rem solid grey !important;
+        }
+
+        .scrolled .nav-link.active:hover {
+            border-bottom: 0.25rem solid black !important;
+        }
+    </style>
+    <script>
+        window.onscroll = function() {
+            var navbar = document.getElementById("mainNavbar");
+            var logo = document.getElementById("campxLogo");
+            var rotateX = document.getElementById("rotateX");
+            var links = document.querySelectorAll('.nav-link');
+
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = "white";
+                logo.style.color = "black";
+                rotateX.style.color = "grey";
+
+                links.forEach(link => {
+                    link.style.color = "grey"; 
+                    link.style.borderBottom = "0.25rem solid transparent"; 
+                });
+
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.style.backgroundColor = "transparent";
+                logo.style.color = "white";
+                rotateX.style.color = "white";
+
+                links.forEach(link => {
+                    link.style.color = "rgba(255, 255, 255, 0.5)";
+                    if (link.classList.contains('active')) {
+                        link.style.color = "white !important"; 
+                        link.style.borderBottom = "0.25rem solid white !important"; 
+                    } else {
+                        link.style.borderBottom = "0.25rem solid transparent"; 
+                    }
+                });
+
+                navbar.classList.remove('scrolled');
+            }
+        };
+    </script>
 </nav>
