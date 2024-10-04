@@ -29,23 +29,10 @@ jobs:
               'ui': 'ui',
               'hacktoberfest': 'hacktoberfest',
               'hacktoberfest-accepted': 'hacktoberfest-accepted',
-              'accessibility': 'accessibility',
-              'level 1': 'level 1',
               'documentation': 'documentation',
               'gssoc-ext': 'gssoc-ext',
               'workflow': 'workflow',
               'automation': 'automation',
-              'navbar': 'navbar',
-              'footer': 'footer',
-              'filters': 'filters',
-              'admin': 'admin',
-              'home': 'home',
-              'campgrounds': 'campgrounds',
-              'error': 'error',
-              'register': 'register',
-              'login': 'login',
-              'email': 'email',
-              'typescript': 'typescript'
               // Add more mappings as needed
             };
 
