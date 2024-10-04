@@ -1,0 +1,48 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*" # Triggers only when a tag with format vX.X.X is pushed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js (optional, remove if not using Node)
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Generate Release Notes
+        id: notes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10, // Customize as needed
+            });
+            let notes = '## Release Notes\n\n';
+            commits.forEach(commit => {
+              notes += `- ${commit.commit.message}\n`;
+            });
+            return notes;
+          result-encoding: string
+          result: release_notes
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: "Release ${{ github.ref_name }}"
+          body: ${{ steps.notes.outputs.release_notes }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
