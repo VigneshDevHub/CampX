@@ -59,3 +59,24 @@ h1{
     background-color: black;
     color: white;
 }
+
+@media (max-width: 768px) {
+    #map {
+        width: 100%;
+        height: auto;
+        min-height: 300px; /* Set a minimum height for mobile */
+    }
+
+    #showinfo {
+        display: block;
+    }
+
+    .col-6 {
+        width: 100%;
+        height: auto;
+    }
+
+    .row {
+        flex-direction: column !important;
+    }
+}
