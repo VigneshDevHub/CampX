@@ -93,7 +93,9 @@ By participating in this project, you agree to abide by our Code of Conduct.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-this is test linec
+##
+
+- **MIGHTY1o1** - [GitHub Profile](https://github.com/MIGHTY1o1)
 
 ##
 - **MIGHTY1o1** - [GitHub Profile](https://github.com/MIGHTY1o1)
