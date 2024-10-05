@@ -3,9 +3,9 @@ name: Update Contributors
 on:
   push:
     branches:
-      - main # or your default branch
+      - main
   schedule:
-    - cron: "0 0 * * 0" # Runs weekly on Sunday at midnight
+    - cron: "0 0 * * 0"
 
 jobs:
   update-contributors:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Fetch all history for git log
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,29 +25,59 @@ jobs:
 
       - name: Update Contributors
         run: |
-          # Create Python script to update README
           cat > update_contributors.py << 'EOF'
           import subprocess
           import re
 
+          def normalize_name(name):
+              # Remove [bot] suffix
+              name = re.sub(r'\[bot\]$', '', name)
+              # Remove common CI names
+              if name.lower() in ['github action', 'github actions', 'github-actions']:
+                  return None
+              return name.strip()
+
           def get_contributors():
               # Get all contributors from git log
               git_log = subprocess.check_output(
-                  ['git', 'log', '--format="%aN <%aE>"'],
+                  ['git', 'log', '--format="%aN|%aE"'],
                   universal_newlines=True
               )
               
-              # Convert to set to get unique contributors
-              contributors = set(git_log.replace('"', '').split('\n'))
-              contributors.discard('')  # Remove empty strings
+              # Process contributors
+              contributors_dict = {}
+              for line in git_log.replace('"', '').split('\n'):
+                  if not line:
+                      continue
+                  
+                  name, email = line.split('|')
+                  name = normalize_name(name)
+                  
+                  if not name:
+                      continue
+                      
+                  # Use email as key to prevent duplicates
+                  if email not in contributors_dict:
+                      # Get GitHub username from email or use name
+                      username = email.split('@')[0] if '@' in email else name.lower().replace(' ', '')
+                      contributors_dict[email] = {
+                          'name': name,
+                          'username': username
+                      }
               
-              # Format each contributor
+              # Format contributors
               formatted_contributors = []
-              for contributor in contributors:
-                  name = contributor.split('<')[0].strip()
-                  email = contributor.split('<')[1].rstrip('>')
-                  # Get GitHub username from email or use name if not available
-                  username = email.split('@')[0] if '@' in email else name.lower().replace(' ', '')
+              seen_names = set()  # Track seen names to prevent duplicates
+              
+              for info in contributors_dict.values():
+                  name = info['name']
+                  username = info['username']
+                  
+                  # Skip if we've already seen this name
+                  if name in seen_names:
+                      continue
+                      
+                  seen_names.add(name)
                   formatted_contributors.append(f"- **{name}** - [GitHub Profile](https://github.com/{username})")
               
               return sorted(formatted_contributors)
