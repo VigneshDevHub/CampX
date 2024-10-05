@@ -1,41 +1,47 @@
-name: Update Contributors in README
+name: Update Contributors
 
 on:
   push:
     branches:
-      - main # Change this to your default branch if necessary
+      - main # Change this to your default branch if it's not main
 
 jobs:
-  update-contributors:
+  update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install GitHub CLI
+      - name: Get contributors
+        id: contributors
         run: |
-          sudo apt-get install gh
+          # Fetch contributors and format them
+          contributors=$(git log --format='%aN <%aE>' | sort -u | awk '{printf "- **%s** - [GitHub Profile](https://github.com/%s)\n", $1, $1}')
+          echo "::set-output name=contributors::$contributors"
 
-      - name: Get Contributors
-        id: get_contributors
+      - name: Update README.md
         run: |
-          CONTRIBUTORS=$(gh api repos/${{ github.repository }}/contributors --jq '.[].login' | tr '\n' ', ')
-          echo "CONTRIBUTORS=${CONTRIBUTORS}" >> $GITHUB_ENV
-
-      - name: Update README
-        run: |
-          echo "## Contributors" > README.md
-          if [ -z "${{ env.CONTRIBUTORS }}" ]; then
-            echo "No contributors found." >> README.md
+          # Check if Contributors section exists
+          if grep -q "## Contributors" README.md; then
+            # Append contributors only if not already in the list
+            existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
+            for contributor in ${{ steps.contributors.outputs.contributors }}; do
+              if ! echo "$existing_contributors" | grep -q "$contributor"; then
+                echo "$contributor" >> README.md
+              fi
+            done
           else
-            echo "${{ env.CONTRIBUTORS }}" >> README.md
+            echo "## Contributors" >> README.md
+            echo "${{ steps.contributors.outputs.contributors }}" >> README.md
           fi
 
       - name: Commit changes
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --local user.email "you@example.com" # replace with your email
+          git config --local user.name "GitHub Action" # replace with a name you want to use
           git add README.md
-          git commit -m "Update README with contributors" || echo "No changes to commit"
+          git commit -m "Update contributors list"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
