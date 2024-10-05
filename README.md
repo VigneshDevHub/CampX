@@ -93,6 +93,7 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 - **Sneha Raj** - [GitHub Profile](https://github.com/sneharaj7645653)
 - **Vignesh J** - [GitHub Profile](https://github.com/vigneshjayakumar9221)
 - **Vignesh025** - [GitHub Profile](https://github.com/vigneshjayakumar9221)
+- **github-actions[bot]** - [GitHub Profile](https://github.com/github-actions[bot])
 
 
 ## Code of Conduct
