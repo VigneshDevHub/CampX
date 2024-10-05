@@ -28,27 +28,26 @@ jobs:
           temp_file=$(mktemp)
 
           # Read the existing README content
-          existing_contributors=""
           contributor_found=false
           while IFS= read -r line; do
             echo "$line" >> "$temp_file"
             # Check for the Contributors section
             if [[ "$line" == "## Contributors" ]]; then
               contributor_found=true
-              # Write existing contributors
-              existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
+              # Skip existing contributors
+              echo "" >> "$temp_file"  # Add a blank line before new contributors
             fi
           done < README.md
 
           # Append new unique contributors only if they are not already in the existing list
           while IFS= read -r contributor; do
             # Check if the contributor already exists in the existing contributors
-            if [[ ! "$existing_contributors" =~ "$contributor" ]]; then
+            if ! grep -q "$contributor" "$temp_file"; then
               echo "$contributor" >> "$temp_file"
             fi
           done <<< "${{ env.contributors }}"
 
-          # If the Contributors section was found, add a closing comment
+          # If the Contributors section was found, add a closing comment (if needed)
           if [ "$contributor_found" = true ]; then
             echo "## " >> "$temp_file"
           fi
