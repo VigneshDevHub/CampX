@@ -34,12 +34,13 @@ jobs:
               existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
               echo "$existing_contributors" >> "$temp_file"
               
-              # Append new contributors if not already in the list
-              while read -r contributor; do
-                if ! echo "$existing_contributors" | grep -q "$contributor"; then
+              # Create a unique set of contributors
+              new_contributors="${{ steps.contributors.outputs.contributors }}"
+              for contributor in $new_contributors; do
+                if ! echo "$existing_contributors" | grep -qF "$contributor"; then
                   echo "$contributor" >> "$temp_file"
                 fi
-              done <<< "${{ steps.contributors.outputs.contributors }}"
+              done
             fi
           done < README.md
 
