@@ -1,77 +1,48 @@
-name: Releases
+name: Create Release
 
 on:
-  workflow_dispatch:  # Allows you to manually trigger the workflow
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "data/**"
-
-concurrency:
-  group: "main-branch"
+    tags:
+      - "v*.*.*" # Triggers only when a tag with format vX.X.X is pushed
 
 jobs:
   release:
-    if: github.repository == 'EddieHubCommunity/BioDrop'
     runs-on: ubuntu-latest
-
     steps:
-      # Check out the repository with all commits
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js (optional, remove if not using Node)
+        uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
+          node-version: "16"
 
-      # Configure Git with a user name and email
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      # Create a temporary, uniquely named branch for the release
-      - name: Create temporary branch
-        run: git branch "release-from-${{ github.sha }}" "${{ github.sha }}"
-
-      # Switch to the temporary branch
-      - name: Switch to new branch
-        run: git checkout release-from-${{ github.sha }}
-
-      # Update the version in package.json
-      - name: Get npm version
-        id: package-version
-        run: |
-          LF_VERSION=$(cat package.json | jq -r '.version')
-          echo "current-version=$LF_VERSION" >> "$GITHUB_ENV"
-
-      # Bump the version number
-      - name: Bump version number
-        run: |
-          npm version patch -m "Release version %s"
-          git push origin "release-from-${{ github.sha }}"
-
-      # Create PR with release info
-      - name: Create PR with release info
-        if: github.event_name == 'workflow_dispatch'
-        id: create-pr
-        run: gh pr create --base main --head release-from-${{ github.sha }} --title 'Merge new release into main' --body 'Created by GitHub Action'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Merge PR with release info
-      - name: Merge PR with release info
-        if: github.event_name == 'workflow_dispatch'
-        id: merge-pr
-        run: gh pr merge --admin --merge --subject 'Merge release info'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Create a GitHub release with the last commit
-      - name: Create GitHub release
-        if: github.event_name == 'workflow_dispatch'
-        uses: ncipollo/release-action@v1
+      - name: Generate Release Notes
+        id: notes
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.package-version.outputs.current-version }}
-          name: Release ${{ steps.package-version.outputs.current-version }}
-          body: |
-            Automated release for version ${{ steps.package-version.outputs.current-version }}
+          script: |
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 10, // Customize as needed
+            });
+            let notes = '## Release Notes\n\n';
+            commits.forEach(commit => {
+              notes += `- ${commit.commit.message}\n`;
+            });
+            return notes;
+          result-encoding: string
+          result: release_notes
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: "Release ${{ github.ref_name }}"
+          body: ${{ steps.notes.outputs.release_notes }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
