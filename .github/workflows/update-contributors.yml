@@ -3,7 +3,7 @@ name: Update Contributors in README
 on:
   push:
     branches:
-      - main
+      - main # Change this to your default branch if necessary
 
 jobs:
   update-contributors:
@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get install gh
 
-      - name: Fetch contributors
+      - name: Get Contributors
         id: get_contributors
         run: |
           CONTRIBUTORS=$(gh api repos/${{ github.repository }}/contributors --jq '.[].login' | tr '\n' ', ')
@@ -25,15 +25,17 @@ jobs:
 
       - name: Update README
         run: |
-          echo "## Contributors" >> README.md
-          echo "${{ env.CONTRIBUTORS }}" >> README.md
+          echo "## Contributors" > README.md
+          if [ -z "${{ env.CONTRIBUTORS }}" ]; then
+            echo "No contributors found." >> README.md
+          else
+            echo "${{ env.CONTRIBUTORS }}" >> README.md
+          fi
 
       - name: Commit changes
         run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git add README.md
           git commit -m "Update README with contributors" || echo "No changes to commit"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
