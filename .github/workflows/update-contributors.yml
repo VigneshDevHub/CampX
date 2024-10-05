@@ -22,19 +22,29 @@ jobs:
 
       - name: Update README.md
         run: |
-          # Check if Contributors section exists
-          if grep -q "## Contributors" README.md; then
-            # Append contributors only if not already in the list
-            existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
-            for contributor in ${{ steps.contributors.outputs.contributors }}; do
-              if ! echo "$existing_contributors" | grep -q "$contributor"; then
-                echo "$contributor" >> README.md
-              fi
-            done
-          else
-            echo "## Contributors" >> README.md
-            echo "${{ steps.contributors.outputs.contributors }}" >> README.md
-          fi
+          # Create a temporary file to hold the new README content
+          temp_file=$(mktemp)
+
+          # Read the existing README content
+          while IFS= read -r line; do
+            echo "$line" >> "$temp_file"
+            # Check for the Contributors section
+            if [[ "$line" == "## Contributors" ]]; then
+              # Write existing contributors
+              existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
+              echo "$existing_contributors" >> "$temp_file"
+              
+              # Append new contributors if not already in the list
+              while read -r contributor; do
+                if ! echo "$existing_contributors" | grep -q "$contributor"; then
+                  echo "$contributor" >> "$temp_file"
+                fi
+              done <<< "${{ steps.contributors.outputs.contributors }}"
+            fi
+          done < README.md
+
+          # Move the temp file to the original README
+          mv "$temp_file" README.md
 
       - name: Commit changes
         run: |
