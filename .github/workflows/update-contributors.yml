@@ -3,64 +3,80 @@ name: Update Contributors
 on:
   push:
     branches:
-      - main # Change this to your default branch if it's not main
+      - main # or your default branch
+  schedule:
+    - cron: "0 0 * * 0" # Runs weekly on Sunday at midnight
 
 jobs:
-  update-readme:
+  update-contributors:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for git log
 
-      - name: Get contributors
-        id: contributors
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Update Contributors
         run: |
-          # Fetch unique contributors from Git history
-          contributors=$(git log --format='%aN <%aE>' | sort -u | awk '{printf "- **%s** - [GitHub Profile](https://github.com/%s)\n", $1, $1}')
-          echo "contributors<<EOF" >> $GITHUB_ENV
-          echo "$contributors" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Create Python script to update README
+          cat > update_contributors.py << 'EOF'
+          import subprocess
+          import re
 
-      - name: Update README.md
+          def get_contributors():
+              # Get all contributors from git log
+              git_log = subprocess.check_output(
+                  ['git', 'log', '--format="%aN <%aE>"'],
+                  universal_newlines=True
+              )
+              
+              # Convert to set to get unique contributors
+              contributors = set(git_log.replace('"', '').split('\n'))
+              contributors.discard('')  # Remove empty strings
+              
+              # Format each contributor
+              formatted_contributors = []
+              for contributor in contributors:
+                  name = contributor.split('<')[0].strip()
+                  email = contributor.split('<')[1].rstrip('>')
+                  # Get GitHub username from email or use name if not available
+                  username = email.split('@')[0] if '@' in email else name.lower().replace(' ', '')
+                  formatted_contributors.append(f"- **{name}** - [GitHub Profile](https://github.com/{username})")
+              
+              return sorted(formatted_contributors)
+
+          def update_readme(contributors):
+              with open('README.md', 'r') as f:
+                  content = f.read()
+              
+              # Find the contributors section
+              pattern = r'(## Contributors\n\n)(.*?)(\n\n## )'
+              replacement = f"## Contributors\n\n{''.join(c + '\n' for c in contributors)}\n\n## "
+              
+              # Replace the old contributors section with new one
+              new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+              
+              with open('README.md', 'w') as f:
+                  f.write(new_content)
+
+          if __name__ == "__main__":
+              contributors = get_contributors()
+              update_readme(contributors)
+          EOF
+
+          # Run the Python script
+          python update_contributors.py
+
+      - name: Commit and push if changed
         run: |
-          # Create a temporary file to hold the new README content
-          temp_file=$(mktemp)
-
-          # Read the existing README content
-          contributor_found=false
-          while IFS= read -r line; do
-            echo "$line" >> "$temp_file"
-            # Check for the Contributors section
-            if [[ "$line" == "## Contributors" ]]; then
-              contributor_found=true
-              # Skip existing contributors
-              echo "" >> "$temp_file"  # Add a blank line before new contributors
-            fi
-          done < README.md
-
-          # Append new unique contributors only if they are not already in the existing list
-          while IFS= read -r contributor; do
-            # Check if the contributor already exists in the existing contributors
-            if ! grep -q "$contributor" "$temp_file"; then
-              echo "$contributor" >> "$temp_file"
-            fi
-          done <<< "${{ env.contributors }}"
-
-          # If the Contributors section was found, close it properly
-          if [ "$contributor_found" = true ]; then
-            echo "## End of Contributors" >> "$temp_file"  # You can customize this closing comment
-          fi
-
-          # Move the temp file to the original README
-          mv "$temp_file" README.md
-
-      - name: Commit changes
-        run: |
-          git config --local user.email "you@example.com" # replace with your email
-          git config --local user.name "GitHub Action" # replace with a name you want to use
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add README.md
-          git commit -m "Update contributors list" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update contributors list" && git push)
