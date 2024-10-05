@@ -47,9 +47,9 @@ jobs:
             fi
           done <<< "${{ env.contributors }}"
 
-          # If the Contributors section was found, add a closing comment (if needed)
+          # If the Contributors section was found, close it properly
           if [ "$contributor_found" = true ]; then
-            echo "## " >> "$temp_file"
+            echo "## End of Contributors" >> "$temp_file"  # You can customize this closing comment
           fi
 
           # Move the temp file to the original README
