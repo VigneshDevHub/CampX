@@ -16,9 +16,11 @@ jobs:
       - name: Get contributors
         id: contributors
         run: |
-          # Fetch contributors and format them
+          # Fetch unique contributors from Git history
           contributors=$(git log --format='%aN <%aE>' | sort -u | awk '{printf "- **%s** - [GitHub Profile](https://github.com/%s)\n", $1, $1}')
-          echo "::set-output name=contributors::$contributors"
+          echo "contributors<<EOF" >> $GITHUB_ENV
+          echo "$contributors" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Update README.md
         run: |
@@ -26,26 +28,30 @@ jobs:
           temp_file=$(mktemp)
 
           # Read the existing README content
+          existing_contributors=""
+          contributor_found=false
           while IFS= read -r line; do
             echo "$line" >> "$temp_file"
             # Check for the Contributors section
             if [[ "$line" == "## Contributors" ]]; then
+              contributor_found=true
               # Write existing contributors
               existing_contributors=$(sed -n '/## Contributors/,/##/p' README.md | sed '1d;$d')
-              echo "$existing_contributors" >> "$temp_file"
-              
-              # Create a unique set of contributors
-              new_contributors="${{ steps.contributors.outputs.contributors }}"
-              while IFS= read -r contributor; do
-                # Remove any leading/trailing whitespace
-                contributor=$(echo "$contributor" | xargs)
-                # Check for duplicates
-                if ! echo "$existing_contributors" | grep -qF "$contributor"; then
-                  echo "$contributor" >> "$temp_file"
-                fi
-              done <<< "$new_contributors"
             fi
           done < README.md
+
+          # Append new unique contributors only if they are not already in the existing list
+          while IFS= read -r contributor; do
+            # Check if the contributor already exists in the existing contributors
+            if [[ ! "$existing_contributors" =~ "$contributor" ]]; then
+              echo "$contributor" >> "$temp_file"
+            fi
+          done <<< "${{ env.contributors }}"
+
+          # If the Contributors section was found, add a closing comment
+          if [ "$contributor_found" = true ]; then
+            echo "## " >> "$temp_file"
+          fi
 
           # Move the temp file to the original README
           mv "$temp_file" README.md
@@ -55,7 +61,7 @@ jobs:
           git config --local user.email "you@example.com" # replace with your email
           git config --local user.name "GitHub Action" # replace with a name you want to use
           git add README.md
-          git commit -m "Update contributors list"
+          git commit -m "Update contributors list" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
