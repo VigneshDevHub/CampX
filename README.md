@@ -88,6 +88,7 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 - **Sneha Raj** - [GitHub Profile](https://github.com/sneharaj7645653)
 - **Vignesh J** - [GitHub Profile](https://github.com/vigneshjayakumar9221)
 
+
 ## Code of Conduct
 
 We are committed to fostering a welcoming and inclusive environment for everyone. Please take a moment to review our [Code of Conduct](CODE_OF_CONDUCT.md), which outlines our expectations for participant behavior and how we handle reports of misconduct.
