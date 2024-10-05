@@ -81,6 +81,9 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 ## Contributors
 
 - **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
+- **MIGHTY1o1** - [GitHub Profile](https://github.com/MIGHTY1o1)
+
+- **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
 
 ## Code of Conduct
 
