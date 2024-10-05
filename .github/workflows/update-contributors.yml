@@ -36,11 +36,14 @@ jobs:
               
               # Create a unique set of contributors
               new_contributors="${{ steps.contributors.outputs.contributors }}"
-              for contributor in $new_contributors; do
+              while IFS= read -r contributor; do
+                # Remove any leading/trailing whitespace
+                contributor=$(echo "$contributor" | xargs)
+                # Check for duplicates
                 if ! echo "$existing_contributors" | grep -qF "$contributor"; then
                   echo "$contributor" >> "$temp_file"
                 fi
-              done
+              done <<< "$new_contributors"
             fi
           done < README.md
 
