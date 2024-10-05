@@ -27,15 +27,20 @@ jobs:
           # Create a temporary file to hold the new README content
           temp_file=$(mktemp)
 
-          # Read the existing README content
+          # Read the existing README content and manage contributors
           contributor_found=false
           while IFS= read -r line; do
             echo "$line" >> "$temp_file"
+
             # Check for the Contributors section
             if [[ "$line" == "## Contributors" ]]; then
               contributor_found=true
-              # Skip existing contributors
               echo "" >> "$temp_file"  # Add a blank line before new contributors
+            fi
+
+            # If we find the end of the Contributors section, we break the loop
+            if [[ "$contributor_found" == true && "$line" == ##* ]]; then
+              break
             fi
           done < README.md
 
@@ -47,10 +52,15 @@ jobs:
             fi
           done <<< "${{ env.contributors }}"
 
-          # If the Contributors section was found, close it properly
+          # If the Contributors section was found, add the end comment (if needed)
           if [ "$contributor_found" = true ]; then
             echo "## End of Contributors" >> "$temp_file"  # You can customize this closing comment
           fi
+
+          # Append the rest of the README content (if necessary)
+          while IFS= read -r line; do
+            echo "$line" >> "$temp_file"
+          done < <(tail -n +$(( $(grep -n "## Contributors" README.md | cut -d: -f1) + 1 )) README.md)
 
           # Move the temp file to the original README
           mv "$temp_file" README.md

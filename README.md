@@ -80,7 +80,6 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 ## Contributors
 
-
 - **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
 
 ## Code of Conduct
@@ -93,10 +92,4 @@ By participating in this project, you agree to abide by our Code of Conduct.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-- **MIGHTY1o1** - [GitHub Profile](https://github.com/MIGHTY1o1)
-
-## End of Contributors
-
 this is test line
-- **MIGHTY1o1** - [GitHub Profile](https://github.com/MIGHTY1o1)
-## End of Contributors
