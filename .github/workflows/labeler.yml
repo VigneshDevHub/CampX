@@ -29,7 +29,6 @@ jobs:
               'ui': 'ui',
               'hacktoberfest': 'hacktoberfest',
               'hacktoberfest-accepted': 'hacktoberfest-accepted',
-              'accessibility': 'accessibility',
               'documentation': 'documentation',
               'gssoc-ext': 'gssoc-ext',
               'workflow': 'workflow',
