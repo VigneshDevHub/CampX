@@ -80,7 +80,15 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 ## Contributors
 
-- **Vignesh** - [GitHub Profile](https://github.com/Vignesh025)
+- **ARRY7686** - [GitHub Profile](https://github.com/aadigupta2007)
+- **Deveshi Singh** - [GitHub Profile](https://github.com/deveshisingh7b)
+- **MIGHTY1o1** - [GitHub Profile](https://github.com/shubhagarwalcse)
+- **Prerana Hippargi** - [GitHub Profile](https://github.com/136839194+preranah7)
+- **Samyak Aditya** - [GitHub Profile](https://github.com/91079592+samyak-aditya)
+- **Shubh Agarwal** - [GitHub Profile](https://github.com/105449260+shubhagarwal1)
+- **Sneha Raj** - [GitHub Profile](https://github.com/sneharaj7645653)
+- **Vignesh J** - [GitHub Profile](https://github.com/vigneshjayakumar9221)
+
 
 ## Code of Conduct
 
