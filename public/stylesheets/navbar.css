@@ -1,0 +1,107 @@
+/* General Navbar Styles */
+.navbar {
+    background-color: black; /* Black background for the navbar */
+    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    height: 60px; /* Reduced height */
+    width: 100%; /* Ensure navbar takes full width */
+    margin: 0; /* No margin to fully cover the width */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Make CampX logo bold */
+    color: white; /* CampX logo color white */
+    font-size: 2rem;
+}
+
+.navbar-brand #rotateX {
+    display: inline-block;
+    animation: rotation 3s infinite;
+    color: white; /* Color of rotating X */
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5); /* Text color white */
+    font-weight: 700;
+    padding: 0.25rem 0;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.7); /* Subtle hover effect */
+}
+
+.navbar-nav .nav-link.active {
+    color: white !important; /* Active link text color white */
+}
+
+/* Dropdown styles */
+.navbar-nav .dropdown-menu {
+    background-color: black; /* Set dropdown background to black */
+    border: none;
+}
+
+.navbar-nav .dropdown-item {
+    color: white; /* Make dropdown text white */
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+    color: white;
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.navbar-nav .dropdown-item.active, .navbar-nav .dropdown-item:active {
+    color: white;
+    text-decoration: none; /* Remove underline from active item */
+}
+
+/* Scrolled Navbar */
+.scrolled {
+    background-color: black !important; /* Keep black when scrolled */
+    backdrop-filter: blur(10px);
+}
+
+/* Rotation animation for X */
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive styles for small and medium screens */
+@media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    /* Make sure the dropdown has a black background when expanded */
+    .navbar-collapse {
+        background-color: black; /* Black background when navbar expands */
+        width: 100%; /* Ensure the navbar covers the full width on smaller screens */
+    }
+
+    .dropdown-menu {
+        background-color: black; /* Ensure the dropdown has a black background */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    /* Further ensure the navbar expands to full width on small screens */
+    .navbar-collapse {
+        background-color: black;
+        width: 100%; /* Ensure full width on mobile */
+    }
+
+    .dropdown-menu {
+        background-color: black;
+    }
+}
