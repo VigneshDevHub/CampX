@@ -17,15 +17,28 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" required>
+                            <!-- Adding pattern for Gmail validation -->
+                            <input class="form-control" type="email" id="email" name="email" required
+                                pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" 
+                                title="Please enter a valid Gmail address (e.g., example@gmail.com).">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid Gmail address (e.g., example@gmail.com).
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
+                            <!-- Adding pattern for password validation -->
+                            <input class="form-control" type="password" id="password" name="password" required
+                                pattern="(?=.*[A-Z])(?=(.*\d){2,}).{6,}" 
+                                title="Password must be at least 6 characters long, contain at least two digits, and one uppercase letter.">
                             <div class="valid-feedback">
                                 Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Password must be at least 6 characters long, contain at least two digits, and one uppercase letter.
                             </div>
                         </div>
                         <div class="d-grid gap-2">
@@ -36,3 +49,5 @@
             </div>
         </div>
     </div>
+</div>
+
