@@ -1,16 +1,19 @@
 /* General Navbar Styles */
 .navbar {
     background-color: black; /* Black background for the navbar */
-    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
-    height: 60px; /* Reduced height */
+    transition: background-color 0.3s ease-in-out;
+    height: 60px; /* Set consistent height */
     width: 100%; /* Ensure navbar takes full width */
-    margin: 0; /* No margin to fully cover the width */
 }
 
 .navbar-brand {
-    font-weight: bold; /* Make CampX logo bold */
-    color: white; /* CampX logo color white */
+    font-weight: bold; /* Bold CampX logo */
+    color: white; /* White logo text */
     font-size: 2rem;
+}
+
+.navbar-brand:hover {
+    color: white; /* Ensure the CampX logo stays white on hover */
 }
 
 .navbar-brand #rotateX {
@@ -20,50 +23,40 @@
 }
 
 .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.5); /* Text color white */
+    color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
     font-weight: 700;
-    padding: 0.25rem 0;
     margin-left: 1rem;
     transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 0.7); /* Subtle hover effect */
+    color: rgba(255, 255, 255, 0.7); /* Slightly brighter text on hover */
 }
 
 .navbar-nav .nav-link.active {
-    color: white !important; /* Active link text color white */
+    color: white !important; /* Active link stays white */
 }
 
 /* Dropdown styles */
 .navbar-nav .dropdown-menu {
     background-color: black; /* Set dropdown background to black */
-    border: none;
 }
 
 .navbar-nav .dropdown-item {
-    color: white; /* Make dropdown text white */
+    color: white; /* White text for dropdown items */
     transition: background-color 0.3s ease;
 }
 
 .navbar-nav .dropdown-item:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
     color: white;
-    text-decoration: none; /* Ensure no underline on hover */
 }
 
 .navbar-nav .dropdown-item.active, .navbar-nav .dropdown-item:active {
     color: white;
-    text-decoration: none; /* Remove underline from active item */
 }
 
-/* Scrolled Navbar */
-.scrolled {
-    background-color: black !important; /* Keep black when scrolled */
-    backdrop-filter: blur(10px);
-}
-
-/* Rotation animation for X */
+/* Rotation animation for X in CampX logo */
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -73,35 +66,43 @@
     }
 }
 
-/* Responsive styles for small and medium screens */
+/* Hamburger menu button for mobile */
+.navbar-toggler {
+    border: none; /* Remove default border */
+    color: white; /* White icon for visibility */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ensure white hamburger menu icon */
+}
+
+/* Responsive styles for medium and small screens */
 @media (max-width: 992px) {
     .navbar-brand {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Adjust logo size for medium screens */
     }
 
-    /* Make sure the dropdown has a black background when expanded */
     .navbar-collapse {
         background-color: black; /* Black background when navbar expands */
-        width: 100%; /* Ensure the navbar covers the full width on smaller screens */
+        width: 100%; /* Full width on smaller screens */
     }
 
     .dropdown-menu {
-        background-color: black; /* Ensure the dropdown has a black background */
+        background-color: black; /* Ensure dropdown background stays black */
     }
 }
 
 @media (max-width: 768px) {
     .navbar-brand {
-        font-size: 1.25rem;
+        font-size: 1.25rem; /* Adjust logo size for mobile screens */
     }
 
-    /* Further ensure the navbar expands to full width on small screens */
     .navbar-collapse {
-        background-color: black;
-        width: 100%; /* Ensure full width on mobile */
+        background-color: black; /* Ensure black background when navbar expands */
+        width: 100%; /* Full width on mobile */
     }
 
     .dropdown-menu {
-        background-color: black;
+        background-color: black; /* Ensure dropdown background stays black */
     }
 }
