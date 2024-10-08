@@ -5,24 +5,35 @@ const geocoder = mbxGeocoding({accessToken:mapBoxToken});
 const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const turf = require('@turf/turf');
-
+const Review = require('../models/review');
 module.exports.index = async (req, res) => {
-    const { sort } = req.query;  // Get the sort option from the query string
-    let sortOption = {};  // Initialize an empty sort option object
-
-    // Set the sorting criteria based on the query parameter
+    const { sort } = req.query;  
+    
+    let campgrounds;
+    
+    
     if (sort === 'price') {
-        sortOption.price = 1;  // Sort by price in ascending order
-    } else if (sort === 'reviews') {
-        sortOption.reviews = -1;  // Sort by reviews in descending order
+        campgrounds = await Campground.find({}).populate('reviews').sort({ price: 1 });
     } else {
-        sortOption = {};  // Default: no sorting applied
+        
+        campgrounds = await Campground.find({}).populate('reviews');
+        
+      
+        if (sort === 'reviews') {
+            campgrounds = campgrounds.map(campground => {
+                const ratings = campground.reviews.map(review => review.rating);
+                const averageRating = ratings.length
+                    ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+                    : 0;
+                return { ...campground.toObject(), averageRating };
+            }).sort((a, b) => b.averageRating - a.averageRating);
+        }
     }
 
-    // Apply the sort option to the Campground query
-    const campgrounds = await Campground.find({}).sort(sortOption);
-    res.render('campgrounds/index', { campgrounds , query: req.query});
+
+    res.render('campgrounds/index', { campgrounds, query: req.query });
 };
+
 
 
 module.exports.renderNewForm = (req,res)=>{
