@@ -34,11 +34,7 @@ const app = express();
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize({
     replaceWith: '_'
 }));
@@ -53,7 +49,6 @@ const store = MongoStore.create({
 
 store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e);
-});
 
 const sessionConfig = {
     store,
@@ -63,7 +58,6 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -129,10 +123,6 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    // Set the current path based on the request URL
-    res.locals.currentPath = req.originalUrl; 
-    next();
-});
 
 // Routes
 app.use('/', userRoutes);
