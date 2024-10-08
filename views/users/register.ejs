@@ -25,8 +25,8 @@
                                 <div class="mb-3  position-relative">
                                     <label class="form-label" for="password">Password</label>
                                     <input class="form-control" type="password" id="password" name="password" required>
-                                    <img id="togglePassword" src="/hidden.png" class="position-absolute toggle-icon"
-                                        alt="Toggle visibility" />
+                                    <img id="togglePassword" src="/icons/hidden.png"
+                                        class="position-absolute toggle-icon" alt="Toggle visibility" />
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -40,16 +40,6 @@
             </div>
         </div>
 
-        <style>
-            .toggle-icon {
-                width: 20px;
-                height: 20px;
-                top: 40px;
-                right: 10px;
-                cursor: pointer;
-            }
-        </style>
-
         <script>
             const password = document.getElementById('password');
             const togglePassword = document.getElementById('togglePassword');
@@ -57,6 +47,6 @@
             togglePassword.addEventListener('click', function () {
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
-                this.src = type === 'password' ? '/hidden.png' : '/visible.png';
+                this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
             });
         </script>
