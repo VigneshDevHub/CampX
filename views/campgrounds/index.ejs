@@ -1,48 +1,64 @@
-<%layout('layouts/boilerplate')%>
-<div id="cluster-map"></div>
-<h1>All Campgrounds
-    <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
-</h1>
-<% for(let campground of campgrounds){ %>
-    <div class="card text-white bg-dark mb-3" id="campinfo">
-        <div class="row">
-            <div class="col-md-4" id="campgroundhomeimage">
-                <% if(campground.images.length) {%>
-                <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
-                <% }else { %>
-                    <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
-                <% } %>
-            </div>
-            <div class="col-md-8" >
-                <div class="card-body">
-                    <h5 class="card-title"><%=campground.title  %></h5>
-                    <p class="card-text"><%= campground.description %></p>
-                    <p class="card-text">
-                        <small id="infolocation"><%= campground.location %></small>
+<%layout('layouts /boilerplate')%>
+    <div id="cluster-map"></div>
+    <h1>All Campgrounds
+        <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
+    </h1>
+    <div class="grid gap-8 lg:gap-16 md:grid-cols-2 lg:grid-cols-3">
+        <% for(let campground of campgrounds){ %>
+            <div id="campinfo" class="max-w-sm border rounded-lg shadow bg-gray-900 border-gray-800">
+                <div id="campgroundhomeimage">
+                    <% if(campground.images.length) {%>
+
+                        <img class="rounded-t-lg" crossorigin="anonymous" id="indeximg"
+                            src="<%= campground.images[0].url %>" alt="" />
+                        <% }else { %>
+                            <img crossorigin="anonymous" class="rounded-t-lg"
+                                src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
+                                alt="">
+                            <% } %>
+                </div>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                            <%=campground.title %>
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-400">
+                        <%= campground.description %>
                     </p>
-                    <a href="/campgrounds/<%=campground._id  %>" class="btn btn-primary">View <%= campground.title %></a>
+                    <p class="mb-3 text-xl font-normal text-gray-600" id="infolocation">
+                        <%= campground.location %>
+                    </p>
+                    <a href="/campgrounds/<%=campground._id  %>"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
+                        View <%= campground.title %></a>
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                    </a>
                 </div>
             </div>
-        </div>
+            <% } %>
     </div>
-<% } %>
-<script>
-    const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const campgrounds = { features: <%- JSON.stringify(campgrounds) %> };
-    document.getElementById('show-nearest-btn').addEventListener('click', () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-            // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
-            window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+    <script>
+        const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+        const campgrounds = { features: <% - JSON.stringify(campgrounds) %> };
+        document.getElementById('show-nearest-btn').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+                    // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
+                    window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-});
 
-</script>
+    </script>
 
 
-<script src="/javascripts/clusterMap.js"></script>
+    <script src="/javascripts/clusterMap.js"></script>
