@@ -6,10 +6,24 @@ const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const turf = require('@turf/turf');
 
-module.exports.index = async (req,res)=>{
-    const campgrounds=await Campground.find({});
-    res.render('campgrounds/index',{campgrounds})
-}
+module.exports.index = async (req, res) => {
+    const { sort } = req.query;  // Get the sort option from the query string
+    let sortOption = {};  // Initialize an empty sort option object
+
+    // Set the sorting criteria based on the query parameter
+    if (sort === 'price') {
+        sortOption.price = 1;  // Sort by price in ascending order
+    } else if (sort === 'reviews') {
+        sortOption.reviews = -1;  // Sort by reviews in descending order
+    } else {
+        sortOption = {};  // Default: no sorting applied
+    }
+
+    // Apply the sort option to the Campground query
+    const campgrounds = await Campground.find({}).sort(sortOption);
+    res.render('campgrounds/index', { campgrounds , query: req.query});
+};
+
 
 module.exports.renderNewForm = (req,res)=>{
     res.render('campgrounds/new');
