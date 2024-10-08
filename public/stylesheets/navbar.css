@@ -33,7 +33,7 @@
 }
 
 .navbar-nav .nav-link.active {
-    color: white !important; /* Active link stays white */
+    color: white; /* Active link stays white */
 }
 
 /* Dropdown styles */
