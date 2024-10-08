@@ -26,7 +26,6 @@
     color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
     font-weight: 700;
     margin-left: 1rem;
-    transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
