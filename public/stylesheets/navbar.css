@@ -1,7 +1,6 @@
 /* General Navbar Styles */
 .navbar {
     background-color: black; /* Black background for the navbar */
-    transition: background-color 0.3s ease-in-out;
     height: 60px; /* Set consistent height */
     width: 100%; /* Ensure navbar takes full width */
 }
