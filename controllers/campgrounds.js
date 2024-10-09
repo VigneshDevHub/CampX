@@ -6,33 +6,47 @@ const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const turf = require('@turf/turf');
 const Review = require('../models/review');
+
 module.exports.index = async (req, res) => {
-    const { sort } = req.query;  
-    
+    const { sort } = req.query;
+    // console.log("Sort Query Parameter: ", sort);  
     let campgrounds;
+    if (sort === 'priceAsc') {
     
-    
-    if (sort === 'price') {
-        campgrounds = await Campground.find({}).populate('reviews').sort({ price: 1 });
+        campgrounds = await Campground.find({}).populate('reviews').sort({ price: 1 }).lean();
+    } else if (sort === 'priceDesc') {
+        
+        campgrounds = await Campground.find({}).populate('reviews').sort({ price: -1 }).lean();
     } else {
         
-        campgrounds = await Campground.find({}).populate('reviews');
-        
-      
-        if (sort === 'reviews') {
+        campgrounds = await Campground.find({}).populate('reviews').lean();
+
+        if (sort === 'reviewsHighest') {
+          
             campgrounds = campgrounds.map(campground => {
                 const ratings = campground.reviews.map(review => review.rating);
                 const averageRating = ratings.length
                     ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
                     : 0;
-                return { ...campground.toObject(), averageRating };
-            }).sort((a, b) => b.averageRating - a.averageRating);
+                return { ...campground, averageRating };
+            }).sort((a, b) => b.averageRating - a.averageRating); 
+        } else if (sort === 'reviewsLowest') {
+          
+            campgrounds = campgrounds.map(campground => {
+                const ratings = campground.reviews.map(review => review.rating);
+                const averageRating = ratings.length
+                    ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+                    : 0;
+                return { ...campground, averageRating };
+            }).sort((a, b) => a.averageRating - b.averageRating); 
         }
     }
 
-
     res.render('campgrounds/index', { campgrounds, query: req.query });
 };
+
+
+
 
 
 

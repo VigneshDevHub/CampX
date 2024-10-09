@@ -3,14 +3,16 @@
 <h1>All Campgrounds
     <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
     <form action="/campgrounds" method="GET" class="d-inline">
-        <!-- <label for="sort">Sort by:</label> -->
-        <select name="sort" id="sort" class="btn btn-secondary">
-            <option value="">--Select--</option>
-            <option value="price" <%= (typeof query.sort !== 'undefined' && query.sort === 'price') ? 'selected' : '' %>>Price</option>
-            <option value="reviews" <%= (typeof query.sort !== 'undefined' && query.sort === 'reviews') ? 'selected' : '' %>>Reviews</option>
-        </select>
-        <button type="submit" class="btn btn-primary">Sort</button>
-    </form>
+    <select name="sort" id="sort" class="btn btn-secondary">
+        <option value="">--Select--</option>
+        <option value="priceAsc" <%= (typeof query.sort !== 'undefined' && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
+        <option value="priceDesc" <%= (typeof query.sort !== 'undefined' && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
+        <option value="reviewsHighest" <%= (typeof query.sort !== 'undefined' && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
+        <option value="reviewsLowest" <%= (typeof query.sort !== 'undefined' && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Sort</button>
+</form>
+
 </h1>
 <% for(let campground of campgrounds){ %>
     <div class="card text-white bg-dark mb-3" id="campinfo">
