@@ -141,7 +141,17 @@ app.get('/',(req,res)=>{
     res.render('home');
 });
 
+app.all('/', (req, res, next) => {
+    next(new ExpressError('Method not allowed',405))
+})
 
+app.all('/campgrounds', (req, res, next) => {
+    next(new ExpressError('Method not allowed',405))
+})
+
+app.all('/campgrounds/:id/reviews', (req, res, next) => {
+    next(new ExpressError('Method not allowed',405))
+})
 
 
 app.all('*',(req,res,next)=>{

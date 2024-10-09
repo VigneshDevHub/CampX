@@ -4,6 +4,9 @@ const mapBoxToken=process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken:mapBoxToken});
 const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
+const mongoose = require('mongoose');
+const ExpressError = require('../utils/ExpressError.js');
+
 
 module.exports.index = async (req,res)=>{
     const campgrounds=await Campground.find({});
@@ -14,22 +17,33 @@ module.exports.renderNewForm = (req,res)=>{
     res.render('campgrounds/new');
 }
 
-module.exports.createCampground = async(req,res,next)=>{
-    const geoData=await geocoder.forwardGeocode({
-        query: req.body.campground.location,
-        limit:1
-    }).send()
-    const campground=new Campground(req.body.campground);
-    campground.geometry=geoData.body.features[0].geometry;
-    campground.images = req.files.map(f=>({url:f.path,filename: f.filename}));
-    campground.author =req.user._id;
-    await campground.save();
-    console.log(campground);
-    req.flash('success','Successfully made a new campground!');
-    res.redirect(`/campgrounds/${campground._id}`);
+module.exports.createCampground = async (req, res, next) => {
+    try {
+        const geoData=await geocoder.forwardGeocode({
+            query: req.body.campground.location,
+            limit:1
+        }).send()
+        const campground=new Campground(req.body.campground);
+        campground.geometry=geoData.body.features[0].geometry;
+        campground.images = req.files.map(f=>({url:f.path,filename: f.filename}));
+        campground.author =req.user._id;
+        await campground.save();
+        console.log(campground);
+        req.flash('success','Successfully made a new campground!');
+        res.redirect(`/campgrounds/${campground._id}`);
+    }
+    catch (error) {
+        const err=new ExpressError('Bad Gateway',502)
+        res.status(502).render('error',{err})
+    }
 }
 
-module.exports.showCampground = async(req,res)=>{
+module.exports.showCampground = async (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        //Invalid object Id
+        const err=new ExpressError('This URL is not supported',400)
+        return res.status(400).render('error',{err})
+    }
     const campground=await Campground.findById(req.params.id).populate({
         path:'reviews',
         populate:{
