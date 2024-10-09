@@ -7,6 +7,14 @@ const { query } = require('express');
 const mongoose = require('mongoose');
 const ExpressError = require('../utils/ExpressError.js');
 
+const turf = require('@turf/turf');
+
+// Search campgrounds
+module.exports.searchCampgrounds = async (req, res) => {
+    const { q } = req.query;
+    const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
+    res.render('campgrounds/index', { campgrounds });
+};
 
 module.exports.index = async (req,res)=>{
     const campgrounds=await Campground.find({});
@@ -56,6 +64,24 @@ module.exports.showCampground = async (req, res) => {
     }
     res.render('campgrounds/show',{campground});
 }
+
+module.exports.showNearestCampgrounds = async (req, res) => {
+    const { lat, lng } = req.query;
+    if (!lat || !lng) {
+        req.flash('error', 'Location not found');
+        return res.redirect('/campgrounds');
+    }
+    const campgrounds = await Campground.find({});
+    const userLocation = [parseFloat(lng), parseFloat(lat)];
+    // Calculate the distance between user's location and each campground
+    const sortedCampgrounds = campgrounds.map(campground => {
+        const campgroundLocation = campground.geometry.coordinates;
+        const distance = turf.distance(userLocation, campgroundLocation, { units: 'kilometers' });
+        return { ...campground.toObject(), distance };
+    }).sort((a, b) => a.distance - b.distance); // Sort by distance
+
+    res.render('campgrounds/index', { campgrounds: sortedCampgrounds });
+};
 
 module.exports.renderEditForm = async(req,res)=>{
     const campground=await Campground.findById(req.params.id);

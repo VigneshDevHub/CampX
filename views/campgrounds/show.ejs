@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/stylesheets/stars.css">
 
     <div class="row" id="showinfo">
-        <div class="col-6">
+        <div class="col-md-6">
             <div id="campgroundCarousel" class="carousel slide">
                 <div class="carousel-inner">
                     <% campground.images.forEach((img,i)=>  {%>
@@ -40,7 +40,7 @@
                     </li>
                     <li class="list-group-item text-white bg-dark">₹<%= campground.price %>/night</li>
                 </ul>
-                <% if(currentUser && campground.author.equals(currentUser._id)) {%>
+                <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
                     <div class="card-body">
                         <a class="card-link btn btn-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
                         <form class="d-inline" action="/campgrounds/<%=campground.id%>?_method=DELETE" method="POST">
@@ -53,7 +53,7 @@
                         </div>
             </div>
         </div>
-        <div class="col-6 text-white">
+        <div class="col-md-6 text-white">
             <div id="map"></div>
             <% if(currentUser){ %>
                 <h2>Leave a Review</h2>
@@ -98,7 +98,7 @@
                                 <p class="card-text">
                                     Review: <%= review.body %>
                                 </p>
-                                <% if(currentUser && review.author.equals(currentUser._id)) {%>
+                                <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
                                     <form
                                         action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
                                         method="POST">
@@ -116,4 +116,4 @@
     const campground=<%-JSON.stringify(campground)%>;
 </script>
 
-<script src="/javascripts/showPageMap.js"></script>
+<script src="/javascripts/showPageMap.js"></script>   
