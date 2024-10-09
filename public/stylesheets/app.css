@@ -69,3 +69,48 @@ h1 {
     background-color: black;
     color: white;
 }  
+
+
+/* to arrow up css */
+html {
+    scroll-behavior: smooth;
+  } 
+
+.arrow{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow img{
+    height: 35px;
+}
+
+.to-top{
+    position: fixed;
+    right: 32px;
+    bottom: 5%;
+    opacity: 0;
+    transition: all .4s;
+    pointer-events: none;
+}
+
+.to-top.active{
+    pointer-events: auto;
+    opacity: 1;
+    bottom: 30px;
+}
+
+@media screen and (max-width:425px) {
+    .arrow{
+        height: 40px;
+        width: 40px;
+    }
+    .arrow img{
+        height: 30px;
+    }
+    .to-top{
+        right:20px;
+    }
+}

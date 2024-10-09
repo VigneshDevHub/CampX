@@ -26,6 +26,14 @@
         </div>
     </div>
 <% } %>
+
+<a href="#" class="to-top  bg-primary rounded-circle">
+    <div class="arrow">
+        <img src="/icons/arrow-upp.png" alt="arrow">
+    </div>
+</a>
+    
+
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
     const campgrounds = { features: <%- JSON.stringify(campgrounds) %> };
@@ -41,6 +49,16 @@
         alert("Geolocation is not supported by this browser.");
     }
 });
+
+const toTop = document.querySelector(".to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 100) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+})
 
 </script>
 
