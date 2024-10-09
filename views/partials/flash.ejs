@@ -1,13 +1,135 @@
-<% if(success && success.length) {%>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<% } %>
+<!DOCTYPE html>
+<html lang="en">
 
-<% if(error && error.length) {%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% } %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campgrounds</title>
+    <link rel="icon" href="https://res.cloudinary.com/dgr21eiov/image/upload/v1724751921/Title-icon-3.png" type="image/icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Custom flash message styles */
+        .flash-message {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            background-color: #f8f9fa;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .flash-message .icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .flash-message.success {
+            background-color: #e6ffed;
+            border-left: 5px solid #28a745;
+            color: #28a745;
+        }
+
+        .flash-message.error {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            color: #856404;
+        }
+
+        .flash-message .message-content {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .flash-message .close-btn {
+            cursor: pointer;
+            font-size: 20px;
+            color: #888;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .flash-message .close-btn:hover {
+            color: #000;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container mt-5">
+
+        <!-- Success Message -->
+        <% if (success && success.length) { %>
+            <div class="flash-message success" id="flash-success">
+                <div class="icon">✔️</div>
+                <div class="message-content">
+                    <strong>Success</strong>
+                    <p><%= success %></p>
+                </div>
+                <span class="close-btn" onclick="closeFlashMessage('flash-success')">&times;</span>
+            </div>
+        <% } %>
+
+        <!-- Error Message -->
+        <% if (error && error.length) { %>
+            <div class="flash-message error" id="flash-error">
+                <div class="icon">⚠️</div>
+                <div class="message-content">
+                    <strong>Error</strong>
+                    <p><%= error %></p>
+                </div>
+                <span class="close-btn" onclick="closeFlashMessage('flash-error')">&times;</span>
+            </div>
+        <% } %>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', function () {
+            const successToast = document.getElementById('flash-success');
+            const errorToast = document.getElementById('flash-error');
+
+            if (successToast) {
+                setTimeout(() => {
+                    closeFlashMessage('flash-success'); 
+                }, 5000);
+            }
+
+            if (errorToast) {
+                setTimeout(() => {
+                    closeFlashMessage('flash-error'); // Automatically hide after 5 seconds
+                }, 5000);
+            }
+        });
+
+        // Function to close the flash message
+        function closeFlashMessage(id) {
+            const flashMessage = document.getElementById(id);
+            if (flashMessage) {
+                flashMessage.classList.add('fade-out'); 
+                setTimeout(() => {
+                    flashMessage.style.display = 'none'; 
+                }, 500); 
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
