@@ -6,6 +6,13 @@ const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const turf = require('@turf/turf');
 
+// Search campgrounds
+module.exports.searchCampgrounds = async (req, res) => {
+    const { q } = req.query;
+    const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
+    res.render('campgrounds/index', { campgrounds });
+};
+
 module.exports.index = async (req,res)=>{
     const campgrounds=await Campground.find({});
     res.render('campgrounds/index',{campgrounds})
