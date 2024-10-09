@@ -44,12 +44,6 @@ module.exports.index = async (req, res) => {
 
     res.render('campgrounds/index', { campgrounds, query: req.query });
 };
-
-
-
-
-
-
 module.exports.renderNewForm = (req,res)=>{
     res.render('campgrounds/new');
 }

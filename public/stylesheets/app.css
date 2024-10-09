@@ -1,61 +1,71 @@
-#cluster-map{
-    width:100%;
-    height:500px;
+#cluster-map {
+    width: 100%;
+    height: 500px;
     margin-bottom: 2rem;
 }
 
-#map{
-    width:100%;
-    height:300px;
+#map {
+    width: 100%;
+    height: 300px;
     margin-bottom: 2rem;
 }
 
-body{
+.toggle-icon {
+    width: 20px;
+    height: 20px;
+    top: 40px;
+    right: 10px;
+    cursor: pointer;
+}
+
+body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724754425/s6xla8gbzb5jtkzay7qr.jpg");
+        url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724754425/s6xla8gbzb5jtkzay7qr.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-h1{
-    color:white;
+h1 {
+    color: white;
     margin-bottom: 2rem;
     text-align: center;
 }
 
-#indeximg{
-    max-width:100%;
-    width:500px;
-    height:300px;
+#indeximg {
+    max-width: 100%;
+    width: 500px;
+    height: 300px;
     border-radius: 5px;
     border: 1px solid black;
 }
 
-#campinfo{
-    box-shadow:0 0 1rem rgba(255, 255, 255, 0.5);
+#campinfo {
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
 }
-#infolocation{
+
+#infolocation {
     color: grey;
 }
-#footertext{
+
+#footertext {
     display: flex;
     justify-content: center;
 }
 
-#showlocation{
+#showlocation {
     color: grey;
 }
 
-#log{
-    box-shadow:0 0 1rem rgba(255, 255, 255, 0.5);
+#log {
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
 }
 
-#reg{
-    box-shadow:0 0 1rem rgba(255, 255, 255, 0.5);
+#reg {
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
 }
 
-#newcamp{
+#newcamp {
     background-color: black;
     color: white;
 }  
