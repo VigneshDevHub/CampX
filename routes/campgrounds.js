@@ -14,6 +14,9 @@ router.route('/')
     .get(catchAsync(campgrounds.index))
     .post(isLoggedIn,upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground))
 
+    router.get('/search', campgrounds.searchCampgrounds);
+
+
 router.get('/nearest', catchAsync(campgrounds.showNearestCampgrounds));
 router.get('/new',isLoggedIn ,campgrounds.renderNewForm)
 

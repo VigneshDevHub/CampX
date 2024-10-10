@@ -153,6 +153,10 @@ app.all('/campgrounds/:id/reviews', (req, res, next) => {
     next(new ExpressError('Method not allowed', 405));
 });
 
+app.all('/campgrounds/:id/reviews', (req, res, next) => {
+    next(new ExpressError('Method not allowed', 405));
+});
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });
