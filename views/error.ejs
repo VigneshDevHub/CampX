@@ -1,11 +1,49 @@
 <% layout('layouts/boilerplate')%>
-<div class="row">
-    <div class="col-6 offset-3">
-        <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading"><%= err.message %></h4>
-            <% if(process.env.NODE_ENV !== "production"){ %>
-            <p><%= err.stack %></p>
-            <% } %>
-          </div>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+/>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&display=swap");
+
+  .cont {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .error {
+    font-family: "Edu AU VIC WA NT Guides", cursive;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 160px;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div
+      class="alert-dark col-md-6 offset-md-3 d-absolute text-center rounded cont"
+    >
+      <span class="alert-dark error text-black"><%=err.statusCode%></span>
+      <br />
+      <h4><%=err.message%></h4>
+      <span>
+        While you are here you can explore
+        <a class="text-success" href="/campgrounds"> campgrounds</a>.</span
+      >
+      <br />
+      <span
+        >Click <a class="text-success" href="/campgrounds/new">here</a> to
+        create a new campground</span
+      >
+      <br /><br />
+
+      <a href="/" class="btn btn-secondary">
+        <span class="text-black">Home Page</span>
+        <!-- Icon didn't work for some reason -->
+        <!-- <i class="bi bi-house-fill"></i> -->
+      </a>
+      <br /><br />
     </div>
+  </div>
 </div>
