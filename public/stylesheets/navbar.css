@@ -1,0 +1,106 @@
+/* General Navbar Styles */
+.navbar {
+    background-color: black; /* Black background for the navbar */
+    height: 60px; /* Set consistent height */
+    width: 100%; /* Ensure navbar takes full width */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Bold CampX logo */
+    color: white; /* White logo text */
+    font-size: 2rem;
+}
+
+.navbar-brand:hover {
+    color: white; /* Ensure the CampX logo stays white on hover */
+}
+
+.navbar-brand #rotateX {
+    display: inline-block;
+    animation: rotation 3s infinite;
+    color: white; /* Color of rotating X */
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
+    font-weight: 700;
+    margin-left: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.7); /* Slightly brighter text on hover */
+}
+
+.navbar-nav .nav-link.active {
+    color: white; /* Active link stays white */
+}
+
+/* Dropdown styles */
+.navbar-nav .dropdown-menu {
+    background-color: black; /* Set dropdown background to black */
+}
+
+.navbar-nav .dropdown-item {
+    color: white; /* White text for dropdown items */
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+    color: white;
+}
+
+.navbar-nav .dropdown-item.active, .navbar-nav .dropdown-item:active {
+    color: white;
+}
+
+/* Rotation animation for X in CampX logo */
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hamburger menu button for mobile */
+.navbar-toggler {
+    border: none; /* Remove default border */
+    color: white; /* White icon for visibility */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ensure white hamburger menu icon */
+}
+
+/* Responsive styles for medium and small screens */
+@media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 1.5rem; /* Adjust logo size for medium screens */
+    }
+
+    .navbar-collapse {
+        background-color: black; /* Black background when navbar expands */
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .dropdown-menu {
+        background-color: black; /* Ensure dropdown background stays black */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem; /* Adjust logo size for mobile screens */
+    }
+
+    .navbar-collapse {
+        background-color: black; /* Ensure black background when navbar expands */
+        width: 100%; /* Full width on mobile */
+    }
+
+    .dropdown-menu {
+        background-color: black; /* Ensure dropdown background stays black */
+    }
+}
