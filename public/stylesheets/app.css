@@ -77,14 +77,14 @@ html {
   } 
 
 .arrow{
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .arrow img{
-    height: 35px;
+    width: 24px;
 }
 
 .to-top{
@@ -104,11 +104,11 @@ html {
 
 @media screen and (max-width:425px) {
     .arrow{
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
     }
     .arrow img{
-        height: 30px;
+        width: 24px;
     }
     .to-top{
         right:20px;
