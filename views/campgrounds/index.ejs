@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="stylesheets/searchCampground.css">
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center m-4">
     <!-- Search Bar (left-aligned) -->
     <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
         <div class="input-group">
@@ -17,29 +17,50 @@
     <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 
+<div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4 m-4">
 <% for(let campground of campgrounds){ %>
-    <div class="card text-white bg-dark mb-3" id="campinfo">
-        <div class="row">
-            <div class="col-md-4" id="campgroundhomeimage">
-                <% if(campground.images.length) { %>
-                <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
-                <% } else { %>
-                    <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
-                <% } %>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><%= campground.title %></h5>
-                    <p class="card-text"><%= campground.description %></p>
-                    <p class="card-text">
-                        <small id="infolocation"><%= campground.location %></small>
-                    </p>
-                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %></a>
+        <div class="max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700" id="campinfo">
+        <!-- <div class="card text-white bg-dark mb-3" id="campinfo"> -->
+            <!-- <div class="row"> -->
+                <!-- <div class="col-md-4" id="campgroundhomeimage"> -->
+                    <% if(campground.images.length) { %>
+                        <!-- <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>"> -->
+                        <img class="rounded-t-lg" crossorigin="anonymous" id="indeximg" src="<%= campground.images[0].url %>" alt="" />
+                        <% } else { %>
+                            <img crossorigin="anonymous" class="rounded-t-lg"
+                                src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
+                                alt="">
+                            <% } %>
+                <!-- </div> -->
+                <div class="p-5">
+                    <!-- <div class="card-body"> -->
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                            <%= campground.title %>
+                        </h5>
+                        <p class="mb-3 font-normal text-gray-400">
+                            <%= campground.description %>
+                        </p>
+                        <p class="mb-3 font-normal text-gray-400">
+                            <small id="infolocation">
+                                <%= campground.location %>
+                            </small>
+                        </p>
+
+                        <!-- <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %>
+                                </a> -->
+
+                                <a href="/campgrounds/<%= campground._id %>" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    View <%= campground.title %>
+                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                    <!-- </div> -->
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
+        <% } %>
     </div>
-<% } %>
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
