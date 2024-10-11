@@ -20,7 +20,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const job = require('./cron.js')
 const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/campx';
+
+job.start()
 
 mongoose.connect(dbUrl);
 
