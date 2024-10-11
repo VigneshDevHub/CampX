@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="stylesheets/searchCampground.css">
 
-<div class="d-flex justify-content-between align-items-center m-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
     <!-- Search Bar (left-aligned) -->
     <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
         <div class="input-group">
@@ -17,7 +17,7 @@
     <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 
-<div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4 m-4">
+<div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
 <% for(let campground of campgrounds){ %>
         <div class="max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700" id="campinfo">
         <!-- <div class="card text-white bg-dark mb-3" id="campinfo"> -->
