@@ -32,8 +32,8 @@ module.exports.isAuthor = async(req,res,next)=>{
         next(); 
     }else
     {
-        req.flash('error','You do not have permission to do that!');
-        return res.redirect(`/campgrounds/${id}`);
+        const err = new ExpressError('You do not have permission to do that', 403)
+        res.status(403).render('error',{err})
     }
     
 }
