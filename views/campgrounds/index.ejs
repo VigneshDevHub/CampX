@@ -6,6 +6,17 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <!-- Search Bar (left-aligned) -->
+    <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
+            <div class="input-group-append">
+                <button class="btn btn-info" type="submit" id="search-button">Search</button>
+            </div>
+        </div>
+</form>
+<button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
+</div>
+<div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
     <form action="/campgrounds" method="GET" class="d-inline">
         <select name="sort" id="sort" class="btn btn-secondary">
             <option value="">--Select--</option>
@@ -16,10 +27,6 @@
         </select>
         <button type="submit" class="btn btn-primary">Sort</button>
     </form>
-    
-</form>
-
-</h1>
 </div>
 
 <% for(let campground of campgrounds){ %>
