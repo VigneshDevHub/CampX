@@ -13,8 +13,20 @@
                 <button class="btn btn-info" type="submit" id="search-button">Search</button>
             </div>
         </div>
+</form>
+<button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
+</div>
+<div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
+    <form action="/campgrounds" method="GET" class="d-inline">
+        <select name="sort" id="sort" class="btn btn-secondary">
+            <option value="">--Select--</option>
+            <option value="priceAsc" <%= (typeof query.sort !== 'undefined' && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
+            <option value="priceDesc" <%= (typeof query.sort !== 'undefined' && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
+            <option value="reviewsHighest" <%= (typeof query.sort !== 'undefined' && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
+            <option value="reviewsLowest" <%= (typeof query.sort !== 'undefined' && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Sort</button>
     </form>
-    <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 
 <% for(let campground of campgrounds){ %>
