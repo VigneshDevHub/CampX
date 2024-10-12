@@ -43,6 +43,12 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
+// Middleware to make the current URL path available in EJS templates
+app.use((req, res, next) => {
+    res.locals.currentPath = req.path;
+    next();
+});
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
@@ -146,10 +152,6 @@ app.all('/', (req, res, next) => {
 });
 
 app.all('/campgrounds', (req, res, next) => {
-    next(new ExpressError('Method not allowed', 405));
-});
-
-app.all('/campgrounds/:id/reviews', (req, res, next) => {
     next(new ExpressError('Method not allowed', 405));
 });
 
