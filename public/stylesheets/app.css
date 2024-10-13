@@ -69,3 +69,8 @@ h1 {
     background-color: black;
     color: white;
 }  
+
+.navbar-nav .nav-link {
+    display: inline-block; /* Ensure nav links are displayed inline */
+    visibility: visible; /* Ensure links are visible */
+}

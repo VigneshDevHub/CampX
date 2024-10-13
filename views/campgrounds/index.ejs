@@ -3,6 +3,8 @@
 <h1>All Campgrounds</h1>
 
 <link rel="stylesheet" href="stylesheets/searchCampground.css">
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
@@ -18,13 +20,13 @@
 
 <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
 <% for(let campground of campgrounds){ %>
-    <div class="max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700" id="campinfo">
+    <div class="max-w-md border rounded-lg shadow bg-gray-800 border-gray-700" id="campinfo">
         <% if(campground.images.length) { %>
             <img class="rounded-t-lg" crossorigin="anonymous" id="indeximg" src="<%= campground.images[0].url %>" alt="" />
         <% } else { %>
             <img crossorigin="anonymous" class="rounded-t-lg" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
         <% } %>
-        <div class="p-5">
+        <div class="p-3">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
                 <%= campground.title %>
             </h5>
