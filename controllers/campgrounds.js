@@ -8,19 +8,50 @@ const mongoose = require('mongoose');
 const ExpressError = require('../utils/ExpressError.js');
 
 const turf = require('@turf/turf');
+const Review = require('../models/review');
 
-// Search campgrounds
+module.exports.index = async (req, res) => {
+    const { sort } = req.query;
+    // console.log("Sort Query Parameter: ", sort);  
+    let campgrounds;
+    if (sort === 'priceAsc') {
+    
+        campgrounds = await Campground.find({}).populate('reviews').sort({ price: 1 }).lean();
+    } else if (sort === 'priceDesc') {
+        
+        campgrounds = await Campground.find({}).populate('reviews').sort({ price: -1 }).lean();
+    } else {
+        
+        campgrounds = await Campground.find({}).populate('reviews').lean();
+
+        if (sort === 'reviewsHighest') {
+          
+            campgrounds = campgrounds.map(campground => {
+                const ratings = campground.reviews.map(review => review.rating);
+                const averageRating = ratings.length
+                    ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+                    : 0;
+                return { ...campground, averageRating };
+            }).sort((a, b) => b.averageRating - a.averageRating); 
+        } else if (sort === 'reviewsLowest') {
+          
+            campgrounds = campgrounds.map(campground => {
+                const ratings = campground.reviews.map(review => review.rating);
+                const averageRating = ratings.length
+                    ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+                    : 0;
+                return { ...campground, averageRating };
+            }).sort((a, b) => a.averageRating - b.averageRating); 
+        }
+    }
+
+    res.render('campgrounds/index', { campgrounds, query: req.query });
+};
 module.exports.searchCampgrounds = async (req, res) => {
     const { q } = req.query;
     const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
     res.render('campgrounds/index', { campgrounds });
 };
-
-module.exports.index = async (req,res)=>{
-    const campgrounds=await Campground.find({});
-    res.render('campgrounds/index',{campgrounds})
-}
-
 module.exports.renderNewForm = (req,res)=>{
     res.render('campgrounds/new');
 }
