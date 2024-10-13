@@ -14,8 +14,20 @@
                 <button class="btn btn-info" type="submit" id="search-button">Search</button>
             </div>
         </div>
+</form>
+<button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
+</div>
+<div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
+    <form action="/campgrounds" method="GET" class="d-inline">
+        <select name="sort" id="sort" class="btn btn-secondary">
+            <option value="">--Select--</option>
+            <option value="priceAsc" <%= (locals.query && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
+            <option value="priceDesc" <%= (locals.query && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
+            <option value="reviewsHighest" <%= (locals.query && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
+            <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Sort</button>
     </form>
-    <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 
 <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
