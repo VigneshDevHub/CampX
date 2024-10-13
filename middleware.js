@@ -1,5 +1,6 @@
 const {campgroundSchema, reviewSchema}= require('./schemas.js');
 const ExpressError=require('./utils/ExpressError');
+const {userRole , adminRole} = require('./utils/constant');
 const Campground=require('./models/campground');
 const Review=require('./models/review');
 
@@ -28,7 +29,7 @@ module.exports.validateCampground=(req,res,next)=>{
 module.exports.isAuthor = async(req,res,next)=>{
     const {id}=req.params;
     const campground =await Campground.findById(id);
-    if(campground.author.equals(req.user.id)||req.user.role==="admin"){
+    if(campground.author.equals(req.user.id)||req.user.role===adminRole){
         next(); 
     }else
     {
@@ -61,7 +62,7 @@ module.exports.validateReview = (req,res,next)=>{
 module.exports.isReviewAuthor = async(req,res,next)=>{
     const {id,reviewId}=req.params;
     const review =await Review.findById(reviewId);
-    if(review.author.equals(req.user.id)||req.user.role==="admin"){
+    if(review.author.equals(req.user.id)||req.user.role===adminRole){
         next();
     }else
     {
