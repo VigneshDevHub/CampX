@@ -13,7 +13,7 @@
                 <button class="btn btn-info" type="submit" id="search-button">Search</button>
             </div>
         </div>
-    </form>
+</form>
 <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 <div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
@@ -26,7 +26,7 @@
             <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
 </select>
         <button type="submit" class="btn btn-primary">Sort</button>
-    </form>
+</form>
 </div>
 
 <% for(let campground of campgrounds){ %>
