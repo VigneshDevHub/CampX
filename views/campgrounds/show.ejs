@@ -55,6 +55,7 @@
         </div>
         <div class="col-md-6 text-white">
             <div id="map"></div>
+            <div class="review-formm">
             <% if(currentUser){ %>
                 <h2>Leave a Review</h2>
                 <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
@@ -86,16 +87,23 @@
                     <button class="btn btn-success">Submit</button>
                 </form>
                 <% } %>
+            </div>
                     <% for (let review of campground.reviews) {%>
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-grey">
-                                    <%= review.author.username %>
-                                </h6>
-                                <p class="starability-result" data-rating="<%= review.rating %>">
-                                    Rated: <%= review.rating %> stars
-                                </p>
+                                <div class="heading">
+                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.png" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
+                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
+                                        <form
+                                            action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                            method="POST">
+                                            <button class="button cursor-pointer"><img src="/icons/bin.png" class="bin" alt="delete"></button>
+                                        </form>
+                                    <% } %>
+                                </div>
+                                
                                 <p class="card-text">
+
                                     Review: <%= review.body %>
                                 </p>
                                 <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
@@ -104,7 +112,18 @@
                                         method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
+
+                                    <% for (let i = 1; i <= 5; i++) { %>
+                                        <% if (i <= review.rating) { %>
+                                            <img src="/icons/solid.png" class="star" alt="star">
+                                        <% } else { %>
+                                            <img src="/icons/outline.png" class="star" alt="star">
+                                        <% } %>
                                     <% } %>
+                                    <br> 
+                                    <span class="comment"><%= review.body %></span>
+                                </p>
+                                
                             </div>
                         </div>
                         <% } %>
