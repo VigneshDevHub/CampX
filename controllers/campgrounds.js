@@ -6,7 +6,7 @@ const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const mongoose = require('mongoose');
 const ExpressError = require('../utils/ExpressError.js');
-const {userRole , adminRole} = require('../utils/constant');
+const {ROLE_USER , ROLE_ADMIN} = require('../utils/constant');
 
 const turf = require('@turf/turf');
 const Review = require('../models/review');
@@ -94,7 +94,7 @@ module.exports.showCampground = async (req, res) => {
         req.flash('error','Cannot find that campground!');
         return res.redirect('/campgrounds');
     }
-    res.render('campgrounds/show',{campground,userRole,adminRole});
+    res.render('campgrounds/show',{campground,ROLE_USER,ROLE_ADMIN});
 }
 
 module.exports.showNearestCampgrounds = async (req, res) => {
