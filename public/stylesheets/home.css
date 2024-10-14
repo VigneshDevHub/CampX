@@ -50,8 +50,6 @@ h2
 h2:hover  
 {
     animation-duration: 6s;
-
-
 }
 @keyframes animation
 {
@@ -75,4 +73,43 @@ h2:hover
     {
         transform: rotate(360deg);
     }
+}
+
+/* Styling for the footer */
+body
+{
+    flex-direction: column;
+}
+footer
+{
+    box-sizing: border-box;
+    padding-top: 25px;
+    height:fit-content;
+    background-color: black;
+}
+footer p
+{
+    color: white;
+}
+footer .about
+{
+    width: 65%;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+footer .icons
+{
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+li a svg
+{
+    color: white;
+}
+li a svg:hover
+{
+    box-shadow: 2px 2px 2px 2px white;
 }
