@@ -13,7 +13,7 @@
                 <button class="btn btn-info" type="submit" id="search-button">Search</button>
             </div>
         </div>
-</form>
+    </form>
 <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
 <div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
@@ -55,7 +55,8 @@
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const campgrounds = { features: <%- JSON.stringify(campgrounds) %> };
+    const campgrounds = <%- JSON.stringify(campgrounds) %>;
+    console.log(campgrounds);
     document.getElementById('show-nearest-btn').addEventListener('click', () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
