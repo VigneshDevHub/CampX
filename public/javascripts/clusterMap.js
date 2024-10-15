@@ -138,7 +138,7 @@ map.addLayer({
         const title = properties.title || 'No title available.';
         const location = properties.location || 'No location available.';
 
-        const locationDetails = `<span>${title}</span><br/><b>${location}</b><p>Exact location provided after booking.</p>`;
+        const locationDetails = `<span>${title}</span><br/><b>${location}</b>`;
 
         if(activePopup){
             activePopup.remove();
