@@ -1,53 +1,63 @@
 <% layout('layouts/boilerplate') %>
-    <div class="container d-flex justify-content-center align-items-center mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-                <div class="card text-white bg-dark" id="reg">
-                    <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
-                        alt="Card image" class="card-img-top" />
-                    <div class="card-body">
-                        <h5 class="card-title">Register</h5>
-                        <form action="/register" method="POST" class="validated-form" novalidate>
-                            <div class="mb-3">
-                                <label class="form-label" for="username">Username</label>
-                                <input class="form-control" type="text" id="username" name="username" autofocus
-                                    required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card text-white bg-dark" id="reg">
+                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Register</h5>
+                    <form action="/register" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email">Email</label>
-                                <input class="form-control" type="email" id="email" name="email" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                                <div class="mb-3  position-relative">
-                                    <label class="form-label" for="password">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password" required>
-                                    <img id="togglePassword" src="/icons/hidden.png"
-                                        class="position-absolute toggle-icon" alt="Toggle visibility" />
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-success">Register</button>
-                                    <div class="text-center mt-2">Already have an account? <a href="/login" class="text-decoration-none">Log in</a></div>
-                                </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                title="Please enter a valid mail address ">
+                            <div class="valid-feedback">
+                                Looks good
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid Email address 
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                          
+                            <%-- password --%>
+                            <input class="form-control" type="password" id="password" name="password" required
+                                pattern="(?=.*[A-Z])(?=(.*\d){2,}).{6,}" 
+                               >
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Password must be at least 6 characters long, contain at least two digits, and one uppercase letter.
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success">Register</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <script>
-            const password = document.getElementById('password');
-            const togglePassword = document.getElementById('togglePassword');
+<script>
+    const password = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
 
-            togglePassword.addEventListener('click', function () {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
-            });
-        </script>
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
+    });
+</script>
