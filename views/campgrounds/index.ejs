@@ -69,5 +69,29 @@
         }
     });
 </script>
+<script>
+  // Debounce function to limit how often the form submits
+  function debounce(func, delay) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // Function to submit the form
+  function submitForm() {
+    document.getElementById('search-form').submit();
+  }
+
+  // Attach event listener to input field
+  const searchInput = document.getElementById('search-input');
+  
+  // Use debounce to call submitForm after a delay (e.g., 500ms)
+  searchInput.addEventListener('input', debounce(() => {
+    console.log('Input event fired');
+    submitForm();
+  }, 500));
+</script>
 
 <script src="/javascripts/clusterMap.js"></script>
