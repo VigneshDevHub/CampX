@@ -63,8 +63,12 @@
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+
+    const campgrounds = { features: `<%- JSON.stringify(campgrounds) %>` };
+
     const campgrounds = <%- JSON.stringify(campgrounds) %>;
     console.log(campgrounds);
+
     document.getElementById('show-nearest-btn').addEventListener('click', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
