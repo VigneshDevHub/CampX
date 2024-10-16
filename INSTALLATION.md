@@ -1,29 +1,54 @@
+## Fork the Repository
+Before starting the installation process, **fork the repository** to your GitHub account by clicking the "Fork" button at the top right of the repository page.
+
 ## Installation
 To set up the project locally, follow these steps:
 
-1. Clone the repository:
+1. **Clone the forked repository**:
+    
     ```bash
     git clone https://github.com/yourusername/CampX.git
     cd CampX
     ```
 
-2. Install the necessary dependencies:
+
+2. **Install the necessary dependencies**:
+
     ```bash
     npm install
     ```
+3.  **Get the necessary environment variables**:
+    3.1  **MongoDB**:
+        Go to MongoDB website and sign up/Log in
+        Create a new database in a cluster 
+        obtain it's DB URL
+    3.2 **Cloudinary**:
+        Go to cloudinary website and sign up there
+        create a new project and obtain the following fields
+        ```
+        CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+        CLOUDINARY_KEY=your_cloudinary_api_key
+        CLOUDINARY_SECRET=your_cloudinary_api_secret
+        ``` 
+    3.3 **Mapbox**:
+        Go to Mapbox website and sign up there to obtain the mapbox token
 
-3. Set up environment variables:
+4. **Set up environment variables**:
+
     Create a `.env` file in the root directory with the following variables:
     ```env
-    DATABASE_URL=your_mongo_atlas_url
+    DB_URL=your_mongo_atlas_url
     CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-    CLOUDINARY_API_KEY=your_cloudinary_api_key
-    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+    CLOUDINARY_KEY=your_cloudinary_api_key
+    CLOUDINARY_SECRET=your_cloudinary_api_secret
+    MAPBOX_TOKEN=your_mapbox_token
     ```
 
-4. Start the server:
+5. **Start the server**:
     ```bash
-    npm start
+    node app.js
     ```
 
-5. Open your browser and navigate to `http://localhost:3000` to view the app.
+6. **View the app**:
+   Open your browser and navigate to `http://localhost:3000` to view the app.
+

@@ -28,11 +28,14 @@ module.exports.validateCampground=(req,res,next)=>{
 module.exports.isAuthor = async(req,res,next)=>{
     const {id}=req.params;
     const campground =await Campground.findById(id);
-    if(!campground.author.equals(req.user.id)){
-        req.flash('error','You do not have permission to do that!');
-        return res.redirect(`/campgrounds/${id}`);
+    if(campground.author.equals(req.user.id)||req.user.role==="admin"){
+        next(); 
+    }else
+    {
+        const err = new ExpressError('You do not have permission to do that', 403)
+        res.status(403).render('error',{err})
     }
-    next();
+    
 }
 
 module.exports.storeReturnTo = (req, res, next) => {
@@ -58,9 +61,12 @@ module.exports.validateReview = (req,res,next)=>{
 module.exports.isReviewAuthor = async(req,res,next)=>{
     const {id,reviewId}=req.params;
     const review =await Review.findById(reviewId);
-    if(!review.author.equals(req.user.id)){
+    if(review.author.equals(req.user.id)||req.user.role==="admin"){
+        next();
+    }else
+    {
         req.flash('error','You do not have permission to do that!');
         return res.redirect(`/campgrounds/${id}`);
     }
-    next();
+    
 }

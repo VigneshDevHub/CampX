@@ -1,36 +1,79 @@
 body {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png");
+        url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png");
     background-size: cover;
     background-position: center;
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }
+
 .cover-container {
-  max-width: 60vw;
+    max-width: 60vw;
 }
 
 .nav-link {
     padding: 0.25rem 0;
     font-weight: 700;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin-left: 1rem;
     border-bottom: 0.25rem solid transparent;
 }
 
-.nav-link:hover{
-    color: rgba(255,255,255,0.5);
-    border-bottom-color:rgba(255,255,255,0.5);
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-link.active {
     color: white;
-    border-bottom-color:white;
+    border-bottom-color: white;
 
 }
 
-.btn-secondary, .btn-secondary:hover{
+.btn-secondary,
+.btn-secondary:hover {
     color: #333;
     text-shadow: none;
+}
+
+h3 {
+    display: inline-block;
+}
+
+/* Adding animation to the "CampX" heading of the header */
+h2 {
+    z-index: 10;
+    animation-name: animation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+}
+
+h2:hover {
+    animation-duration: 6s;
+
+
+}
+
+@keyframes animation {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    30% {
+        transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    60% {
+        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+    }
+
+    90% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
