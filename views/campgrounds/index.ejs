@@ -26,7 +26,7 @@
             <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
 </select>
         <button type="submit" class="btn btn-primary">Sort</button>
-    </form>
+</form>
 </div>
 
 <% for(let campground of campgrounds){ %>
@@ -63,7 +63,8 @@
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const campgrounds = { features: <%- JSON.stringify(campgrounds) %> };
+    const campgrounds = <%- JSON.stringify(campgrounds) %>;
+    console.log(campgrounds);
     document.getElementById('show-nearest-btn').addEventListener('click', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
