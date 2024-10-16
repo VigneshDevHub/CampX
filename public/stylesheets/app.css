@@ -69,7 +69,51 @@ h1 {
     background-color: black;
     color: white;
 }  
-.mapboxgl-popup-content{
+
+
+/* to scroll top css */
+html {
+    scroll-behavior: smooth;
+  } 
+
+.arrow{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow img{
+    width: 24px;
+}
+
+.to-top{
+    position: fixed;
+    right: 32px;
+    bottom: 5%;
+    opacity: 0;
+    transition: all .4s;
+    pointer-events: none;
+}
+
+.to-top.active{
+    pointer-events: auto;
+    opacity: 1;
+    bottom: 30px;
+}
+
+@media screen and (max-width:425px) {
+    .arrow{
+        height: 35px;
+        width: 35px;
+    }
+    .arrow img{
+        width: 24px;
+    }
+    .to-top{
+        right:20px;
+    }
+}.mapboxgl-popup-content{
     color: black !important;
     text-align: center;
 }
