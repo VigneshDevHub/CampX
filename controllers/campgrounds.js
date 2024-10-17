@@ -49,8 +49,8 @@ module.exports.index = async (req, res) => {
 };
 module.exports.searchCampgrounds = async (req, res) => {
     const { q } = req.query;
-    const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
-    res.render('campgrounds/index', { campgrounds });
+    const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });      
+    return res.json(campgrounds);
 };
 module.exports.renderNewForm = (req,res)=>{
     res.render('campgrounds/new');

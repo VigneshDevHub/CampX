@@ -2,7 +2,7 @@
 <div id="cluster-map"></div>
 <h1>All Campgrounds</h1>
 
-<link rel="stylesheet" href="stylesheets/searchCampground.css">
+<link rel="stylesheet" href="/stylesheets/searchCampground.css">
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <!-- Search Bar (left-aligned) -->
@@ -10,13 +10,14 @@
         <div class="input-group">
             <input class="form-control" type="search" placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
             <div class="input-group-append">
-                <button class="btn btn-info" type="submit" id="search-button">Search</button>
+                <button class="btn btn-info" type="button" id="search-button">Search</button>
             </div>
         </div>
-</form>
-<button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
+    </form>
+    <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
-<div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
+
+<div style="display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: 10px;">
     <form action="/campgrounds" method="GET" class="d-inline">
         <select name="sort" id="sort" class="btn btn-secondary">
             <option value="">--Select--</option>
@@ -24,96 +25,152 @@
             <option value="priceDesc" <%= (locals.query && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
             <option value="reviewsHighest" <%= (locals.query && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
             <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
-</select>
+        </select>
         <button type="submit" class="btn btn-primary">Sort</button>
-</form>
+    </form>
 </div>
 
-<% for(let campground of campgrounds){ %>
-    <div class="card text-white bg-dark mb-3" id="campinfo">
-        <div class="row">
-            <div class="col-md-4" id="campgroundhomeimage">
-                <% if(campground.images.length) { %>
-                <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
-                <% } else { %>
-                    <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
-                <% } %>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><%= campground.title %></h5>
-                    <p class="card-text"><%= campground.description %></p>
-                    <p class="card-text">
-                        <small id="infolocation"><%= campground.location %></small>
-                    </p>
-                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %></a>
+<!-- Campgrounds List -->
+<div id="campground-container">
+    <% for(let campground of campgrounds){ %>
+        <div class="card text-white bg-dark mb-3" id="campinfo">
+            <div class="row">
+                <div class="col-md-4" id="campgroundhomeimage">
+                    <% if(campground.images.length) { %>
+                        <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
+                    <% } else { %>
+                        <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
+                    <% } %>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= campground.title %></h5>
+                        <p class="card-text"><%= campground.description %></p>
+                        <p class="card-text">
+                            <small id="infolocation"><%= campground.location %></small>
+                        </p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<% } %>
+    <% } %>
+</div>
 
-
-<a href="#" class="to-top  bg-dark rounded-circle">
+<a href="#" class="to-top bg-dark rounded-circle">
     <div class="arrow">
         <img src="/icons/upload32.png" alt="arrow">
     </div>
 </a>
-    
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
     const campgrounds = <%- JSON.stringify(campgrounds) %>;
-    console.log(campgrounds);
+
+    // Nearest button functionality
     document.getElementById('show-nearest-btn').addEventListener('click', () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-            // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
-            window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
-        });
-    } else {
-        alert("Geolocation is not supported by this browser.");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const userLat = position.coords.latitude;
+                const userLon = position.coords.longitude;
+                window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    // Scroll to-top functionality 
+    const toTop = document.querySelector(".to-top");
+
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 100) {
+            toTop.classList.add("active");
+        } else {
+            toTop.classList.remove("active");
+        }
+    });
+
+    // Debounce function to limit how often the form submits
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
     }
-});
 
-// scroll to-top functionality 
+    // Load the campgrounds data on first render
+    window.addEventListener('DOMContentLoaded', () => {
+        submitSearchQuery('');
+    });
 
-const toTop = document.querySelector(".to-top");
+    // Function to send AJAX request and handle response
+    async function submitSearchQuery(query) {
+        try {
+            const response = await fetch(`/campgrounds/search?q=${query}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            // Now you can update the page with the search results dynamically without reloading
+            if (data.length > 0) {
+                updateCampgroundsList(data);
+            } else {
+                alert('No results found for your search query.');
+            }
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+        }
+    }
 
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    toTop.classList.add("active");
-  } else {
-    toTop.classList.remove("active");
-  }
-})
+    // Function to update the list of campgrounds
+    function updateCampgroundsList(campgrounds) {
+        const campgroundContainer = document.getElementById('campground-container');
+        campgroundContainer.innerHTML = ''; // Clear previous results
 
-</script>
-<script>
-  // Debounce function to limit how often the form submits
-  function debounce(func, delay) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), delay);
-    };
-  }
+        campgrounds.forEach(item => {
+            const campground = item.campground; // Access the inner campground object
 
-  // Function to submit the form
-  function submitForm() {
-    document.getElementById('search-form').submit();
-  }
+            // Generate images HTML
+            const imagesHtml = campground.images && campground.images.length > 0 ? 
+                `<img crossorigin="anonymous" id="indeximg" alt="" src="${campground.images[0]}">` : // Directly use the URL
+                `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
 
-  // Attach event listener to input field
-  const searchInput = document.getElementById('search-input');
-  
-  // Use debounce to call submitForm after a delay (e.g., 500ms)
-  searchInput.addEventListener('input', debounce(() => {
-    console.log('Input event fired');
-    submitForm();
-  }, 500));
+            const campgroundHtml = `
+                <div class="card text-white bg-dark mb-3" id="campinfo">
+                    <div class="row">
+                        <div class="col-md-4" id="campgroundhomeimage">
+                            ${imagesHtml}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${campground.name}</h5> <!-- Use campground.name -->
+                                <p class="card-text">${campground.description}</p>
+                                <p class="card-text">
+                                    <small id="infolocation">${campground.location}</small>
+                                </p>
+                                <a href="${campground.link}" class="btn btn-primary">View ${campground.name}</a> <!-- Use campground.link -->
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            
+            campgroundContainer.insertAdjacentHTML('beforeend', campgroundHtml);
+        });
+    }
+
+    // Attach event listener to input field for search
+    const searchInput = document.getElementById('search-input');
+
+    // Use debounce to call the search query after a delay (e.g., 500ms)
+    searchInput.addEventListener('input', debounce(() => {
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    }, 500));
+
 </script>
 
 <script src="/javascripts/clusterMap.js"></script>
