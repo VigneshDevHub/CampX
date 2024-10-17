@@ -47,13 +47,11 @@ h2 {
     animation-name: animation;
     animation-duration: 3s;
     animation-iteration-count: infinite;
-
+    animation-timing-function: linear;
 }
 
 h2:hover {
     animation-duration: 6s;
-
-
 }
 
 @keyframes animation {
@@ -61,11 +59,23 @@ h2:hover {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     }
 
+    15% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
     30% {
         transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
     }
 
+    45% {
+        transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
+    }
+
     60% {
+        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+    }
+
+    75% {
         transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
     }
 
