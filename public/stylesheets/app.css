@@ -69,7 +69,51 @@ h1 {
     background-color: black;
     color: white;
 }  
-.mapboxgl-popup-content{
+
+
+/* to scroll top css */
+html {
+    scroll-behavior: smooth;
+  } 
+
+.arrow{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow img{
+    width: 24px;
+}
+
+.to-top{
+    position: fixed;
+    right: 32px;
+    bottom: 5%;
+    opacity: 0;
+    transition: all .4s;
+    pointer-events: none;
+}
+
+.to-top.active{
+    pointer-events: auto;
+    opacity: 1;
+    bottom: 30px;
+}
+
+@media screen and (max-width:425px) {
+    .arrow{
+        height: 35px;
+        width: 35px;
+    }
+    .arrow img{
+        width: 24px;
+    }
+    .to-top{
+        right:20px;
+    }
+}.mapboxgl-popup-content{
     color: black !important;
     text-align: center;
 }
@@ -77,13 +121,20 @@ h1 {
     font-weight: 600 !important;
 }
 .mapboxgl-popup-content p{
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     opacity: 0.7;
     text-align: center;
+    margin-bottom: 0;
+}
+.mapboxgl-popup-content b{
+    font-weight: 400;
+    color: cadetblue;
+
 }
 .mapboxgl-popup-content span{
     margin-bottom: 0 !important;
-    color: cadetblue;
+    color: #00BCD4;
+    font-size: 1rem;
 }
 .user2{
     height: 1.2rem !important;
@@ -123,3 +174,5 @@ h1 {
     border-radius: 5px;
     margin-bottom: 1rem;
 }
+
+.
