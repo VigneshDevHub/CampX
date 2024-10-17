@@ -1,235 +1,47 @@
 <% layout('layouts/boilerplate')%>
 
-<div class="signup-container">
-    <div class="signup-card">
-        <div class="signup-content">
-            <div class="signup-header">
-                <h1>Join CampX</h1>
-                <p>Start your camping adventure today</p>
-            </div>
-            <div class="signup-form">
-                <form action="/register" method="POST" class="validated-form" novalidate>
-                    <div class="form-group">
-                        <input type="text" id="username" name="username" required autofocus>
-                        <label for="username">Username</label>
-                        <i class="fas fa-user"></i>
+    <div class="register-container">
+        <div class="register-card">
+            <h2 class="register-title">Register</h2>
+            <form action="/register" method="POST" class="validated-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-input" type="text" id="username" name="username"
+                        placeholder="Enter your Username" autofocus required>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="Enter your Email"
+                        required>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input class="form-input" type="password" id="password" name="password"
+                            placeholder="Enter your Password" required>
+                        <img id="togglePassword" src="/icons/hidden.png" class="position-absolute toggle-icon"
+                            alt="Toggle visibility" />
+                        <div class="valid-feedback">Looks good!</div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="password" name="password" required>
-                        <label for="password">Password</label>
-                        <i class="fas fa-lock"></i>
-                        <i id="togglePassword" class="fas fa-eye"></i>
-                    </div>
-                    <button type="submit" class="btn-signup">
-                        Register
-                    </button>
-                </form>
-            </div>
-            <div class="signup-footer">
-                <p>Already have an account? <a href="/login">Log in</a></p>
-            </div>
-        </div>
-        <div class="signup-image">
-            <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
-                alt="CampX" />
+                </div>
+
+                <button class="register-button">Register</button>
+                <div class="login-link">Already have an account? <a href="/login">Login</a></div>
+            </form>
         </div>
     </div>
-</div>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    <script>
+        const password = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
 
-    body {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724754425/s6xla8gbzb5jtkzay7qr.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    .signup-container {
-        width: 100%;
-        max-width: 900px;
-        padding: 20px;
-        position: absolute;
-        top: 25%;
-        right: 15%;
-    }
-
-    .signup-card {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        overflow: hidden;
-        display: flex;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-        flex-direction: column-reverse;
-    }
-
-    .signup-content {
-        flex: 1;
-        padding: 40px;
-    }
-
-    .signup-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .signup-header h1 {
-        color: #2c3e50;
-        font-size: 28px;
-        margin-bottom: 10px;
-    }
-
-    .signup-header p {
-        color: #7f8c8d;
-        font-size: 16px;
-    }
-
-    .signup-form {
-        margin-bottom: 30px;
-    }
-
-    .form-group {
-        position: relative;
-        margin-bottom: 30px;
-    }
-
-    .form-group input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #2c3e50;
-        border: none;
-        border-bottom: 2px solid #bdc3c7;
-        outline: none;
-        background: transparent;
-        transition: 0.3s;
-    }
-
-    .form-group label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #7f8c8d;
-        pointer-events: none;
-        transition: 0.3s;
-    }
-
-    .form-group input:focus ~ label,
-    .form-group input:valid ~ label {
-        top: -20px;
-        font-size: 12px;
-        color: #3498db;
-    }
-
-    .form-group input:focus,
-    .form-group input:valid {
-        border-bottom: 2px solid #3498db;
-    }
-
-    .form-group i {
-        position: absolute;
-        right: 0;
-        top: 10px;
-        color: #7f8c8d;
-        transition: 0.3s;
-    }
-
-    .form-group input:focus ~ i,
-    .form-group input:valid ~ i {
-        color: #3498db;
-    }
-
-    #togglePassword {
-        cursor: pointer;
-    }
-
-    .btn-signup {
-        width: 100%;
-        padding: 12px;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .btn-signup:hover {
-        background-color: #2980b9;
-        transform: translateY(-2px);
-    }
-
-    .signup-footer {
-        text-align: center;
-        font-size: 14px;
-        color: #7f8c8d;
-    }
-
-    .signup-footer a {
-        color: #3498db;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .signup-footer a:hover {
-        color: #2980b9;
-    }
-
-    .signup-image {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .signup-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s;
-    }
-
-    .signup-image:hover img {
-        transform: scale(1.05);
-    }
-
-    @media (max-width: 768px) {
-        .signup-card {
-            flex-direction: column-reverse;
-        }
-
-        .signup-image {
-            height: 200px;
-        }
-    }
-</style>
-
-<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-<script>
-    const password = document.getElementById('password');
-    const togglePassword = document.getElementById('togglePassword');
-
-    togglePassword.addEventListener('click', function () {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
-</script>
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
+        });
+    </script>
