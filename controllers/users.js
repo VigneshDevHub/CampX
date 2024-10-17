@@ -4,7 +4,7 @@ module.exports.renderRegister = (req, res) => {
     res.render('users/register');
 }
 
-module.exports.register = async (req, res,next) => {
+module.exports.register = async (req, res, next) => {
     let userCount = await User.countDocuments();
     let role = userCount === 0 ? "admin" : "user";
     try{
