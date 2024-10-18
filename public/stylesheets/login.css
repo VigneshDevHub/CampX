@@ -27,7 +27,8 @@
 }
 
 .form-group {
-	margin-bottom: 1.5rem;
+	position: relative;
+	margin-bottom: 30px;
 }
 
 .form-label {
@@ -62,6 +63,7 @@
 	cursor: pointer;
 	width: 20px;
 	height: 20px;
+	z-index: 1;
 }
 
 .login-button {
@@ -96,9 +98,10 @@
 }
 
 .valid-feedback {
-	color: #28a745;
-	font-size: 0.875rem;
-
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
 }
 
 ::placeholder {
