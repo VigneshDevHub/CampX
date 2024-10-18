@@ -2,9 +2,9 @@ const Campground=require('../models/campground');
 const Review=require('../models/review');
 
 module.exports.createReview = async(req,res)=>{
+    const { rating, body } = req.body;
     const campground = await Campground.findById(req.params.id);
-    const review= new Review(req.body.review);
-    review.author=req.user._id;
+    const review = new Review({rating, body, user:req.user._id, campground:campground._id });
     campground.reviews.push(review);
     await review.save();
     await campground.save();
