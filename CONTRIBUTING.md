@@ -152,9 +152,9 @@ Your pull request will now be available for review by the project maintainers. T
 
 # For Help And Support 💬
 
-- Admin :- Vignesh
+- Admin :- [Vignesh](https://github.com/VigneshDevHub)
 - Discord :- [CampX](https://discord.gg/Wq6MZ88ecf)
-- Contact :- [Email](vigneshdevhub@gmail.com)
+- Contact :- [Email](mailto:vigneshdevhub@gmail.com)
 
 <br>
 
@@ -208,10 +208,11 @@ When submitting a pull request, please adhere to the following:
 
 To report an issue, follow these steps:
 
-1. Navigate to the project's issues section :- [Issues](https://github.com/VigneshDevHub/CampX/issues)
-2. Provide a clear and concise description of the issue.
-3. Wait until someone looks into your report.
-4. Begin working on the issue only after you have been assigned to it. 🚀
+1. Navigate to the project's issues section :- [Issues](https://github.com/VigneshDevHub/CampX/issues/new/choose)
+2. While raising an issue kindly choose the appropriate template for your issue.
+3. Provide a clear and concise description of the issue.
+4. Wait until someone looks into your report.
+5. Begin working on the issue only after you have been assigned to it. 🚀
 
 <br>
 
