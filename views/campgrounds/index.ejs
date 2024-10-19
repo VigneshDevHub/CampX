@@ -4,7 +4,38 @@
 
 <link rel="stylesheet" href="stylesheets/searchCampground.css">
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<style>
+    #Search-Section{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    #Sort-section{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        margin-bottom: 10px;
+    }
+    @media only screen and (max-width: 600px) {
+        #Search-Section{
+            display: flex;
+            flex-direction: column;
+        }
+        #show-nearest-btn{
+            width: 200px;
+        }
+        #Sort-section{
+            
+            justify-content: center;
+        
+        }
+
+    }
+</style>
+
+<div id="Search-Section" class="  w-full mb-3">
     <!-- Search Bar (left-aligned) -->
     <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
         <div class="input-group">
@@ -16,15 +47,15 @@
 </form>
 <button id="show-nearest-btn" class="btn btn-info">Show Nearest to Me</button>
 </div>
-<div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
-    <form action="/campgrounds" method="GET" class="d-inline">
+<div id="Sort-section" >
+    <form action="/campgrounds" method="GET" class="d-inline ">
         <select name="sort" id="sort" class="btn btn-secondary">
             <option value="">--Select--</option>
             <option value="priceAsc" <%= (locals.query && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
             <option value="priceDesc" <%= (locals.query && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
             <option value="reviewsHighest" <%= (locals.query && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
             <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
-</select>
+    </select>
         <button type="submit" class="btn btn-primary">Sort</button>
 </form>
 </div>
