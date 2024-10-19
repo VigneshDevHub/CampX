@@ -27,15 +27,35 @@
     #search-button {
         border-radius: 0 10px 10px 0;
         padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
+        background-color: #ba2323;
+        border: 1px solid #8e4535;
         color: white;
     }
 
     #show-nearest-btn {
         padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
+        background-color: #ba2323;
+        border: 1px solid #8e4535;
         color: white;
         border-radius: 10px;
     }
+    
+    #search-button:hover {
+        background-color: #9e1010;
+    }
+
+    #show-nearest-btn:hover {
+        background-color: #9e1010;
+    }
+
+    #sort-btn{
+        padding: 10px 20px; color: white;
+        border-radius: 0px 10px 10px 0px;
+        background-color:rgb(46, 45, 45); 
+        border-color:rgb(35, 35, 35); 
+    }
+    #sort-btn:hover{
+        background-color: rgb(23, 23, 23);
+    }
+
+    
