@@ -47,7 +47,7 @@
                         <h5 class="card-title"><%= campground.title %></h5>
                         <p class="card-text"><%= campground.description %></p>
                         <p class="card-text">
-                            <small id="infolocation"><%= campground.location %></small>
+                            <small id="infolocation"><%= campground.city =>, <%= campground.location %></small>
                         </p>
                         <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %></a>
                     </div>
@@ -115,6 +115,7 @@
                 }
             });
             const data = await response.json();
+            console.log('Search results:', data);
             // Now you can update the page with the search results dynamically without reloading
             if (data.length > 0) {
                 updateCampgroundsList(data);
@@ -136,8 +137,8 @@
 
             // Generate images HTML
             const imagesHtml = campground.images && campground.images.length > 0 ? 
-                `<img crossorigin="anonymous" id="indeximg" alt="" src="${campground.images[0]}">` : // Directly use the URL
-                `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
+            `<img crossorigin="anonymous" id="indeximg" alt="" src="${campground.images[0].url}">` : // Use the URL from the image object
+            `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
 
             const campgroundHtml = `
                 <div class="card text-white bg-dark mb-3" id="campinfo">
@@ -147,12 +148,12 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">${campground.name}</h5> <!-- Use campground.name -->
+                                <h5 class="card-title">${campground.title}</h5>
                                 <p class="card-text">${campground.description}</p>
                                 <p class="card-text">
-                                    <small id="infolocation">${campground.location}</small>
+                                    <small id="infolocation">${campground.city}, ${campground.state}</small>
                                 </p>
-                                <a href="${campground.link}" class="btn btn-primary">View ${campground.name}</a> <!-- Use campground.link -->
+                                <a href="${campground.link}" class="btn btn-primary">View ${campground.title}</a>
                             </div>
                         </div>
                     </div>
