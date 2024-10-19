@@ -1,0 +1,117 @@
+.login-container {
+
+	background-size: cover;
+	background-position: center;
+	min-height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+.login-card {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	padding: 3rem;
+	width: 100%;
+	max-width: 400px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+	color: white;
+	font-size: 2rem;
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.form-label {
+	display: block;
+	color: white;
+	margin-bottom: 0.5rem;
+}
+
+.form-input {
+	width: 100%;
+	padding: 0.75rem;
+	border: none;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+
+.form-input:focus {
+	outline: none;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.password-input-wrapper {
+	position: relative;
+}
+
+.toggle-icon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	z-index: 1;
+}
+
+.login-button {
+	width: 100%;
+	padding: 0.75rem;
+	border: none;
+	border-radius: 5px;
+	background: rgba(40, 167, 69, 0.8);
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+.login-button:hover {
+	background: rgba(40, 167, 69, 1);
+}
+
+.register-link {
+	text-align: center;
+	margin-top: 1rem;
+	color: white;
+}
+
+.register-link a {
+	color: #28a745;
+	text-decoration: none;
+}
+
+.register-link a:hover {
+	text-decoration: underline;
+}
+
+.valid-feedback {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+}
+
+::placeholder {
+	color: #888;
+}
+
+#username::placeholder {
+	color: whitesmoke;
+}
+
+#password::placeholder {
+	color: whitesmoke;
+}

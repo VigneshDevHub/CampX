@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate') %>
 
+
 <div class="signup-container">
     <div class="signup-card">
         <div class="signup-content">
@@ -57,3 +58,50 @@
         this.classList.toggle('fa-eye-slash');
     });
 </script>
+
+    <div class="register-container">
+        <div class="register-card">
+            <h2 class="register-title">Register</h2>
+            <form action="/register" method="POST" class="validated-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-input" type="text" id="username" name="username"
+                        placeholder="Enter your Username" autofocus required>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="Enter your Email"
+                        required>
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input class="form-input" type="password" id="password" name="password"
+                            placeholder="Enter your Password" required>
+                        <img id="togglePassword" src="/icons/hidden.png" class="position-absolute toggle-icon"
+                            alt="Toggle visibility" />
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+                </div>
+
+                <button class="register-button">Register</button>
+                <div class="login-link">Already have an account? <a href="/login">Login</a></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const password = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
+        });
+    </script>
+
