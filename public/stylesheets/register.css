@@ -1,5 +1,4 @@
-.login-container {
-
+.register-container {
 	background-size: cover;
 	background-position: center;
 	min-height: 90vh;
@@ -9,7 +8,7 @@
 	padding: 2rem;
 }
 
-.login-card {
+.register-card {
 	background: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(10px);
 	border-radius: 20px;
@@ -19,7 +18,7 @@
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.login-title {
+.register-title {
 	color: white;
 	font-size: 2rem;
 	margin-bottom: 2rem;
@@ -27,8 +26,8 @@
 }
 
 .form-group {
+	margin-bottom: 1.5rem;
 	position: relative;
-	margin-bottom: 30px;
 }
 
 .form-label {
@@ -39,7 +38,8 @@
 
 .form-input {
 	width: 100%;
-	padding: 0.75rem;
+	padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+	/* Increase right padding for icon */
 	border: none;
 	border-radius: 5px;
 	background: rgba(255, 255, 255, 0.2);
@@ -64,9 +64,11 @@
 	width: 20px;
 	height: 20px;
 	z-index: 1;
+	/* Ensure icon stays on top */
 }
 
-.login-button {
+.register-button {
+	margin-top: 5px;
 	width: 100%;
 	padding: 0.75rem;
 	border: none;
@@ -78,40 +80,34 @@
 	transition: background 0.3s ease;
 }
 
-.login-button:hover {
+.register-button:hover {
 	background: rgba(40, 167, 69, 1);
 }
 
-.register-link {
+.login-link {
 	text-align: center;
 	margin-top: 1rem;
 	color: white;
 }
 
-.register-link a {
+.login-link a {
 	color: #28a745;
 	text-decoration: none;
 }
 
-.register-link a:hover {
+.login-link a:hover {
 	text-decoration: underline;
 }
 
 .valid-feedback {
 	position: absolute;
-	top: 100%;
 	left: 0;
-	width: 100%;
+	bottom: -1.5rem;
+	/* Position below the input */
+	font-size: 0.875rem;
+	color: #28a745;
 }
 
 ::placeholder {
-	color: #888;
-}
-
-#username::placeholder {
-	color: whitesmoke;
-}
-
-#password::placeholder {
 	color: whitesmoke;
 }
