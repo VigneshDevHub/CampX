@@ -154,7 +154,7 @@ Your pull request will now be available for review by the project maintainers. T
 
 - Admin Github Profile :- [Vignesh J](https://github.com/Vignesh025)
 - Discord :- [CampX](https://discord.gg/Wq6MZ88ecf)
-- Contact :- [Email](mailto:vigneshjayakumar9221@gmail.com)
+- Contact :- [Email](mailto:vigneshdevhub@gmail.com)
 
 <br>
 
