@@ -137,7 +137,7 @@ module.exports.updateCampground = async(req,res)=>{
     const campground = await Campground.findByIdAndUpdate(id,{
         ...req.body.campground,
         geometry: geometry // Assign to geometry field of the campground model
-    });
+    }, { new: true }); // Return the new geocodding, remove the existing.
     
     const imgs=req.files.map(f=>({url:f.path,filename: f.filename}))
     campground.images.push(...imgs);
