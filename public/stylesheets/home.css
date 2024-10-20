@@ -1,79 +1,68 @@
+:root {
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --text-color: rgba(255, 255, 255, 0.5);
+    --active-color: white;
+    --button-color: #333;
+    --container-max-width: 60vw;
+}
+
 body {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png");
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                      url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png");
     background-size: cover;
     background-position: center;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0.05rem 0.1rem var(--bg-overlay);
+    box-shadow: inset 0 0 5rem var(--bg-overlay);
 }
 
 .cover-container {
-    max-width: 60vw;
+    max-width: var(--container-max-width);
 }
 
 .nav-link {
     padding: 0.25rem 0;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
     margin-left: 1rem;
     border-bottom: 0.25rem solid transparent;
+    transition: color 0.3s, border-bottom-color 0.3s; /* Add a transition for smoother hover effect */
 }
 
 .nav-link:hover {
-    color: rgba(255, 255, 255, 0.5);
-    border-bottom-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
 }
 
 .nav-link.active {
-    color: white;
-    border-bottom-color: white;
-
+    color: var(--active-color);
+    border-bottom-color: var(--active-color);
 }
 
 .btn-secondary,
 .btn-secondary:hover {
-    color: #333;
-    text-shadow: none;
+    color: var(--button-color);
+    text-shadow: none; /* Consider removing this if it's not needed */
 }
 
 h3 {
     display: inline-block;
 }
 
-/* Adding animation to the "CampX" heading of the header */
 h2 {
     z-index: 10;
-    animation-name: animation;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-
+    animation: rotate-animation 3s infinite;
+    will-change: transform; /* Improve animation performance */
 }
 
 h2:hover {
     animation-duration: 6s;
-
-
 }
 
-@keyframes animation {
-    0% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    }
-
-    30% {
-        transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
-    }
-
-    60% {
-        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
-    }
-
-    90% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(180deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+@keyframes rotate-animation {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    30% { transform: rotateX(180deg); }
+    60% { transform: rotateY(180deg); }
+    90% { transform: rotateZ(180deg); }
+    100% { transform: rotate(360deg); }
 }
