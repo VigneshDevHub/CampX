@@ -19,23 +19,77 @@
     .btn-info {
         border-radius: 0 10px 10px 0;
         padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
+        background-color: lightblue;
+        border: 1px solid lightblue;
         color: white;
     }
+    .btn-info:hover {
+        background-position: 100% 0;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    
+    
 
     #search-button {
-        border-radius: 0 10px 10px 0;
-        padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
-        color: white;
+        transition: all .5s ease;
+        color: #fff;
+        border: 2px solid #17a2b8; 
+        font-family:'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1;
+        font-size: 17px;
+        background-color : transparent;
+        padding: 10px;
+        outline: none;
+        border-radius: 4px;
+        height: 45px;
     }
+    #search-button:hover {
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
+    }
+   
+            
+              /* stroke-width: 5;
+              stroke-dasharray: 15, 310;
+              stroke-dashoffset: 48; */
+    /* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
+
+            
+    
 
     #show-nearest-btn {
-        padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
-        color: white;
-        border-radius: 10px;
+        transition: all .5s ease;
+        color: #fff;
+        border: 2px solid #17a2b8; ;
+        font-family:'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1;
+        font-size: 17px;
+        background-color : transparent;
+        padding: 10px;
+        outline: none;
+        border-radius: 4px;
+        height: 45px;
     }
+    
+    #show-nearest-btn:hover {
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
+    }
+    @media (hover: hover) {
+        #search-button:hover {
+            color: #001F3F;
+            background-color: #17a2b8;
+            border: 2px solid #17a2b8;
+        }
+      }
+      
+    
