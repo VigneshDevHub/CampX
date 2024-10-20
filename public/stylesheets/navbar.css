@@ -200,10 +200,14 @@
     }
 
     .navbar-collapse {
-        background-color: black; /* Black background when navbar expands */
-        width: 100%; /* Full width on smaller screens */
-        
+        background-color: black; 
+        width: 100%; 
+        left: 0; 
+        position: absolute; 
+        top: 50px; 
+        z-index: 1000; 
     }
+    
 
     .dropdown-menu {
         background-color: black; /* Ensure dropdown background stays black */
@@ -236,11 +240,14 @@
     }
 
     .navbar-collapse {
-        background-color: black; /* Ensure black background when navbar expands */
-        width: 100vw; /* Full width on mobile */
-        
-    
+        background-color: black; 
+        width: 100%; 
+        left: 0; 
+        position: absolute; 
+        top: 50px; 
+        z-index: 1000; 
     }
+    
 
     .dropdown-menu {
         background-color: black;
