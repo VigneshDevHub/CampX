@@ -6,11 +6,12 @@ const {cloudinary} = require('../cloudinary');
 const { query } = require('express');
 const mongoose = require('mongoose');
 const ExpressError = require('../utils/ExpressError.js');
+const catchAsync = require('../utils/catchAsync.js')
 
 const turf = require('@turf/turf');
 const Review = require('../models/review');
 
-module.exports.index = async (req, res) => {
+module.exports.index = catchAsync(async (req, res, next) => {
     const { sort } = req.query;
     // console.log("Sort Query Parameter: ", sort);  
     let campgrounds;
@@ -46,15 +47,17 @@ module.exports.index = async (req, res) => {
     }
 
     res.render('campgrounds/index', { campgrounds, query: req.query });
-};
-module.exports.searchCampgrounds = async (req, res) => {
+});
+
+module.exports.searchCampgrounds = catchAsync(async (req, res, next) => {
     const { q } = req.query;
     const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
     res.render('campgrounds/index', { campgrounds });
-};
-module.exports.renderNewForm = (req,res)=>{
+});
+
+module.exports.renderNewForm = catchAsync((req, res, next)=>{
     res.render('campgrounds/new');
-}
+})
 
 module.exports.createCampground = async (req, res, next) => {
     try {
@@ -77,7 +80,7 @@ module.exports.createCampground = async (req, res, next) => {
     }
 }
 
-module.exports.showCampground = async (req, res) => {
+module.exports.showCampground = catchAsync(async (req, res, next) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         //Invalid object Id
         const err=new ExpressError('This URL is not supported',400)
@@ -94,9 +97,9 @@ module.exports.showCampground = async (req, res) => {
         return res.redirect('/campgrounds');
     }
     res.render('campgrounds/show',{campground});
-}
+})
 
-module.exports.showNearestCampgrounds = async (req, res) => {
+module.exports.showNearestCampgrounds = catchAsync(async (req, res, next) => {
     const { lat, lng } = req.query;
     if (!lat || !lng) {
         req.flash('error', 'Location not found');
@@ -112,18 +115,18 @@ module.exports.showNearestCampgrounds = async (req, res) => {
     }).sort((a, b) => a.distance - b.distance); // Sort by distance
 
     res.render('campgrounds/index', { campgrounds: sortedCampgrounds });
-};
+});
 
-module.exports.renderEditForm = async(req,res)=>{
+module.exports.renderEditForm = catchAsync(async(req,res, next)=>{
     const campground=await Campground.findById(req.params.id);
     if(!campground){
         req.flash('error','Cannot find that campground!');
         return res.redirect('/campgrounds');
     }
     res.render('campgrounds/edit',{campground});
-}
+})
 
-module.exports.updateCampground = async(req,res)=>{
+module.exports.updateCampground = catchAsync(async(req,res, next)=>{
     const{id}=req.params;
     // Set the Geo Codding for Edit rouite
     const geoData=await geocoder.forwardGeocode({
@@ -150,11 +153,11 @@ module.exports.updateCampground = async(req,res)=>{
     }
     req.flash('success','Successfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`);
-}
+})
 
-module.exports.deleteCampground = async(req,res)=>{
+module.exports.deleteCampground = catchAsync(async(req,res, next)=>{
     const{id}=req.params;
     await Campground.findByIdAndDelete(id);
     req.flash('success','Successfully Deleted campground!');
     res.redirect('/campgrounds');
-}
+})

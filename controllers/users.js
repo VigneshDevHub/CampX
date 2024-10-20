@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const catchAsync = require('../utils/catchAsync');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
@@ -33,7 +34,7 @@ module.exports.login = (req,res)=>{
     res.redirect(redirectUrl);
 }
 
-module.exports.logout = (req, res, next) => {
+module.exports.logout = catchAsync((req, res, next) => {
     req.logout(function (err) {
         if (err) {
             return next(err);
@@ -41,4 +42,4 @@ module.exports.logout = (req, res, next) => {
         req.flash('success', 'Goodbye!');
         res.redirect('/campgrounds');
     });
-}
+})

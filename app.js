@@ -20,7 +20,9 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
-const job = require('./cron.js')
+const job = require('./cron.js');
+const { errorHandler } = require('./errorHandler/index.js');
+const { Notfound } = require('./errorHandler/not-found.js');
 const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/campx';
 
 job.start()
@@ -162,15 +164,9 @@ app.all('/campgrounds/:id/reviews', (req, res, next) => {
     next(new ExpressError('Method not allowed', 405));
 });
 
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404));
-});
+app.use(Notfound) //If no route is Found
 
-app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Something Went Wrong!';
-    res.status(statusCode).render('error', { err });
-});
+app.use(errorHandler) //Possible Errors Missed are passed to this roubust errorHandler here to handle.
 
 app.listen(3000, () => {
     console.log('Serving on port 3000');
