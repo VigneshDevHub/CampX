@@ -1,258 +1,241 @@
 /* General Navbar Styles */
 .navbar {
-    background-color: black; /* Black background for the navbar */
-    height: 80px; /* Set consistent height */
-    width: 100%; /* Ensure navbar takes full width */
-    
-    padding-inline: 40px;
+  background-color: black; /* Black background for the navbar */
+  height: 80px; /* Set consistent height */
+  width: 100%; /* Ensure navbar takes full width */
 
+  padding-inline: 40px;
 }
 
 .navbar-brand {
-    font-weight: bold; /* Bold CampX logo */
-    color: white; /* White logo text */
-    font-size: 2rem;
-   
-   
+  font-weight: bold; /* Bold CampX logo */
+  color: white; /* White logo text */
+  font-size: 2rem;
 }
 
 .navbar-brand:hover {
-    color: white; /* Ensure the CampX logo stays white on hover */
+  color: white; /* Ensure the CampX logo stays white on hover */
 }
 
 .navbar-brand #rotateX {
-    display: inline-block;
-    animation: rotation 3s infinite;
-    color: white; /* Color of rotating X */
+  display: inline-block;
+  animation: rotation 3s infinite;
+  color: white; /* Color of rotating X */
 }
-.links{
-   
-   margin-left: 20px;
-
+.links {
+  margin-left: 20px;
 }
 .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
-    font-weight: 700;
-    margin-left: 1rem;
-    
+  color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
+  font-weight: 700;
+  margin-left: 1rem;
 }
 
 .navbar-nav .nav-link:hover {
-    color: white; /* Slightly brighter text on hover */
+  color: rgb(221, 219, 219); /* Slightly brighter text on hover */
 }
 
 .navbar-nav .nav-link.active {
-    color: #FFE3E3; /* Active link stays white */
+  color: #fff; /* Active link stays white */
 }
 
 /* Dropdown styles */
 .navbar-nav .dropdown-menu {
-    background-color: black; /* Set dropdown background to black */
+  background-color: black; /* Set dropdown background to black */
 }
 
 .navbar-nav .dropdown-item {
-    color: white; /* White text for dropdown items */
-    transition: background-color 0.3s ease;
+  color: white; /* White text for dropdown items */
+  transition: background-color 0.3s ease;
 }
 
 .navbar-nav .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-    color: white;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  color: white;
 }
 
-.navbar-nav .dropdown-item.active, .navbar-nav .dropdown-item:active {
-    color: white;
+.navbar-nav .dropdown-item.active,
+.navbar-nav .dropdown-item:active {
+  color: white;
 }
-
 
 /* Rotation animation for X in CampX logo */
 @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hamburger menu button for mobile */
 .navbar-toggler {
-    border: none; /* Remove default border */
-    color: white; /* White icon for visibility */
+  border: none; /* Remove default border */
+  color: white; /* White icon for visibility */
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ensure white hamburger menu icon */
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ensure white hamburger menu icon */
 }
 .hover-underline-animation {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffe3e3;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media (min-width: 769px) {
+  .login-btn {
+    border-radius: 8px;
+    border: 2px solid #fff !important;
+    padding-inline: 20px !important;
+    padding-block: 6px !important;
+    display: flex;
+    align-self: center;
   }
-  
-  .hover-underline-animation::after {
-    content: '';
+
+  .reg-btn {
+    border-radius: 8px;
+    border: 2px solid #c4e1f6;
+    color: gray !important;
+    padding-inline: 20px !important;
+    padding-block: 6px !important;
+    display: flex;
+    align-self: center;
+  }
+}
+
+.reg-btn.active {
+  color: #091057 !important;
+  background-color: #fff;
+}
+
+.login-btn.active {
+  background-color: #fff;
+  color: #091057 !important;
+}
+
+/* Enable hover animation for all buttons on mobile screens */
+@media (max-width: 768px) {
+  .hover-underline-animation::after,
+  .login-btn::after,
+  .reg-btn::after {
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #FFE3E3;
+    background-color: #ffe3e3;
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
   }
-  
-  .hover-underline-animation:hover::after {
+
+  .hover-underline-animation:hover::after,
+  .login-btn:hover::after,
+  .reg-btn:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
- 
-  
-
-  @media (min-width: 769px) {
-    .login-btn {
-      border-radius: 8px;
-      border: 2px solid #FFE3E3 !important;
-      padding-inline: 20px !important;
-      padding-block: 6px !important;
-      display: flex;
-      align-self: center;
-    }
-  
-    .reg-btn {
-      border-radius: 8px;
-      border: 2px solid #C4E1F6;
-      background-color: #C4E1F6;
-      color: #9A7E6F !important;
-      padding-inline: 20px !important;
-      padding-block: 6px !important;
-      display: flex;
-      align-self: center;
-    }
-  }
-  
- .reg-btn.active{
- color:#091057 !important;
- }
-
- .login-btn.active{
-    background-color: #FFE3E3;
-    color: #091057 !important;
- }
-
- /* Enable hover animation for all buttons on mobile screens */
-@media (max-width: 768px) {
-    .hover-underline-animation::after,
-    .login-btn::after,
-    .reg-btn::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      transform: scaleX(0);
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #FFE3E3;
-      transform-origin: bottom right;
-      transition: transform 0.25s ease-out;
-    }
-  
-    .hover-underline-animation:hover::after,
-    .login-btn:hover::after,
-    .reg-btn:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-  }
-  
-  /* Disable hover animation for all buttons except the two special ones on larger screens */
-  @media (min-width: 769px) {
-    
-    .login-btn::after,
-    .reg-btn::after {
-        display: none;
-    }
 }
 
-  
-  
+/* Disable hover animation for all buttons except the two special ones on larger screens */
+@media (min-width: 769px) {
+  .login-btn::after,
+  .reg-btn::after {
+    display: none;
+  }
+}
+
 /* Responsive styles for medium and small screens */
 @media (max-width: 992px) {
-    .navbar-brand {
-        font-size: 1.5rem; /* Adjust logo size for medium screens */
-    }
+  .navbar-brand {
+    font-size: 1.5rem; /* Adjust logo size for medium screens */
+  }
 
-    .navbar-collapse {
-        background-color: black; 
-        width: 100%; 
-        left: 0; 
-        position: absolute; 
-        top: 50px; 
-        z-index: 1000; 
-    }
-    
-
-    .dropdown-menu {
-        background-color: black; /* Ensure dropdown background stays black */
-    }
-    .btns{
-       
-        margin-bottom: 10px;;
-    }
-    .links{
-        margin-left: 0;
-    }
-
-   .login-btn.active{
+  .navbar-collapse {
     background-color: black;
-    color:#FFE3E3 !important;
-   }
-   .reg-btn.active{
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 50px;
+    z-index: 1000;
+  }
+
+  .dropdown-menu {
+    background-color: black; /* Ensure dropdown background stays black */
+  }
+  .btns {
+    margin-bottom: 10px;
+  }
+  .links {
+    margin-left: 0;
+  }
+
+  .login-btn.active {
     background-color: black;
-    color:#C4E1F6 !important;
-   }
-  .hover-underline-animation{
+    color: #ffe3e3 !important;
+  }
+  .reg-btn.active {
+    background-color: black;
+    color: #c4e1f6 !important;
+  }
+  .hover-underline-animation {
     width: max-content;
   }
-  
 }
 
+
 @media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.25rem; /* Adjust logo size for mobile screens */
-    }
+  .navbar-brand {
+    font-size: 1.25rem; /* Adjust logo size for mobile screens */
+  }
 
-    .navbar-collapse {
-        background-color: black; 
-        width: 100%; 
-        left: 0; 
-        position: absolute; 
-        top: 50px; 
-        z-index: 1000; 
-    }
-    
-
-    .dropdown-menu {
-        background-color: black;
-        width: 100vw; /* Ensure dropdown background stays black */
-    }
-    
-    .btns{
-    
-        margin-bottom: 10px;;
-        
-    }
-
-   .login-btn.active{
+  .navbar-collapse {
     background-color: black;
-    color:#FFE3E3 !important;
-   }
-   .reg-btn.active{
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 50px;
+    z-index: 1000;
+  }
+
+  .dropdown-menu {
     background-color: black;
-    color:#C4E1F6 !important;
-   }
-  .hover-underline-animation{
+    width: 100vw; /* Ensure dropdown background stays black */
+  }
+
+  .btns {
+    margin-bottom: 10px;
+  }
+
+  .login-btn.active {
+    background-color: black;
+    color: #fff !important;
+  }
+  .reg-btn.active {
+    background-color: black;
+    color: #fff !important;
+  }
+  .hover-underline-animation {
     width: max-content;
   }
-  
 }
