@@ -55,8 +55,13 @@
         </div>
         <div class="col-md-6 text-white">
             <div id="map"></div>
+
+
+
             <div class="review-formm">
+
             <% if(currentUser){ %>
+                <% if(!userReviewed) { %>
                 <h2>Leave a Review</h2>
                 <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
                     novalidate>
@@ -86,8 +91,13 @@
                     </div>
                     <button class="btn btn-success">Submit</button>
                 </form>
+                <% } else { %>
+                    <p>You have already left a review for this Campground.</p>
                 <% } %>
+            <% } %>
             </div>
+
+
                     <% for (let review of campground.reviews) {%>
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
