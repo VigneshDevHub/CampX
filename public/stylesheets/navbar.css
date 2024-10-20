@@ -1,14 +1,19 @@
 /* General Navbar Styles */
 .navbar {
     background-color: black; /* Black background for the navbar */
-    height: 60px; /* Set consistent height */
+    height: 80px; /* Set consistent height */
     width: 100%; /* Ensure navbar takes full width */
+    
+    padding-inline: 40px;
+
 }
 
 .navbar-brand {
     font-weight: bold; /* Bold CampX logo */
     color: white; /* White logo text */
     font-size: 2rem;
+   
+   
 }
 
 .navbar-brand:hover {
@@ -20,19 +25,24 @@
     animation: rotation 3s infinite;
     color: white; /* Color of rotating X */
 }
+.links{
+   
+   margin-left: 20px;
 
+}
 .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.5); /* Semi-transparent text */
     font-weight: 700;
     margin-left: 1rem;
+    
 }
 
 .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 0.7); /* Slightly brighter text on hover */
+    color: white; /* Slightly brighter text on hover */
 }
 
 .navbar-nav .nav-link.active {
-    color: white; /* Active link stays white */
+    color: #FFE3E3; /* Active link stays white */
 }
 
 /* Dropdown styles */
@@ -54,6 +64,7 @@
     color: white;
 }
 
+
 /* Rotation animation for X in CampX logo */
 @keyframes rotation {
     0% {
@@ -73,7 +84,115 @@
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Ensure white hamburger menu icon */
 }
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFE3E3;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+ 
+  
 
+  @media (min-width: 769px) {
+    .login-btn {
+      border-radius: 8px;
+      border: 2px solid #FFE3E3 !important;
+      padding-inline: 20px !important;
+      padding-block: 6px !important;
+      display: flex;
+      align-self: center;
+    }
+  
+    .reg-btn {
+      border-radius: 8px;
+      border: 2px solid #C4E1F6;
+      background-color: #C4E1F6;
+      color: #9A7E6F !important;
+      padding-inline: 20px !important;
+      padding-block: 6px !important;
+      display: flex;
+      align-self: center;
+    }
+  }
+  
+ .reg-btn.active{
+ color:#091057 !important;
+ }
+
+ .login-btn.active{
+    background-color: #FFE3E3;
+    color: #091057 !important;
+ }
+
+ /* Enable hover animation for all buttons on mobile screens */
+@media (max-width: 768px) {
+    .hover-underline-animation::after,
+    .login-btn::after,
+    .reg-btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FFE3E3;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+  
+    .hover-underline-animation:hover::after,
+    .login-btn:hover::after,
+    .reg-btn:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+  
+  /* Disable hover animation for all buttons except the two special ones on larger screens */
+  @media (min-width: 769px) {
+    .hover-underline-animation::after {
+      display: none;
+    }
+  
+    .login-btn::after,
+    .reg-btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FFE3E3;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+  
+    .login-btn:hover::after,
+    .reg-btn:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+  
+  
 /* Responsive styles for medium and small screens */
 @media (max-width: 992px) {
     .navbar-brand {
@@ -83,11 +202,32 @@
     .navbar-collapse {
         background-color: black; /* Black background when navbar expands */
         width: 100%; /* Full width on smaller screens */
+        
     }
 
     .dropdown-menu {
         background-color: black; /* Ensure dropdown background stays black */
     }
+    .btns{
+       
+        margin-bottom: 10px;;
+    }
+    .links{
+        margin-left: 0;
+    }
+
+   .login-btn.active{
+    background-color: black;
+    color:#FFE3E3 !important;
+   }
+   .reg-btn.active{
+    background-color: black;
+    color:#C4E1F6 !important;
+   }
+  .hover-underline-animation{
+    width: max-content;
+  }
+  
 }
 
 @media (max-width: 768px) {
@@ -97,10 +237,32 @@
 
     .navbar-collapse {
         background-color: black; /* Ensure black background when navbar expands */
-        width: 100%; /* Full width on mobile */
+        width: 100vw; /* Full width on mobile */
+        
+    
     }
 
     .dropdown-menu {
-        background-color: black; /* Ensure dropdown background stays black */
+        background-color: black;
+        width: 100vw; /* Ensure dropdown background stays black */
     }
+    
+    .btns{
+    
+        margin-bottom: 10px;;
+        
+    }
+
+   .login-btn.active{
+    background-color: black;
+    color:#FFE3E3 !important;
+   }
+   .reg-btn.active{
+    background-color: black;
+    color:#C4E1F6 !important;
+   }
+  .hover-underline-animation{
+    width: max-content;
+  }
+  
 }
