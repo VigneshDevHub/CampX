@@ -125,7 +125,20 @@ module.exports.renderEditForm = async(req,res)=>{
 
 module.exports.updateCampground = async(req,res)=>{
     const{id}=req.params;
-    const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground});
+    // Set the Geo Codding for Edit rouite
+    const geoData=await geocoder.forwardGeocode({
+        query: req.body.campground.location,
+        limit:1
+    }).send()
+
+    // Extract geometry field from the response.
+    let geometry=geoData.body.features[0].geometry;
+
+    const campground = await Campground.findByIdAndUpdate(id,{
+        ...req.body.campground,
+        geometry: geometry // Assign to geometry field of the campground model
+    });
+    
     const imgs=req.files.map(f=>({url:f.path,filename: f.filename}))
     campground.images.push(...imgs);
     await campground.save()
