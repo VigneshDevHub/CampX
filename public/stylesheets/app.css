@@ -42,6 +42,14 @@ h1 {
 
 #campinfo {
     box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease-in;
+    border-bottom: 5px solid transparent;
+
+}
+#campinfo:hover{
+    transform: translateY(-5px);
+    border: none;
+    border-bottom: 5px solid #17a2b8;
 }
 
 #infolocation {
