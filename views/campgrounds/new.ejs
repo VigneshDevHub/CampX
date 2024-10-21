@@ -1,56 +1,58 @@
-<%layout('layouts/boilerplate')%>
-    <div class="row" id="newcamp">
-        <h1 class="text-center">New Campground</h1>
-        <div class="col-md-6 offset-md-3">
-            <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="campground[title]" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+<% layout('layouts/boilerplate')%>
+    <div class="cg-form-container">
+        <h1 class="cg-form-title">New Campground</h1>
+        <form action="/campgrounds" method="POST" enctype="multipart/form-data">
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="title">Title</label>
+                <input class="cg-form-input" type="text" id="title" name="campground[title]" required>
+            </div>
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="location">Location</label>
+                <input class="cg-form-input" type="text" id="location" name="campground[location]" required>
+            </div>
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="price">Campground Price</label>
+                <div class="cg-input-group">
+                    <span class="cg-input-group-text">₹</span>
+                    <input type="text" class="cg-form-input" id="price" placeholder="0" name="campground[price]"
+                        required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+            </div>
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="description">Description</label>
+                <textarea class="cg-form-input" id="description" name="campground[description]" required></textarea>
+            </div>
+            <div class="cg-form-group">
+                <label for="image" class="cg-form-label">Upload Images</label>
+                <div class="cg-file-input-wrapper">
+                    <button class="cg-btn-file" type="button">Choose Files</button>
+                    <input class="cg-form-input" type="file" name="image" id="image" multiple>
+                    <span class="cg-file-input-name" id="file-name-display">No file chosen</span>
                 </div>
-                <!-- <input type="file" name="image" id="" multiple> -->
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="image">Image Url</label>
-                    <input class="form-control" type="text" id="image" name="campground[image]" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div> -->
-                <div class="md-3">
-                    <label class="form-label" for="price">Campground Price</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="price-label">₹</span>
-                        <input type="text" class="form-control" id="price" placeholder="0" aria-label="price"
-                            aria-describedby="price-label" name="campground[price]" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="campground[description]"
-                        required></textarea>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Upload Images</label>
-                    <input class="form-control" type="file" name="image" id="image" multiple>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">Add Campground</button>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="cg-form-group">
+                <button class="cg-btn-submit">Add Campground</button>
+            </div>
+        </form>
     </div>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function (e) {
+            var fileName = '';
+            if (this.files && this.files.length > 1) {
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+            } else {
+                fileName = e.target.value.split('\\').pop();
+            }
+            if (fileName) {
+                document.getElementById('file-name-display').textContent = fileName;
+            } else {
+                document.getElementById('file-name-display').textContent = 'No file chosen';
+            }
+        });
+
+        // Trigger file input when custom button is clicked
+        document.querySelector('.cg-btn-file').addEventListener('click', function () {
+            document.getElementById('image').click();
+        });
+    </script>
