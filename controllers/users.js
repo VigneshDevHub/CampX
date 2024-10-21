@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const {ROLE_USER , ROLE_ADMIN} = require('../utils/constant');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
@@ -6,7 +7,7 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res,next) => {
     let userCount = await User.countDocuments();
-    let role = userCount === 0 ? "admin" : "user";
+    let role = userCount === 0 ? ROLE_ADMIN : ROLE_USER;
     try{
         const { email, username, password } = req.body;
         const user = new User({ email, username,role });
