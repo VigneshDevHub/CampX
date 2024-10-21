@@ -1,79 +1,278 @@
+:root {
+    --primary-color: #2ecc71;
+    --secondary-color: #3498db;
+    --text-color: #ffffff;
+    --background-overlay: rgba(0, 0, 0, 0.6);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png");
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(var(--background-overlay), var(--background-overlay)),
+        url("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80");
     background-size: cover;
     background-position: center;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.cover-container {
-    max-width: 60vw;
-}
-
-.nav-link {
+header {
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 0.25rem 0;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
-    margin-left: 1rem;
-    border-bottom: 0.25rem solid transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-speed) ease;
 }
 
-.nav-link:hover {
-    color: rgba(255, 255, 255, 0.5);
-    border-bottom-color: rgba(255, 255, 255, 0.5);
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.nav-link.active {
-    color: white;
-    border-bottom-color: white;
-
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.btn-secondary,
-.btn-secondary:hover {
-    color: #333;
-    text-shadow: none;
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    text-decoration: none;
 }
 
-h3 {
+.animated-x {
     display: inline-block;
+    animation: rotateX 3s infinite;
+    color: var(--primary-color);
 }
 
-/* Adding animation to the "CampX" heading of the header */
-h2 {
-    z-index: 10;
-    animation-name: animation;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
+@keyframes rotateX {
 
-}
-
-h2:hover {
-    animation-duration: 6s;
-
-
-}
-
-@keyframes animation {
-    0% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    }
-
-    30% {
-        transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
-    }
-
-    60% {
-        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
-    }
-
-    90% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(180deg);
-    }
-
+    0%,
     100% {
-        transform: rotate(360deg);
+        transform: rotateX(0deg);
+    }
+
+    50% {
+        transform: rotateX(180deg);
+    }
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform var(--transition-speed) ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    transform: scaleX(1);
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tagline {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all var(--transition-speed) ease;
+    font-size: 1.2rem;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #27ae60;
+}
+
+.cta-button i {
+    margin-left: 10px;
+    font-size: 1.4rem;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* button */
+.explore-button {
+    display: flex;
+    width: 17rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    gap: 0.5rem;
+    margin: 2rem auto 0;
+    padding: 0.5rem 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1F2937;
+    background-color: rgba(249, 250, 251, 0.8);
+    backdrop-filter: blur(8px);
+    border: 2px solid #F9FAFB;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.explore-button::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #10B981;
+    border-radius: 50%;
+    left: -100%;
+    z-index: -1;
+    transition: all 0.7s ease;
+}
+
+.explore-button:hover {
+    color: #F9FAFB;
+}
+
+.explore-button:hover::before {
+    left: 0;
+    transform: scale(1.5);
+}
+
+.explore-icon {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.explore-button:hover .explore-icon {
+    transform: rotate(90deg);
+    background-color: #F9FAFB;
+}
+
+.explore-icon path {
+    fill: #1F2937;
+}
+
+.explore-button:hover .explore-icon path {
+    fill: #1F2937;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+    }
+
+    nav ul li {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .tagline {
+        font-size: 1.4rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+    }
+
+    .background-controls {
+        padding: 0 1rem;
     }
 }
