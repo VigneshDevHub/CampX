@@ -16,7 +16,7 @@
         border-color: #138496;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     }
-    
+   
     #search-button {
         transition: all .5s ease;
         color: #fff;
@@ -37,6 +37,11 @@
         background-color: #17a2b8;
         border: 2px solid #17a2b8;
     }
+    #search-button:target {
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
+      }
     
     #show-nearest-btn {
         transition: all .5s ease;
