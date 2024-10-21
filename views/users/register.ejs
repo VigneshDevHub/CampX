@@ -1,4 +1,63 @@
-<% layout('layouts/boilerplate')%>
+<% layout('layouts/boilerplate') %>
+
+
+<div class="signup-container">
+    <div class="signup-card">
+        <div class="signup-content">
+            <div class="signup-header">
+                <h1>Join CampX</h1>
+                <p>Start your camping adventure today</p>
+            </div>
+            <div class="signup-form">
+                <form action="/register" method="POST" class="validated-form" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" required autofocus>
+                        <label for="username">Username</label>
+                        <i class="fas fa-user"></i>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                            title="Please enter a valid email address">
+                        <label for="email">Email</label>
+                        <i class="fas fa-envelope"></i>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a valid Email address.</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" required
+                            pattern="(?=.*[A-Z])(?=(.*\d){2,}).{6,}" 
+                            title="Password must be at least 6 characters long, contain at least two digits, and one uppercase letter.">
+                        <label for="password">Password</label>
+                        <i class="fas fa-lock"></i>
+                        <i id="togglePassword" class="fas fa-eye"></i>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Password must be at least 6 characters long, contain at least two digits, and one uppercase letter.</div>
+                    </div>
+                    <button type="submit" class="btn-signup">Register</button>
+                </form>
+            </div>
+            <div class="signup-footer">
+                <p>Already have an account? <a href="/login">Log in</a></p>
+            </div>
+        </div>
+        <div class="signup-image">
+            <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80" alt="CampX" />
+        </div>
+    </div>
+</div>
+
+<script>
+    const password = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 
     <div class="register-container">
         <div class="register-card">
@@ -45,3 +104,4 @@
             this.src = type === 'password' ? "/icons/hidden.png" : "/icons/visible.png";
         });
     </script>
+
