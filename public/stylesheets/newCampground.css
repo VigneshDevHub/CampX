@@ -1,0 +1,139 @@
+/* campground-form-styles.css */
+
+.cg-form-container {
+	max-width: 600px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(8px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	color: white;
+}
+
+.cg-form-title {
+	font-size: 2.5rem;
+	color: white;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.cg-form-group {
+	margin-bottom: 1.5rem;
+}
+
+.cg-form-label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	color: white;
+}
+
+.cg-form-input {
+	width: 100%;
+	padding: 0.75rem;
+	font-size: 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 4px;
+	transition: border-color 0.3s ease;
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+}
+
+.cg-form-input::placeholder {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.cg-form-input:focus {
+	outline: none;
+	border-color: #4CAF50;
+	box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.cg-input-group {
+	display: flex;
+	align-items: center;
+}
+
+.cg-input-group-text {
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-right: none;
+	padding: 0.75rem;
+	border-radius: 4px 0 0 4px;
+	color: white;
+}
+
+.cg-input-group .cg-form-input {
+	border-left: none;
+	border-radius: 0 4px 4px 0;
+}
+
+.cg-btn-submit {
+	display: block;
+	width: 100%;
+	padding: 0.75rem;
+	background-color: rgba(76, 175, 80, 0.8);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.cg-btn-submit:hover {
+	background-color: rgba(69, 160, 73, 0.9);
+}
+
+.cg-file-input-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.cg-file-input-wrapper input[type=file] {
+	font-size: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.cg-file-input-wrapper .cg-btn-file {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	color: white;
+}
+
+.cg-file-input-wrapper .cg-file-input-name {
+	margin-left: 0.5rem;
+	color: white;
+}
+
+/* Add subtle animations */
+@keyframes cgFadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.cg-form-container {
+	animation: cgFadeIn 0.5s ease-out;
+}
+
+.cg-form-input,
+.cg-btn-submit {
+	transition: all 0.3s ease;
+}
