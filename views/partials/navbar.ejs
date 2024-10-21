@@ -1,6 +1,6 @@
-<nav class="navbar sticky-top navbar-expand-lg" id="mainNavbar">
+<nav class="navbar sticky-top navbar-expand-lg " id="mainNavbar">
     <div class="container-fluid d-flex justify-content-lg-start justify-content-center">
-        <a class="navbar-brand mx-auto mx-lg-0" href="/" id="campxLogo">
+        <a class="navbar-brand mx-auto mx-lg-0 "  href="/" id="campxLogo">
             Camp<span id="rotateX">X</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -8,15 +8,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link <%= currentPath === '/' ? 'active' : '' %>" href="/">Home</a>
-                <a class="nav-link <%= currentPath === '/campgrounds' ? 'active' : '' %>" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link <%= currentPath === '/campgrounds/new' ? 'active' : '' %>" href="/campgrounds/new">New Campground</a>
+            <div class="navbar-nav links ">
+                <a class="nav-link <%= currentPath === '/' ? 'active' : '' %> hover-underline-animation" href="/">Home</a>
+                <a class="nav-link <%= currentPath === '/campgrounds' ? 'active' : '' %> hover-underline-animation" href="/campgrounds">Campgrounds</a>
+                <a class="nav-link <%= currentPath === '/campgrounds/new' ? 'active' : '' %> hover-underline-animation" href="/campgrounds/new">New Campground</a>
             </div>
-            <div class="navbar-nav ms-auto">
+            <div class="navbar-nav ms-auto  btns">
                 <% if(!currentUser) { %>
-                    <a class="nav-link <%= currentPath === '/login' ? 'active' : '' %>" href="/login">Login</a>
-                    <a class="nav-link <%= currentPath === '/register' ? 'active' : '' %>" href="/register">Register</a>
+                    <a class="nav-link <%= currentPath === '/login' ? 'active' : '' %> hover-underline-animation login-btn" href="/login">Login</a>
+                    <a class="nav-link <%= currentPath === '/register' ? 'active' : '' %> hover-underline-animation reg-btn" href="/register">Register</a>
                 <% } else { %>
                     <a class="nav-link <%= currentPath === '/logout' ? 'active' : '' %>" href="/logout">Logout</a>
                 <% } %>
