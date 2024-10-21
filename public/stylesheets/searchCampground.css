@@ -16,22 +16,7 @@
         border-color: #138496;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     }
-    .btn-info {
-        border-radius: 0 10px 10px 0;
-        padding: 10px 20px;
-        background-color: lightblue;
-        border: 1px solid lightblue;
-        color: white;
-    }
-    .btn-info:hover {
-        background-position: 100% 0;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
     
-    
-
     #search-button {
         transition: all .5s ease;
         color: #fff;
@@ -52,17 +37,7 @@
         background-color: #17a2b8;
         border: 2px solid #17a2b8;
     }
-   
-            
-              /* stroke-width: 5;
-              stroke-dasharray: 15, 310;
-              stroke-dashoffset: 48; */
-    /* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
-    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
-
-            
     
-
     #show-nearest-btn {
         transition: all .5s ease;
         color: #fff;
