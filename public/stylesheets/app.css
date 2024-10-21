@@ -129,13 +129,20 @@ html {
     font-weight: 600 !important;
 }
 .mapboxgl-popup-content p{
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     opacity: 0.7;
     text-align: center;
+    margin-bottom: 0;
+}
+.mapboxgl-popup-content b{
+    font-weight: 400;
+    color: cadetblue;
+
 }
 .mapboxgl-popup-content span{
     margin-bottom: 0 !important;
-    color: cadetblue;
+    color: #00BCD4;
+    font-size: 1rem;
 }
 .user2{
     height: 1.2rem !important;
@@ -175,3 +182,5 @@ html {
     border-radius: 5px;
     margin-bottom: 1rem;
 }
+
+.

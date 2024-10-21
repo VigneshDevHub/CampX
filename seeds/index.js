@@ -22,7 +22,7 @@ const seedDB=async()=>{
     for(let i=0;i<20;i++)
     {
         const camp=new Campground({
-            author:'66b75813e36010f731649d27',
+            author:'', // your userID
             location:`${cities[i].city},${cities[i].state}`,
             title: `${cities[i].title}`,
             description: `${cities[i].description}`,
