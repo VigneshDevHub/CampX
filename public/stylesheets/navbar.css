@@ -114,7 +114,6 @@
   .reg-btn {
     border-radius: 8px;
     border: 2px solid #c4e1f6;
-    color: gray !important;
     padding-inline: 20px !important;
     padding-block: 6px !important;
     display: flex;
