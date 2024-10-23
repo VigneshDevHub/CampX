@@ -101,12 +101,12 @@
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <div class="heading">
-                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.png" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
+                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
                                     <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
                                         <form
                                             action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
-                                            <button class="button cursor-pointer"><img src="/icons/bin.png" class="bin" alt="delete"></button>
+                                            <button class="button cursor-pointer"><img src="/icons/bin.webp" class="bin" alt="delete"></button>
                                         </form>
                                     <% } %>
                                 </div>
@@ -114,9 +114,9 @@
                                 <p class="card-text">
                                     <% for (let i = 1; i <= 5; i++) { %>
                                         <% if (i <= review.rating) { %>
-                                            <img src="/icons/solid.png" class="star" alt="star">
+                                            <img src="/icons/solid.webp" class="star" alt="star">
                                         <% } else { %>
-                                            <img src="/icons/outline.png" class="star" alt="star">
+                                            <img src="/icons/outline.webp" class="star" alt="star">
                                         <% } %>
                                     <% } %>
                                     <br> 
