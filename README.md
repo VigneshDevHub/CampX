@@ -1,11 +1,8 @@
-<div align="center">
-  <h1>CampX</h1>
-  <img src="https://res.cloudinary.com/dgr21eiov/image/upload/v1724753112/Home.png" />
-  <h3><i>⭐Star our Repository</i></h3>
-  <a href="https://discord.gg/Ma9GMqYppf">
-    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
-  </a>
-</div>
+# <h1 align="center">Star our Repository ⭐</h1>
+
+# <p align = "center">[![Discord](https://img.shields.io/badge/Discord-darkblue?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Wq6MZ88ecf) </p>
+
+### <div align = "center" style = "display:flex; justify-content:space-evenly; gap:100px;" > [![Stars](https://img.shields.io/github/stars/VigneshDevHub/CampX?style=for-the-badge&logo=github)](https://github.com/VigneshDevHub/CampX/stargazers) [![Forks](https://img.shields.io/github/forks/VigneshDevHub/CampX?style=for-the-badge&logo=github)](https://github.com/VigneshDevHub/CampX/network/members) [![Issues](https://img.shields.io/github/issues/VigneshDevHub/CampX?style=for-the-badge&logo=github)](https://github.com/VigneshDevHub/CampX/issues) [![PRs Open](https://img.shields.io/github/issues-pr/VigneshDevHub/CampX?style=for-the-badge&logo=github)](https://github.com/VigneshDevHub/CampX/pulls) [![PRs Closed](https://img.shields.io/github/issues-pr-closed/VigneshDevHub/CampX?style=for-the-badge&logo=github&color=2cbe4e)](https://github.com/VigneshDevHub/CampX/pulls?q=is%3Apr+is%3Aclosed)</div>
 
 <br>
 
