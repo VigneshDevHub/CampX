@@ -4,14 +4,14 @@
 
 <link rel="stylesheet" href="stylesheets/searchCampground.css">
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class=" d-flex flex-column justify-content-center w-100 align-items-center mb-3 col-md-6 flex-lg-row justify-content-lg-between ">
     
-    <div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
+    <div class="d-flex flex-column align-items-center w-100 justify-content  flex-sm-row">
         <!-- show nearest to me button (left-aligned) -->
-        <button id="show-nearest-btn" class="btn btn-info" style="margin-right: 30px">Show Nearest to Me</button>
+        <button id="show-nearest-btn" class="btn btn-info mb-2" style="margin-right: 30px; width: max-content;">Show Nearest to Me</button>
         <!-- sort (left-aligned) -->
         <form action="/campgrounds" method="GET" class="d-inline">
-            <select name="sort" id="sort" class="btn btn-secondary" style="padding: 10px 27px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
+            <select name="sort" id="sort" class="btn btn-secondary" style="padding: 10px 10px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
                 <option value="">--Select--</option>
                 <option value="priceAsc" <%= (locals.query && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
                 <option value="priceDesc" <%= (locals.query && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
@@ -24,7 +24,7 @@
     <!-- Search Bar (right-aligned) -->
     <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
         <div class="input-group">
-            <input class="form-control" type="search" style=" border:2px solid rgb(35, 35, 35)" placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
+            <input class="form-control" type="search" style=" border:1px solid rgb(35, 35, 35)" placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
             <div class="input-group-append">
                 <button class="btn btn-info" type="submit" id="search-button" style=" border:2px solid rgb(35, 35, 35)">Search</button>
             </div>
