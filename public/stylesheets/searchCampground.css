@@ -16,46 +16,77 @@
         border-color: #138496;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     }
-    .btn-info {
-        border-radius: 0 10px 10px 0;
-        padding: 10px 20px;
-        background-color: #17a2b8;
-        border: 1px solid #17a2b8;
-        color: white;
-    }
-
+   
     #search-button {
-        border-radius: 0 10px 10px 0;
-        padding: 10px 20px;
-        background-color:rgb(46, 45, 45); 
-        border-color:rgb(35, 35, 35); 
-        color: white;
-    }
 
+        transition: all .5s ease;
+        color: #fff;
+        border: 2px solid #17a2b8; 
+        font-family:'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1;
+        font-size: 17px;
+        background-color : transparent;
+        padding: 10px;
+        outline: none;
+        border-radius: 4px;
+        height: 45px;
+    }
+    #search-button:hover {
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
+
+     
+
+    }
+    #search-button:target {
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
+      }
+    
     #show-nearest-btn {
-        padding: 10px 20px;
-        background-color:rgb(46, 45, 45); 
-        border-color:rgb(35, 35, 35); 
-        color: white;
-        border-radius: 10px;
+
+        transition: all .5s ease;
+        color: #fff;
+        border: 2px solid #17a2b8; ;
+        font-family:'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1;
+        font-size: 17px;
+        background-color : transparent;
+        padding: 10px;
+        outline: none;
+        border-radius: 4px;
+        height: 45px;
     }
     
-    #search-button:hover {
-        background-color: rgb(23, 23, 23);
-    }
-
     #show-nearest-btn:hover {
-        background-color: rgb(23, 23, 23);
+        color: #001F3F;
+        background-color: #17a2b8;
+        border: 2px solid #17a2b8;
     }
+    @media (hover: hover) {
+        #search-button:hover {
+            color: #001F3F;
+            background-color: #17a2b8;
+            border: 2px solid #17a2b8;
+        }
+      }
+      
 
     #sort-btn{
         padding: 10px 20px; color: white;
         border-radius: 0px 10px 10px 0px;
-        background-color:rgb(46, 45, 45); 
-        border-color:rgb(35, 35, 35); 
+        background-color:#17a2b8; 
+        border-color:#17a2b8; 
     }
     #sort-btn:hover{
-        background-color: rgb(23, 23, 23);
+        background-color:#17a2b8;
     }
+
 
     
