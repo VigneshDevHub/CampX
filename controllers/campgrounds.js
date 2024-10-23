@@ -89,11 +89,18 @@ module.exports.showCampground = async (req, res) => {
             path:'author'
         }
     }).populate('author');
+    
     if(!campground){
         req.flash('error','Cannot find that campground!');
         return res.redirect('/campgrounds');
     }
-    res.render('campgrounds/show',{campground});
+
+    let userReviewed = false
+    if(req.user){
+        userReviewed = campground.reviews.some(review => review.author._id.equals(req.user._id))
+    }
+
+    res.render('campgrounds/show',{campground, userReviewed});
 }
 
 module.exports.showNearestCampgrounds = async (req, res) => {
