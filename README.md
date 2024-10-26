@@ -55,7 +55,7 @@ By participating in this project, you agree to abide by our Code of Conduct.
 
 # Hosted Website 🌐 
 
-Visit the live version of CampX here: [CampX Website](https://campx-f9sv.onrender.com)
+Visit the live version of CampX here: [CampX Website](https://campx-1.onrender.com/)
 
 <br>
 
