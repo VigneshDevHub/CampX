@@ -131,9 +131,7 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 <be>
   
-## Thank you for contributing 💗
-
-We truly appreciate your time and effort to help improve our project. Happy coding! 🚀
+### Thank you for contributing 💗 . We truly appreciate your time and effort to help improve our project. Happy coding! 🚀
 
 # Troubleshooting ⚡
 
