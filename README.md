@@ -129,7 +129,11 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
       </a>
 </p>
 
-<br>
+<be>
+  
+## Thank you for contributing 💗
+
+We truly appreciate your time and effort to help improve our project. Happy coding! 🚀
 
 # Troubleshooting ⚡
 
@@ -155,8 +159,3 @@ Here are some common issues and their solutions:
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/VigneshDevHub/CampX/blob/main/LICENSE) file for more details.
 
-# Thank you for contributing 💗
-
-We truly appreciate your time and effort to help improve our project. Feel free to reach out if you have any questions or need guidance. Happy coding! 🚀
-
-##
