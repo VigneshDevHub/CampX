@@ -162,7 +162,5 @@ We truly appreciate your time and effort to help improve our project. Feel free 
     </a>
 </div>
 
-<footer align="center">
-    <p>Thank you for connecting with us! 🌟</p>
-</footer>
+
 
