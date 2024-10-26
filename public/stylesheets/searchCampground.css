@@ -4,7 +4,7 @@
         justify-content: center;
         margin-bottom: 10px;
         width: 100%;
-        max-width: 400px; 
+        max-width: 428px; 
     }
     #search-input {
         border-radius: 10px 0 0 10px;
@@ -38,6 +38,8 @@
         border-color:rgb(35, 35, 35); 
         color: white;
         border-radius: 10px;
+        margin-right: 30px;
+        width: max-content;
     }
     
     #search-button:hover {
@@ -56,6 +58,34 @@
     }
     #sort-btn:hover{
         background-color: rgb(23, 23, 23);
+    }
+
+    /* styling for the campgrounds */
+    @media only screen and (min-width: 768px) and (max-width:991px) {
+        #show-nearest-container{
+            justify-content: center;
+        }
+    }
+
+    @media only screen and (max-width: 575px) {
+        #show-nearest-btn {
+            margin-right: 0;
+            width: 78%;
+        }
+
+        .sort-form{
+            width: 78%;
+        }
+        #sort{
+            width: 80%;
+        }
+        #sort-btn{
+            width: 20%;
+            padding: 10px 0;
+        }
+        #search-form{
+            width: 78%;
+        }
     }
 
     
