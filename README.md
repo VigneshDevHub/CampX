@@ -125,7 +125,9 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 [![Contributors](https://contrib.rocks/image?repo=VigneshDevHub/CampX)](https://github.com/VigneshDevHub/CampX/graphs/contributors)
 
-<br>
+<be>
+  
+## Thank you for contributing 💗
 
 # Troubleshooting ⚡
 
@@ -164,4 +166,3 @@ We truly appreciate your time and effort to help improve our project. Feel free 
     <p>Thank you for connecting with us! 🌟</p>
 </footer>
 
-# Thank you for contributing 💗
