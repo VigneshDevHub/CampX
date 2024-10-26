@@ -123,7 +123,11 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 # Contributors 🙋🏽
 
-[![Contributors](https://contrib.rocks/image?repo=VigneshDevHub/CampX)](https://github.com/VigneshDevHub/CampX/graphs/contributors)
+<p align="center">
+      <a href="https://github.com/VigneshDevHub/CampX/graphs/contributors">
+        <img src="https://api.vaunt.dev/v1/github/entities/VigneshDevHub/repositories/CampX/contributors?format=svg&limit=54" width="700" height="250" />
+      </a>
+</p>
 
 <br>
 
