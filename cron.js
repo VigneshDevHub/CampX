@@ -1,7 +1,7 @@
 const cron = require("cron");
 const https = require("https");
 
-const URL = "https://campx-f9sv.onrender.com/";
+const URL = "https://campx-1.onrender.com";
 
 const job = new cron.CronJob("*/14 * * * *", function () {
   https
