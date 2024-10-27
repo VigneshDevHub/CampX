@@ -1,18 +1,14 @@
 <% layout('layouts/boilerplate') %>
-    <div id="cluster-map"></div>
     <h1>All Campgrounds</h1>
 
     <link rel="stylesheet" href="stylesheets/searchCampground.css">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-
-        <div style="display: flex;flex-direction: row;justify-content: flex-end;margin-bottom: 10px;">
-            <!-- show nearest to me button (left-aligned) -->
+        <div style="display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: 10px;">
             <button id="show-nearest-btn" class="btn btn-info" style="margin-right: 30px">Show Nearest to Me</button>
-            <!-- sort (left-aligned) -->
             <form action="/campgrounds" method="GET" class="d-inline">
                 <select name="sort" id="sort" class="btn btn-secondary"
-                    style="padding: 10px 27px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
+                    style="padding: 10px 27px; color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color: aliceblue; border-color: rgb(35, 35, 35)">
                     <option value="">--Select--</option>
                     <option value="priceAsc" <%=(locals.query && query.sort==='priceAsc' ) ? 'selected' : '' %>>Price:
                         Low to High</option>
@@ -26,108 +22,87 @@
                 <button type="submit" class="btn btn-primary" id="sort-btn" style="margin-left:-5px">Sort</button>
             </form>
         </div>
-        <!-- Search Bar (right-aligned) -->
         <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
             <div class="input-group">
-                <input class="form-control" type="search" style=" border:2px solid rgb(35, 35, 35)"
+                <input class="form-control" type="search" style="border:2px solid rgb(35, 35, 35)"
                     placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
                 <div class="input-group-append">
                     <button class="btn btn-info" type="submit" id="search-button"
-                        style=" border:2px solid rgb(35, 35, 35)">Search</button>
+                        style="border:2px solid rgb(35, 35, 35)">Search</button>
                 </div>
             </div>
         </form>
-
     </div>
 
-
-    <% for(let campground of campgrounds){ %>
-        <div class="card text-white bg-dark mb-3" id="campinfo">
-            <div class="row">
-                <div class="col-md-4" id="campgroundhomeimage">
-                    <% if(campground.images.length) { %>
-                        <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
-                        <% } else { %>
-                            <img crossorigin="anonymous" class="img-fluid"
-                                src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
-                                alt="">
-                            <% } %>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= campground.title %>
-                        </h5>
-                        <p class="card-text">
-                            <%= campground.description %>
-                        </p>
-                        <p class="card-text">
-                            <small id="infolocation">
-                                <%= campground.location %>
-                            </small>
-                        </p>
-                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title
-                                %></a>
+    <div id="campgrounds-container">
+        <% for(let campground of campgrounds){ %>
+            <div class="card text-white bg-dark mb-3 campground-item" data-title="<%= campground.title.toLowerCase() %>"
+                id="campinfo">
+                <div class="row">
+                    <div class="col-md-4" id="campgroundhomeimage">
+                        <% if (campground.images.length) { %>
+                            <img crossorigin="anonymous" id="indeximg" alt="<%= campground.title %>"
+                                src="<%= campground.images[0].url %>">
+                            <% } else { %>
+                                <img crossorigin="anonymous" class="img-fluid"
+                                    src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
+                                    alt="Placeholder Image">
+                                <% } %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= campground.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= campground.description %>
+                            </p>
+                            <p class="card-text">
+                                <small id="infolocation">
+                                    <%= campground.location %>
+                                </small>
+                            </p>
+                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%=
+                                    campground.title %></a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <% } %>
+    </div>
+
+    <a href="#" class="to-top bg-dark rounded-circle">
+        <div class="arrow">
+            <img src="/icons/upload32.png" alt="arrow">
         </div>
-        <% } %>
+    </a>
 
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const campgroundItems = document.querySelectorAll('.campground-item');
 
-            <a href="#" class="to-top  bg-dark rounded-circle">
-                <div class="arrow">
-                    <img src="/icons/upload32.png" alt="arrow">
-                </div>
-            </a>
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
 
+            campgroundItems.forEach(item => {
+                const title = item.getAttribute('data-title');
+                if (title.includes(searchTerm)) {
+                    item.style.display = ''; 
+                } else {
+                    item.style.display = 'none'; 
+                }
+            });
+        });
 
-            <script>
-                const mapToken = <%- process.env.MAPBOX_TOKEN %>;
-                const campgrounds = <% - JSON.stringify(campgrounds) %>;
-                console.log(campgrounds);
-                document.getElementById('show-nearest-btn').addEventListener('click', () => {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition((position) => {
-                            const userLat = position.coords.latitude;
-                            const userLon = position.coords.longitude;
-                            // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
-                            window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
-                        });
-                    } else {
-                        alert("Geolocation is not supported by this browser.");
-                    }
+        const toTop = document.querySelector(".to-top");
 
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                toTop.classList.add("active");
+            } else {
+                toTop.classList.remove("active");
+            }
+        });
+    </script>
 
-                });
-
-                const searchInput = document.getElementById('search-input');
-                const campgroundItems = document.querySelectorAll('.campground-item');
-
-                searchInput.addEventListener('input', function () {
-                    const searchTerm = this.value.toLowerCase();
-
-                    campgroundItems.forEach(item => {
-                        const title = item.getAttribute('data-title');
-                        if (title.includes(searchTerm)) {
-                            item.style.display = ''; 
-                        } else {
-                            item.style.display = 'none'; 
-                        }
-                    });
-                });
-                // scroll to-top functionality 
-
-                const toTop = document.querySelector(".to-top");
-
-                window.addEventListener("scroll", () => {
-                    if (window.pageYOffset > 100) {
-                        toTop.classList.add("active");
-                    } else {
-                        toTop.classList.remove("active");
-                    }
-                })
-
-            </script>
-
-            <script src="/javascripts/clusterMap.js"></script>
+    <script src="/javascripts/clusterMap.js"></script>
