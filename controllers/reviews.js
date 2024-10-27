@@ -4,7 +4,8 @@ const Review = require('../models/review');
 
 /**
  * Creates a new review for a specific campground.
- *  - Finds the campground by ID.
+ *  - Finds the campground by ID with explicitly populate the author field.
+ *  - Checking that if one user try to submit more than one review then flash a error message and return. If not then proceed further. 
  *  - Creates a new review with the submitted data and assigns the current user as the author.
  *  - Saves the review and updates the campground's review list.
  *  - Redirects to the campground's page with a success message.
@@ -14,7 +15,18 @@ const Review = require('../models/review');
  */
 module.exports.createReview = async (req, res) => {
     try {
-        const campground = await Campground.findById(req.params.id);
+        // Explicietly populate each review author field to prevent multiple review from one user
+        const campground = await Campground.findById(req.params.id).populate({
+            path: "reviews",
+            populate: { path: "author" }
+        });
+
+        // Checking for preventing review spam by one user
+        const isReviewExist = campground.reviews.some(review => review.author && review.author._id.equals(req.user._id));
+        if(isReviewExist){
+            req.flash("error", "You already submit a review for this camp ground!");
+            return res.redirect(`/campgrounds/${campground._id}`);
+        }
 
         // Create a new review using the data from the request body
         const review = new Review(req.body.review);
