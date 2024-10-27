@@ -52,9 +52,24 @@ h1 {
     display: flex;
     justify-content: center;
 }
+.description{
+    opacity: 0.75;
+}
 
 #showlocation {
-    color: grey;
+    color: rgb(132, 132, 132);
+    margin-left: 1rem;
+    font-weight: 700;
+}
+.profile{
+    margin: 2rem 0 1rem 1rem;
+}
+.profile img{
+    height: 2rem;
+}
+.profile span{
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
 }
 
 #log {
