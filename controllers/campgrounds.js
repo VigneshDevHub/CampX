@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const ExpressError = require('../utils/ExpressError.js');
 const turf = require('@turf/turf');
 const Review = require('../models/review');
+const review = require('../models/review');
 
 // Controller for Campground functionalities
 module.exports = {
@@ -119,7 +120,11 @@ module.exports = {
             req.flash('error', 'Cannot find that campground!');
             return res.redirect('/campgrounds');
         }
-        res.render('campgrounds/show', { campground });
+        let userReviewed = false;
+        if(req.user){
+            userReviewed = campground.reviews.some(review => review.author._id.equals(req.user._id));
+        }
+        res.render('campgrounds/show', { campground, userReviewed });
     },
 
     /**
