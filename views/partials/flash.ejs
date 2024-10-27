@@ -1,13 +1,32 @@
-<% if(success && success.length) {%>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+<!-- For success message flashing -->
+<% if(success && success.length){ %>
+
+    <button type="button" class="btn btn-primary" id="liveToastBtn" style="display:none;">Show live toast</button>
+    <div class="toast-container position-fixed top-0 end-0 p-5" style="margin-top: 3rem;">
+        <div id="liveToast" class="toast border-0 shadow-none" role="alert" aria-live="assertive" aria-atomic="true" style="border-radius: 0; overflow: hidden; background-color: #23b658;">
+            <div class="toast-header text-white d-flex align-items-center py-2" style="border-radius: 0; background-color: #23b658;">
+                <p class="me-auto mb-0"><%= success %></p>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
 <% } %>
 
-<% if(error && error.length) {%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% } %>
+
+<!-- For error message flashing -->
+<% if(error && error.length){ %>
+
+    <button type="button" class="btn btn-primary" id="liveToastBtn" style="display:none;">Show live toast</button>
+    <div class="toast-container position-fixed top-0 end-0 p-5" style="margin-top: 3rem;">
+        <div id="liveToast" class="toast border-0 shadow-none" role="alert" aria-live="assertive" aria-atomic="true" style="border-radius: 0; overflow: hidden; background-color: #b61818;">
+            <div class="toast-header text-white d-flex align-items-center py-2" style="border-radius: 0; background-color: #b61818;">
+                <p class="me-auto mb-0"><%= error %></p>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div> 
+
+<% } %>
