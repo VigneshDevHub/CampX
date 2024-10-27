@@ -1,58 +1,71 @@
-<%layout('layouts/boilerplate')%>
-    <div class="row">
-        <h1 class="text-center">Edit Campground</h1>
-        <div class="col-md-6 offset-md-3">
-            <form action="/campgrounds/<%=campground.id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title%>"required>
-                    <div class="valid-feedback">
-                            Looks good!
-                        </div>
+<% layout('layouts/boilerplate')%>
+    <div class="cg-form-container">
+        <h1 class="cg-form-title">Edit Campground</h1>
+        <form action="/campgrounds/<%=campground.id%>?_method=PUT" method="POST" novalidate class="validated-form"
+            enctype="multipart/form-data">
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="title">Title</label>
+                <input class="cg-form-input" type="text" id="title" name="campground[title]"
+                    value="<%=campground.title%>" required>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]" value="<%=campground.location%>"required>
-                    <div class="valid-feedback">
-                            Looks good!
-                    </div>
+            </div>
+
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="location">Location</label>
+                <input class="cg-form-input" type="text" id="location" name="campground[location]"
+                    value="<%=campground.location%>" required>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <div class="md-3">
-                    <label class="form-label" for="price">Campground Price</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="price-label">₹</span>
-                        <input type="text" class="form-control" id="price" placeholder="0" aria-label="price"
-                            aria-describedby="price-label" name="campground[price]" value="<%=campground.price%>"required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
+            </div>
+
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="price">Campground Price</label>
+                <div class="cg-input-group">
+                    <span class="cg-input-group-text">₹</span>
+                    <input type="text" class="cg-form-input" id="price" placeholder="0" name="campground[price]"
+                        value="<%=campground.price%>" required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description"
-                        name="campground[description]"required><%=campground.description  %></textarea>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Add More Images</label>
-                    <input class="form-control" type="file" name="image" id="image" multiple>
+            </div>
+
+            <div class="cg-form-group">
+                <label class="cg-form-label" for="description">Description</label>
+                <textarea class="cg-form-input" id="description" name="campground[description]"
+                    required><%=campground.description%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <div class="mb-3">
+            </div>
+
+            <div class="cg-form-group">
+                <label for="image" class="cg-form-label">Add More Images</label>
+                <input class="cg-form-input" type="file" name="image" id="image" multiple>
+            </div>
+
+            <div class="cg-form-group">
+                <label class="cg-form-label">Current Images</label>
+                <div class="image-gallery">
                     <% campground.images.forEach(function(img,i){ %>
-                        <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="">
-                        <div class="form-check-inline">
-                            <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%=img.filename %>">
+                        <div class="image-item">
+                            <img src="<%= img.thumbnail%>" class="thumbnail-img" alt="">
+                            <div class="delete-checkbox">
+                                <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                                    value="<%=img.filename %>">
+                                <label for="image-<%= i %>" class="delete-label">Delete</label>
+                            </div>
                         </div>
-                        <label for="image-<%= i %>">Delete?</label>
-                    <% }) %>
+                        <% }) %>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-info">Update Campground</button>
-                </div>
-            </form>
-            <a href="/campgrounds/<%=campground._id%>">Back to Campground</a>
-        </div>
+            </div>
+
+            <div class="cg-form-group">
+                <button class="cg-btn-submit">Update Campground</button>
+            </div>
+        </form>
+        <a href="/campgrounds/<%=campground._id%>" class="back-link">Back to Campground</a>
     </div>
