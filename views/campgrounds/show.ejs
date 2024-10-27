@@ -55,49 +55,53 @@
         </div>
         <div class="col-md-6 text-white">
             <div id="map"></div>
-            <div class="review-formm">
+            
             <% if(currentUser){ %>
-                <h2>Leave a Review</h2>
-                <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
+                <% if(!userReviewed){ %>
+                <div class="review-formm">
+                    <h2>Leave a Review</h2>
+                    <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
                     novalidate>
-                    <div class="mb-2">
-                        <fieldset class="starability-coinFlip">
-                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                        <div class="mb-2">
+                            <fieldset class="starability-coinFlip">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
                                 checked aria-label="No rating." />
-                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                            <label for="first-rate1" title="Terrible">1 star</label>
-                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                            <label for="first-rate2" title="Not good">2 stars</label>
-                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                            <label for="first-rate3" title="Average">3 stars</label>
-                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                            <label for="first-rate4" title="Very good">4 stars</label>
-                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                            <label for="first-rate5" title="Amazing">5 stars</label>
-                        </fieldset>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Review Text</label>
-                        <textarea class="form-control" name="review[body]" id="body" rows="3" col="30"
-                            required></textarea>
-                        <div class="valid-feedback">
-                            Looks good!
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
                         </div>
-                    </div>
-                    <button class="btn btn-success">Submit</button>
-                </form>
+                        <div class="mb-3">
+                            <label class="form-label" for="body">Review Text</label>
+                            <textarea class="form-control" name="review[body]" id="body" rows="3" col="30"
+                            required></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <button class="btn btn-success">Submit</button>
+                    </form>
+                </div>
                 <% } %>
-            </div>
+            <% } %>
+            
                     <% for (let review of campground.reviews) {%>
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <div class="heading">
-                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.png" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
+                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
                                     <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
                                         <form
                                             action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
-                                            <button class="button cursor-pointer"><img src="/icons/bin.png" class="bin" alt="delete"></button>
+                                            <button class="button cursor-pointer"><img src="/icons/bin.webp" class="bin" alt="delete"></button>
                                         </form>
                                     <% } %>
                                 </div>
@@ -105,9 +109,9 @@
                                 <p class="card-text">
                                     <% for (let i = 1; i <= 5; i++) { %>
                                         <% if (i <= review.rating) { %>
-                                            <img src="/icons/solid.png" class="star" alt="star">
+                                            <img src="/icons/solid.webp" class="star" alt="star">
                                         <% } else { %>
-                                            <img src="/icons/outline.png" class="star" alt="star">
+                                            <img src="/icons/outline.webp" class="star" alt="star">
                                         <% } %>
                                     <% } %>
                                     <br> 
