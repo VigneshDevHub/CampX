@@ -42,7 +42,7 @@ body:
         - label: 'I have checked the existing issues'
           required: true
 
-        - label: 'I have read the [Contributing Guidelines](https://github.com/alo7lika/CampX/blob/dev/CONTRIBUTING.md)'
+        - label: 'I have read the [Contributing Guidelines](https://github.com/VigneshDevHub/CampX/blob/main/CONTRIBUTING.md)'
           required: true
         - label: "I'm a GSSoC'24-Extd contributor"
         - label: "I'm a Hacktoberfest'24 contributor"
