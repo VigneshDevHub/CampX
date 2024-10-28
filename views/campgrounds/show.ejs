@@ -40,7 +40,7 @@
                     </li>
                     <li class="list-group-item text-white bg-dark">₹<%= campground.price %>/night</li>
                 </ul>
-                <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
+                <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
                     <div class="card-body">
                         <a class="card-link btn btn-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
                         <form class="d-inline" action="/campgrounds/<%=campground.id%>?_method=DELETE" method="POST">
@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <div class="heading">
                                     <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
-                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
+                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
                                         <form
                                             action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
