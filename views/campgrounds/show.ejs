@@ -27,19 +27,20 @@
                     <h5 class="card-title">
                         <%= campground.title %>
                     </h5>
-                    <p class="card-text">
+                    <p class="card-text description">
                         <%= campground.description %>
                     </p>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-dark border-dark" id="showlocation">
-                        <%= campground.location %>
-                    </li>
-                    <li class="list-group-item text-white bg-dark border-dark">Submitted by
-                        <%= campground.author.username %>
-                    </li>
-                    <li class="list-group-item text-white bg-dark">₹<%= campground.price %>/night</li>
-                </ul>
+
+                <p class="" id="showlocation">
+                    <%= campground.location %>
+                </p>
+
+                <p class="profile">
+                    <img src="/icons/profile.webp" alt="Profile">
+                    <span><%= campground.author.username %></span>
+                </p>
+
                 <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
                     <div class="card-body">
                         <a class="card-link btn btn-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
