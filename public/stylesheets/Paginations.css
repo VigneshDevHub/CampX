@@ -1,0 +1,90 @@
+.Pagination-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    margin-bottom: 5px;
+}
+
+.prev-btn,
+.next-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.prev-btn:active,
+.next-btn:active {
+    transform: translateY(0);
+}
+
+.page-info {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.items-per-page {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.items-select {
+    padding: 5px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    /* Light background */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.items-select:hover {
+    background-color: #eaeaea;
+    /* Slightly darker on hover */
+}
+.page-info span,
+.items-per-page label {
+    color: white; /* Darker color for better visibility */
+    font-weight: bold; /* Make the text bold for emphasis */
+    margin-right: 5px; /* Add space between the label and the input/select */
+}
+.page-input {
+    width: 50px;
+    padding: 5px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center; /* Center text */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background with transparency */
+    filter: brightness(0.9); /* Reduce brightness */
+}
+.items-select {
+    padding: 5px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background with transparency */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    filter: brightness(0.9); /* Reduce brightness */
+}
+
+.items-select:hover {
+    background-color: rgba(234, 234, 234, 0.9); /* Slightly darker on hover */
+}

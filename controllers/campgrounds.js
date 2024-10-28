@@ -21,38 +21,87 @@ module.exports = {
      * - reviewsLowest: Sort by average review ratings in ascending order
      */
     index: async (req, res) => {
-        const { sort } = req.query;  
         let campgrounds;
+        let campgroundPerPage = 2;
+        let { page = 1 } = req.query;
+        page = parseInt(page, 10)
+        campgroundPerPage = parseInt(campgroundPerPage, 10)
 
-        // Fetch campgrounds with optional sorting
-        if (sort === 'priceAsc') {
-            campgrounds = await Campground.find({}).populate('reviews').sort({ price: 1 }).lean();
-        } else if (sort === 'priceDesc') {
-            campgrounds = await Campground.find({}).populate('reviews').sort({ price: -1 }).lean();
-        } else {
-            campgrounds = await Campground.find({}).populate('reviews').lean();
-
-            // Calculate average ratings for sorting by reviews
-            const calculateAverageRating = (campground) => {
-                const ratings = campground.reviews.map(review => review.rating);
-                const averageRating = ratings.length
-                    ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
-                    : 0;
-                return { ...campground, averageRating };
-            };
-
-            // Sort by average rating
-            if (sort === 'reviewsHighest') {
-                campgrounds = campgrounds.map(calculateAverageRating)
-                    .sort((a, b) => b.averageRating - a.averageRating);
-            } else if (sort === 'reviewsLowest') {
-                campgrounds = campgrounds.map(calculateAverageRating)
-                    .sort((a, b) => a.averageRating - b.averageRating);
-            }
-        }
-
-        res.render('campgrounds/index', { campgrounds, query: req.query });
+        campgrounds = await Campground.find({}).populate('reviews').lean();
+        const totalCampgrounds = campgrounds.length;
+        let totalPage = totalCampgrounds / campgroundPerPage + (totalCampgrounds % campgroundPerPage != 0)
+        const startIndex = (page - 1) * campgroundPerPage;
+        const endIndex = startIndex + campgroundPerPage;
+        campgrounds = campgrounds.slice(startIndex, endIndex);
+        totalPage = parseInt(totalPage, 10)
+        res.render('campgrounds/index', { campgrounds, totalPage, query: req.query })
     },
+
+
+    /**
+     * It will return Campgrounds list when user chooses any sorting order. It will also send limited number of search result based on pagination limit
+     * Number of documents will be sent from client side
+     */
+    getCampGroundsResult: async (req, res) => {
+        try {
+            const { sort } = req.query;
+            let { page = 1 } = req.query;
+            let campgroundPerPage = 2;
+            page = parseInt(page, 10);
+            campgroundPerPage = parseInt(campgroundPerPage, 10)
+            let totalCampgrounds, totalPage;
+            let campgrounds;
+            totalCampgrounds = await Campground.countDocuments();
+            totalPage = totalCampgrounds / campgroundPerPage + (totalCampgrounds % campgroundPerPage != 0)
+            if (sort === 'priceAsc') {
+                // Sort by ascending price
+                campgrounds = await Campground.find({})
+                    .populate('reviews')
+                    .sort({ price: 1 })
+                    .skip((page - 1) * campgroundPerPage)
+                    .limit(campgroundPerPage)
+                    .lean();
+            } else if (sort === 'priceDesc') {
+                // Sort by descending price
+                campgrounds = await Campground.find({})
+                    .populate('reviews')
+                    .sort({ price: -1 })
+                    .skip((page - 1) * campgroundPerPage)
+                    .limit(campgroundPerPage)
+                    .lean();
+            } else {
+                // Fetch all campgrounds if sorting by reviews
+                let allCampgrounds = await Campground.find({})
+                    .populate('reviews')
+                    .lean();
+                const calculateAverageRating = (campground) => {
+                    const ratings = campground.reviews.map(review => review.rating);
+                    const averageRating = ratings.length
+                        ? ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+                        : 0;
+                    return { ...campground, averageRating };
+                };
+
+                // Calculate average ratings and sort by reviews if specified
+                if (sort === 'reviewsHighest' || sort === 'reviewsLowest') {
+                    allCampgrounds = allCampgrounds.map(calculateAverageRating);
+                    allCampgrounds.sort((a, b) => sort === 'reviewsHighest'
+                        ? b.averageRating - a.averageRating
+                        : a.averageRating - b.averageRating
+                    );
+                }
+
+                const startIndex = (page - 1) * campgroundPerPage;
+                campgrounds = allCampgrounds.slice(startIndex, startIndex + campgroundPerPage);
+            }
+            totalPage = parseInt(totalPage, 10)
+            return res.status(200).json({ campgrounds, currentPage: page, totalPage });
+        } catch (error) {
+            console.error('Error fetching campgrounds:', error);
+            return res.status(500).json({ error: 'Failed to retrieve campgrounds' });
+        }
+    },
+
 
     /**
      * Search for campgrounds based on the query parameter.
@@ -121,7 +170,7 @@ module.exports = {
             return res.redirect('/campgrounds');
         }
         let userReviewed = false;
-        if(req.user){
+        if (req.user) {
             userReviewed = campground.reviews.some(review => review.author._id.equals(req.user._id));
         }
         res.render('campgrounds/show', { campground, userReviewed });

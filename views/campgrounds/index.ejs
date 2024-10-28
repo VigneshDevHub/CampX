@@ -1,100 +1,131 @@
 <% layout('layouts/boilerplate') %>
-<div id="cluster-map"></div>
-<h1>All Campgrounds</h1>
+    <div id="cluster-map"></div>
+    <h1>All Campgrounds</h1>
 
-<link rel="stylesheet" href="stylesheets/searchCampground.css">
+    <link rel="stylesheet" href="stylesheets/searchCampground.css">
+    <link rel="stylesheet" href="../../stylesheets/Paginations.css">
 
-<div class=" d-flex flex-column justify-content-center w-100 align-items-center mb-3 col-md-6 flex-lg-row justify-content-lg-between ">
-    
-    <div id="show-nearest-container" class="d-flex flex-column align-items-center w-100 justify-content  flex-sm-row">
-        <!-- show nearest to me button (left-aligned) -->
-        <button id="show-nearest-btn" class="btn btn-info mb-2 mb-sm-0" >Show Nearest to Me</button>
-        <!-- sort (left-aligned) -->
-        <form action="/campgrounds" method="GET" class="d-inline sort-form">
-            <select name="sort" id="sort" class="btn btn-secondary" style="padding: 10px 10px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
-                <option value="">--Select--</option>
-                <option value="priceAsc" <%= (locals.query && query.sort === 'priceAsc') ? 'selected' : '' %>>Price: Low to High</option>
-                <option value="priceDesc" <%= (locals.query && query.sort === 'priceDesc') ? 'selected' : '' %>>Price: High to Low</option>
-                <option value="reviewsHighest" <%= (locals.query && query.sort === 'reviewsHighest') ? 'selected' : '' %>>Reviews: Highest Rated</option>
-                <option value="reviewsLowest" <%= (locals.query && query.sort === 'reviewsLowest') ? 'selected' : '' %>>Reviews: Lowest Rated</option>
-            </select>
-            <button type="submit" class="btn btn-primary" id="sort-btn" style="margin-left:-5px">Sort</button>
-        </form>
-    </div>
-    <!-- Search Bar (right-aligned) -->
-    <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
-        <div class="input-group">
-            <input class="form-control" type="search" style=" border:1px solid rgb(35, 35, 35)" placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
-            <div class="input-group-append">
-                <button class="btn btn-info" type="submit" id="search-button" style=" border:2px solid rgb(35, 35, 35)">Search</button>
-            </div>
+    <div
+        class=" d-flex flex-column justify-content-center w-100 align-items-center mb-3 col-md-6 flex-lg-row justify-content-lg-between ">
+
+        <div id="show-nearest-container"
+            class="d-flex flex-column align-items-center w-100 justify-content  flex-sm-row">
+            <!-- show nearest to me button (left-aligned) -->
+            <button id="show-nearest-btn" class="btn btn-info mb-2 mb-sm-0">Show Nearest to Me</button>
+            <!-- sort (left-aligned) -->
+            <form action="/campgrounds" method="GET" class="d-inline sort-form" id="campground-arrangement">
+                <select value={sort} name="sort" id="sort" class="btn btn-secondary"
+                    style="padding: 10px 10px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
+                    <option value="">--Select--</option>
+                    <option value="priceAsc" <%=(locals.query && query.sort==='priceAsc' ) ? 'selected' : '' %>>Price:
+                        Low to High</option>
+                    <option value="priceDesc" <%=(locals.query && query.sort==='priceDesc' ) ? 'selected' : '' %>>Price:
+                        High to Low</option>
+                    <option value="reviewsHighest" <%=(locals.query && query.sort==='reviewsHighest' ) ? 'selected' : ''
+                        %>>Reviews: Highest Rated</option>
+                    <option value="reviewsLowest" <%=(locals.query && query.sort==='reviewsLowest' ) ? 'selected' : ''
+                        %>>Reviews: Lowest Rated</option>
+                </select>
+                <button type="submit" class="btn btn-primary" id="sort-btn" style="margin-left:-5px">Sort</button>
+            </form>
         </div>
-    </form>
-
-</div>
-
-
-<% for(let campground of campgrounds){ %>
-    <div class="card text-white bg-dark mb-3" id="campinfo">
-        <div class="row">
-            <div class="col-md-4" id="campgroundhomeimage">
-                <% if(campground.images.length) { %>
-                <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
-                <% } else { %>
-                    <img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">
-                <% } %>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><%= campground.title %></h5>
-                    <p class="card-text"><%= campground.description %></p>
-                    <p class="card-text">
-                        <small id="infolocation"><%= campground.location %></small>
-                    </p>
-                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%= campground.title %></a>
+        <!-- Search Bar (right-aligned) -->
+        <form action="/campgrounds/search" method="GET" class="form-inline my-2 my-lg-0" id="search-form">
+            <div class="input-group">
+                <input class="form-control" type="search" style=" border:1px solid rgb(35, 35, 35)"
+                    placeholder="Search for campsites..." aria-label="Search" name="q" id="search-input">
+                <div class="input-group-append">
+                    <button class="btn btn-info" type="submit" id="search-button"
+                        style=" border:2px solid rgb(35, 35, 35)">Search</button>
                 </div>
             </div>
+        </form>
+
+    </div>
+
+    <div id="campground-list">
+        <% for(let campground of campgrounds){ %>
+            <div class="card text-white bg-dark mb-3" id="campinfo">
+                <div class="row">
+                    <div class="col-md-4" id="campgroundhomeimage">
+                        <% if(campground.images.length) { %>
+                            <img crossorigin="anonymous" id="indeximg" alt="" src="<%= campground.images[0].url %>">
+                            <% } else { %>
+                                <img crossorigin="anonymous" class="img-fluid"
+                                    src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
+                                    alt="">
+                                <% } %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= campground.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= campground.description %>
+                            </p>
+                            <p class="card-text">
+                                <small id="infolocation">
+                                    <%= campground.location %>
+                                </small>
+                            </p>
+                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View <%=
+                                    campground.title %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+    <div class="Pagination-button">
+        <button class="prev-btn" id="prev">Previous</button>
+        <div class="page-info">
+            <span>Page:</span>
+            <input id="pageNumber" type="text" min="1" class="page-input" />
+            <span>of <span id="totalPageNumber">
+                    <%= totalPage %>
+                </span></span>
         </div>
+        <button class="next-btn" id="next">Next</button>
     </div>
-<% } %>
+
+    <a href="#" class="to-top  bg-dark rounded-circle">
+        <div class="arrow">
+            <img src="/icons/upload32.webp" alt="arrow">
+        </div>
+    </a>
 
 
-<a href="#" class="to-top  bg-dark rounded-circle">
-    <div class="arrow">
-        <img src="/icons/upload32.webp" alt="arrow">
-    </div>
-</a>
-    
-
-<script>
-    const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const campgrounds = <%- JSON.stringify(campgrounds) %>;
-    console.log(campgrounds);
-    document.getElementById('show-nearest-btn').addEventListener('click', () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-            // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
-            window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+    <script>
+        const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+        // const campgrounds = <%- JSON.stringify(campgrounds) %>;
+        // console.log(campgrounds);
+        document.getElementById('show-nearest-btn').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+                    // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
+                    window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         });
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-});
 
-// scroll to-top functionality 
+        // scroll to-top functionality 
 
-const toTop = document.querySelector(".to-top");
+        const toTop = document.querySelector(".to-top");
 
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    toTop.classList.add("active");
-  } else {
-    toTop.classList.remove("active");
-  }
-})
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                toTop.classList.add("active");
+            } else {
+                toTop.classList.remove("active");
+            }
+        })
 
-</script>
+    </script>
 
-<script src="/javascripts/clusterMap.js"></script>
+    <script src="../../javascripts/clusterMap.js"></script>
+    <script src="../../javascripts/Pagination.js"></script>
