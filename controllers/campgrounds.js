@@ -9,6 +9,7 @@ const ExpressError = require('../utils/ExpressError.js');
 const turf = require('@turf/turf');
 const Review = require('../models/review');
 const review = require('../models/review');
+const {ROLE_USER , ROLE_ADMIN} = require('../utils/constant');
 
 // Controller for Campground functionalities
 let campgroundPerPage = 10
@@ -152,7 +153,7 @@ module.exports = {
         if (req.user) {
             userReviewed = campground.reviews.some(review => review.author._id.equals(req.user._id));
         }
-        res.render('campgrounds/show', { campground, userReviewed });
+        res.render('campgrounds/show', { campground, userReviewed ,ROLE_USER, ROLE_ADMIN });
     },
 
     /**
