@@ -16,7 +16,7 @@
             <form action="/campgrounds" method="GET" class="d-inline sort-form" id="campground-arrangement">
                 <select value={sort} name="sort" id="sort" class="btn btn-secondary"
                     style="padding: 10px 10px;color: rgb(61, 59, 59); border-radius: 10px 0px 0px 10px; background-color:aliceblue ; border-color:rgb(35, 35, 35)">
-                    <option value="">--Select--</option>
+                    <option value="select">--Select--</option>
                     <option value="priceAsc" <%=(locals.query && query.sort==='priceAsc' ) ? 'selected' : '' %>>Price:
                         Low to High</option>
                     <option value="priceDesc" <%=(locals.query && query.sort==='priceDesc' ) ? 'selected' : '' %>>Price:
