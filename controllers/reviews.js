@@ -1,6 +1,63 @@
 // Import necessary models
 const Campground = require('../models/campground');
 const Review = require('../models/review');
+// Get the reviews container element by its ID
+const reviewsContainer = document.getElementById('reviews-container');
+
+// Create a wrapper div for scrollable reviews and style it
+const scrollableContainer = document.createElement('div');
+scrollableContainer.style.maxHeight = '400px'; // Set the max height for the container
+scrollableContainer.style.overflowY = 'auto';   // Enable vertical scrolling
+scrollableContainer.style.border = '1px solid #ccc'; 
+scrollableContainer.style.padding = '10px';     
+
+// Move the existing reviews into this new scrollable container
+while (reviewsContainer.firstChild) {
+    scrollableContainer.appendChild(reviewsContainer.firstChild);
+}
+
+// Append the scrollable container to the reviews container
+reviewsContainer.appendChild(scrollableContainer);
+
+// Additional Consideration: Limit the number of reviews displayed initially and load more on demand
+const reviews = Array.from(scrollableContainer.children);
+const initialDisplayCount = 5; // Number of reviews to display initially
+let currentDisplayCount = initialDisplayCount;
+
+// Hide reviews beyond the initial display count
+for (let i = initialDisplayCount; i < reviews.length; i++) {
+    reviews[i].style.display = 'none';
+}
+
+// Create a "Load More" button
+const loadMoreButton = document.createElement('button');
+loadMoreButton.textContent = 'Load More';
+loadMoreButton.style.display = 'block';
+loadMoreButton.style.margin = '10px auto';
+loadMoreButton.style.padding = '10px 20px';
+loadMoreButton.style.border = 'none';
+loadMoreButton.style.backgroundColor = '#007bff';
+loadMoreButton.style.color = '#fff';
+loadMoreButton.style.cursor = 'pointer';
+
+// Add an event listener to the "Load More" button
+loadMoreButton.addEventListener('click', () => {
+    const nextDisplayCount = currentDisplayCount + initialDisplayCount;
+    for (let i = currentDisplayCount; i < nextDisplayCount && i < reviews.length; i++) {
+        reviews[i].style.display = 'block';
+    }
+    currentDisplayCount = nextDisplayCount;
+
+    // Hide the "Load More" button if all reviews are displayed
+    if (currentDisplayCount >= reviews.length) {
+        loadMoreButton.style.display = 'none';
+    }
+});
+
+// Append the "Load More" button to the reviews container if there are more reviews to load
+if (reviews.length > initialDisplayCount) {
+    reviewsContainer.appendChild(loadMoreButton);
+}
 
 /**
  * Creates a new review for a specific campground.
