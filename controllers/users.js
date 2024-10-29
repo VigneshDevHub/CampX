@@ -1,5 +1,5 @@
 const User = require('../models/user'); // Import the User model to interact with the user database
-
+const {ROLE_USER , ROLE_ADMIN} = require('../utils/constant');
 /**
  * Renders the registration page.
  * 
@@ -19,7 +19,7 @@ module.exports.renderRegister = (req, res) => {
  */
 module.exports.register = async (req, res, next) => {
     let userCount = await User.countDocuments(); // Count existing users to determine the role
-    let role = userCount === 0 ? "admin" : "user"; // First user becomes admin, others become regular users
+    let role = userCount === 0 ? ROLE_ADMIN : ROLE_USER; // First user becomes admin, others become regular users
 
     try {
         const { email, username, password } = req.body; // Extract user data from the request body

@@ -41,7 +41,8 @@
                     <span><%= campground.author.username %></span>
                 </p>
 
-                <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
+                <% if((currentUser && campground.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
+
                     <div class="card-body">
                         <a class="card-link btn btn-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
                         <form class="d-inline" action="/campgrounds/<%=campground.id%>?_method=DELETE" method="POST">
@@ -92,13 +93,21 @@
                 </div>
                 <% } %>
             <% } %>
-            
+
+
+            <% if(campground.reviews.length === 0) {%>
+                <div class="card text-white bg-dark mb-3 mt-0">
+                    <div class="card-body p-2 ps-3 pb-3">
+                        <p class="mb-0"><img src="/icons/solid.webp" class="pe-1" style="height: 1.2rem;" alt="star"> No review(s) yet.</p>
+                    </div>
+                </div>
+            <% } else {%>
                     <% for (let review of campground.reviews) {%>
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <div class="heading">
                                     <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
-                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === "admin")) {%>
+                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
                                         <form
                                             action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             method="POST">
@@ -121,7 +130,8 @@
                                 
                             </div>
                         </div>
-                        <% } %>
+                    <% } %>
+                <% } %>
         </div>
     </div>
 

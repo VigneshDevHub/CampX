@@ -9,7 +9,8 @@ const UserSchema= new Schema({
     },
     role:{
         type:String,
-        default:"user"
+        enum:['ROLE_USER','ROLE_ADMIN'],// Define enum for the role field
+        default:"ROLE_USER",// Set default role to 'ROLE_USER'
     }
 });
 UserSchema.plugin(passportLocalMongoose);
