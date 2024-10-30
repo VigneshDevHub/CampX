@@ -1,10 +1,13 @@
 // Import necessary models
-const Campground = require('../models/campground');
-const Review = require('../models/review');
-// Get the reviews container element by its ID
-const reviewsContainer = document.getElementById('reviews-container');
+const { JSDOM } = require('jsdom');
 
-// Create a wrapper div for scrollable reviews and style it
+// Create a new JSDOM instance
+const dom = new JSDOM(`<!DOCTYPE html><body><div id="reviews-container"></div></body>`);
+
+// Get the document object from the JSDOM instance
+const document = dom.window.document;
+
+const reviewsContainer = document.getElementById('reviews-container');
 const scrollableContainer = document.createElement('div');
 scrollableContainer.style.maxHeight = '400px'; // Set the max height for the container
 scrollableContainer.style.overflowY = 'auto';   // Enable vertical scrolling
@@ -21,6 +24,10 @@ reviewsContainer.appendChild(scrollableContainer);
 
 // Additional Consideration: Limit the number of reviews displayed initially and load more on demand
 const reviews = Array.from(scrollableContainer.children);
+
+console.log(reviews);
+const Campground = require('../models/campground');
+const Review = require('../models/review');
 const initialDisplayCount = 5; // Number of reviews to display initially
 let currentDisplayCount = initialDisplayCount;
 
@@ -132,3 +139,15 @@ module.exports.deleteReview = async (req, res) => {
         res.redirect(`/campgrounds/${id}`);
     }
 };
+
+// Example server-side logic (e.g., handling a request to get reviews)
+const getReviews = async (req, res) => {
+    try {
+        const reviews = await Review.find({ campground: req.params.id });
+        res.json(reviews);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+module.exports = { getReviews };
