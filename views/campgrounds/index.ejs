@@ -102,12 +102,28 @@
         };
     }
 
-    // Load the campgrounds data on first render
-    window.addEventListener('DOMContentLoaded', () => {
-        submitSearchQuery('');
+    // Prevent default form submission and handle search with AJAX
+    document.getElementById('search-form').addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevents page reload
+        const query = searchInput.value;
+        submitSearchQuery(query);
     });
 
-    // Function to send AJAX request and handle response
+    // Add event listener to the search button to trigger AJAX search
+    document.getElementById('search-button').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevents page reload
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    });
+
+    // Attach event listener to input field for live search with debounce
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', debounce(() => {
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    }, 500));
+
+    // Function to handle AJAX search query
     async function submitSearchQuery(query) {
         try {
             const response = await fetch(`/campgrounds/search?q=${query}`, {
@@ -118,29 +134,24 @@
             });
             const data = await response.json();
             console.log('Search results:', data);
-            // Now you can update the page with the search results dynamically without reloading
-            if (data.length > 0) {
-                updateCampgroundsList(data);
-            } else {
-                alert('No results found for your search query.');
-            }
+
+            // Update the campgrounds list with the search results dynamically
+            updateCampgroundsList(data);
+
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
     }
 
-    // Function to update the list of campgrounds
+    // Function to dynamically update the list of campgrounds
     function updateCampgroundsList(campgrounds) {
         const campgroundContainer = document.getElementById('campground-container');
         campgroundContainer.innerHTML = ''; // Clear previous results
 
         campgrounds.forEach(item => {
-            const campground = item; // Access the inner campground object
-
-            // Generate images HTML
-            const imagesHtml = campground.images && campground.images.length > 0 ? 
-            `<img crossorigin="anonymous" id="indeximg" alt="" src="${campground.images[0].url}">` : // Use the URL from the image object
-            `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
+            const imagesHtml = item.images && item.images.length > 0 
+                ? `<img crossorigin="anonymous" id="indeximg" alt="" src="${item.images[0].url}">` 
+                : `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
 
             const campgroundHtml = `
                 <div class="card text-white bg-dark mb-3" id="campinfo">
@@ -150,12 +161,12 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">${campground.title}</h5>
-                                <p class="card-text">${campground.description}</p>
+                                <h5 class="card-title">${item.title}</h5>
+                                <p class="card-text">${item.description}</p>
                                 <p class="card-text">
-                                    <small id="infolocation">${campground.city}, ${campground.state}</small>
+                                    <small id="infolocation">${item.city}, ${item.state}</small>
                                 </p>
-                                <a href="${campground.link}" class="btn btn-primary">View ${campground.title}</a>
+                                <a href="${item.link}" class="btn btn-primary">View ${item.title}</a>
                             </div>
                         </div>
                     </div>
@@ -164,16 +175,6 @@
             campgroundContainer.insertAdjacentHTML('beforeend', campgroundHtml);
         });
     }
-
-    // Attach event listener to input field for search
-    const searchInput = document.getElementById('search-input');
-
-    // Use debounce to call the search query after a delay (e.g., 500ms)
-    searchInput.addEventListener('input', debounce(() => {
-        const query = searchInput.value;
-        submitSearchQuery(query);
-    }, 500));
-
 </script>
 
 <script src="/javascripts/clusterMap.js"></script>

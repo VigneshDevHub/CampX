@@ -62,7 +62,7 @@ module.exports = {
     searchCampgrounds: async (req, res) => {
         const { q } = req.query;
         const campgrounds = await Campground.find({ title: new RegExp(q, 'i') });
-        res.render('campgrounds/index', { campgrounds });
+        return res.json(campgrounds);
     },
 
     /**
