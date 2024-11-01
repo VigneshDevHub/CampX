@@ -123,9 +123,17 @@ We welcome contributions to CampX! To get started, follow the guidelines in the 
 
 # Contributors 🙋🏽
 
-[![Contributors](https://contrib.rocks/image?repo=VigneshDevHub/CampX)](https://github.com/VigneshDevHub/CampX/graphs/contributors)
+<p align="center">
+      <a href="https://github.com/VigneshDevHub/CampX/graphs/contributors">
+        <img src="https://api.vaunt.dev/v1/github/entities/VigneshDevHub/repositories/CampX/contributors?format=svg&limit=54" width="700" height="250" />
+      </a>
+</p>
 
-<br>
+<be>
+  
+## Thank you for contributing 💗 
+We truly appreciate your time and effort to help improve our project. Happy coding! 🚀
+
 
 # Troubleshooting ⚡
 
@@ -137,22 +145,27 @@ Here are some common issues and their solutions:
 - **Problem:** Styling not displaying correctly.
   **Solution:** Clear your browser cache or use a private/incognito window.
 
-<br>
-
-# For Help And Support 💬
-
-- Admin Github Profile :- [Vignesh J](https://github.com/Vignesh025)
-- Discord :- [CampX](https://discord.gg/Wq6MZ88ecf)
-- Contact :- [Email](mailto:vigneshdevhub@gmail.com)
-
-<br>
-
 # License 📜
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/VigneshDevHub/CampX/blob/main/LICENSE) file for more details.
 
-# Thank you for contributing 💗
-
 We truly appreciate your time and effort to help improve our project. Feel free to reach out if you have any questions or need guidance. Happy coding! 🚀
 
-##
+<h2 align="center">🤝 Connect With Us</h2>
+
+<div align="center">
+    <a href="https://www.linkedin.com/company/vigneshdevhub/" target="_blank">
+        <img src="https://img.icons8.com/fluent/48/000000/linkedin.png" alt="LinkedIn" />
+    </a>
+    <a href="mailto:vigneshdevhub@gmail.com" target="_blank">
+        <img src="https://img.icons8.com/fluent/48/000000/gmail.png" alt="Email" />
+    </a>
+    <a href="https://discord.com/invite/Wq6MZ88ecf" target="_blank">
+        <img src="https://img.icons8.com/fluent/48/000000/discord.png" alt="Discord" />
+    </a>
+    <a href="https://github.com/VigneshDevHub" target="_blank">
+        <img src="https://img.icons8.com/fluent/48/000000/github.png" alt="GitHub" />
+    </a>
+</div>
+
+
