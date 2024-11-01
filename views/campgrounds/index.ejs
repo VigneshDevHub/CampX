@@ -96,36 +96,117 @@
     </a>
 
 
-    <script>
-        const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-        const campgrounds = <%- JSON.stringify(campgrounds) %>;
-        console.log(campgrounds);
-        document.getElementById('show-nearest-btn').addEventListener('click', () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const userLat = position.coords.latitude;
-                    const userLon = position.coords.longitude;
-                    // Redirect to the /campgrounds/nearest route with lat and lng as query parameters
-                    window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
-                });
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
+<script>
+    const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+    const campgrounds = <%- JSON.stringify(campgrounds) %>;
+
+    // Nearest button functionality
+    document.getElementById('show-nearest-btn').addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const userLat = position.coords.latitude;
+                const userLon = position.coords.longitude;
+                window.location.href = `/campgrounds/nearest?lat=${userLat}&lng=${userLon}`;
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    // Scroll to-top functionality 
+    const toTop = document.querySelector(".to-top");
+
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 100) {
+            toTop.classList.add("active");
+        } else {
+            toTop.classList.remove("active");
+        }
+    });
+
+    // Debounce function to limit how often the form submits
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    // Prevent default form submission and handle search with AJAX
+    document.getElementById('search-form').addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevents page reload
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    });
+
+    // Add event listener to the search button to trigger AJAX search
+    document.getElementById('search-button').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevents page reload
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    });
+
+    // Attach event listener to input field for live search with debounce
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', debounce(() => {
+        const query = searchInput.value;
+        submitSearchQuery(query);
+    }, 500));
+
+    // Function to handle AJAX search query
+    async function submitSearchQuery(query) {
+        try {
+            const response = await fetch(`/campgrounds/search?q=${query}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            console.log('Search results:', data);
+
+            // Update the campgrounds list with the search results dynamically
+            updateCampgroundsList(data);
+
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+        }
+    }
+
+    // Function to dynamically update the list of campgrounds
+    function updateCampgroundsList(campgrounds) {
+        const campgroundContainer = document.getElementById('campground-container');
+        campgroundContainer.innerHTML = ''; // Clear previous results
+
+        campgrounds.forEach(item => {
+            const imagesHtml = item.images && item.images.length > 0 
+                ? `<img crossorigin="anonymous" id="indeximg" alt="" src="${item.images[0].url}">` 
+                : `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
+
+            const campgroundHtml = `
+                <div class="card text-white bg-dark mb-3" id="campinfo">
+                    <div class="row">
+                        <div class="col-md-4" id="campgroundhomeimage">
+                            ${imagesHtml}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.title}</h5>
+                                <p class="card-text">${item.description}</p>
+                                <p class="card-text">
+                                    <small id="infolocation">${item.city}, ${item.state}</small>
+                                </p>
+                                <a href="${item.link}" class="btn btn-primary">View ${item.title}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            
+            campgroundContainer.insertAdjacentHTML('beforeend', campgroundHtml);
         });
-
-        // scroll to-top functionality 
-
-        const toTop = document.querySelector(".to-top");
-
-        window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 100) {
-                toTop.classList.add("active");
-            } else {
-                toTop.classList.remove("active");
-            }
-        })
-
-    </script>
+    }
+</script>
 
     <script src="../../javascripts/clusterMap.js"></script>
     <script src="../../javascripts/Pagination.js"></script>
