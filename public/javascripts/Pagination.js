@@ -6,7 +6,6 @@ let TotalPage = document.querySelector("#totalPageNumber").innerText;
 const sortSelect = document.getElementById('sort');
 let sort = 'select'
 let selectedSorting = ''
-let campgrounds
 let searchTag = null
 const searchElement = document.getElementById('search-input')
 PreviousButton.addEventListener("click", function () { changePage(-1) })
