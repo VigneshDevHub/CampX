@@ -1,46 +1,59 @@
-<% layout('layouts/boilerplate')%>
+<% layout('layouts/boilerplate') %> <!-- Extends the boilerplate layout for consistent styling -->
+
+<!-- Bootstrap Icons -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
 />
+
+<!-- Embedded Style: Font and Custom CSS -->
 <style>
+  /* Importing Google Font for error messages */
   @import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&display=swap");
 
+  /* Styling the error container background */
   .cont {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
   }
 
+  /* Error Code Styling: Font configuration */
   .error {
     font-family: "Edu AU VIC WA NT Guides", cursive;
-    font-optical-sizing: auto;
-    font-weight: 100;
+    font-optical-sizing: auto; /* Adjust font size for better readability */
+    font-weight: 100; /* Light font weight */
     font-style: normal;
-    font-size: 160px;
+    font-size: 160px; /* Large font size for error status display */
   }
 </style>
 
+<!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div
-      class="alert-dark col-md-6 offset-md-3 d-absolute text-center rounded cont"
-    >
-      <span class="alert-dark error text-black"><%=err.statusCode%></span>
+    <!-- Error Message Alert Box with Center Alignment -->
+    <div class="alert-dark col-md-6 offset-md-3 d-absolute text-center rounded cont">
+      <!-- Display the error status code dynamically -->
+      <span class="alert-dark error text-black"><%= err.statusCode %></span>
       <br />
-      <h4><%=err.message%></h4>
+
+      <!-- Display the error message dynamically -->
+      <h4><%= err.message %></h4>
+
+      <!-- Suggest actions to the user -->
       <span>
-        While you are here you can explore
-        <a class="text-success" href="/campgrounds"> campgrounds</a>.</span
-      >
+        While you are here, you can explore 
+        <a class="text-success" href="/campgrounds">campgrounds</a>.
+      </span>
       <br />
-      <span
-        >Click <a class="text-success" href="/campgrounds/new">here</a> to
-        create a new campground</span
-      >
+
+      <span>
+        Click <a class="text-success" href="/campgrounds/new">here</a> to create a new campground.
+      </span>
       <br /><br />
 
+      <!-- Button to return to the home page -->
       <a href="/" class="btn btn-secondary">
         <span class="text-black">Home Page</span>
-        <!-- Icon didn't work for some reason -->
+        <!-- Icon Placeholder: Uncomment below if the icon issue is resolved -->
         <!-- <i class="bi bi-house-fill"></i> -->
       </a>
       <br /><br />

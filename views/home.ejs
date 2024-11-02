@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CampX - Discover Nature's Best Camping Spots</title>
-        <link rel="icon" href="https://res.cloudinary.com/dgr21eiov/image/upload/v1724751921/Title-icon-3.png"
-            type="image/icon type">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lobster&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/stylesheets/home.css">
-    </head>
+<head>
+    <!-- Metadata and Page Setup -->
+    <meta charset="UTF-8"> <!-- Defines the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design for mobile devices -->
+    
+    <title>CampX - Discover Nature's Best Camping Spots</title> <!-- Browser tab title -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://res.cloudinary.com/dgr21eiov/image/upload/v1724751921/Title-icon-3.png" type="image/icon type">
+    
+    <!-- Google Fonts for Custom Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lobster&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons for Navigation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- External CSS for Styling -->
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
 
-    <body>
-        <header>
-            <nav>
-                <div class="logo">Camp<span class="animated-x">X</span></div>
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="/campgrounds">Campgrounds</a></li>
-                    <% if(!currentUser) { %>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
-                        <% } else { %>
-                            <li><a href="/logout">Logout</a></li>
-                            <% } %>
-                </ul>
-            </nav>
-        </header>
+<body>
+    <!-- Header Section with Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                Camp<span class="animated-x">X</span> <!-- Animated 'X' for branding effect -->
+            </div>
+            <ul>
+                <li><a href="#" class="active">Home</a></li> <!-- Active state for the current page -->
+                <li><a href="/campgrounds">Campgrounds</a></li> <!-- Link to campgrounds listing -->
 
-        <main>
-            <section class="hero">
-                <h1>Camp<span class="animated-x">X</span></h1>
-                <p class="tagline">Discover Nature's Hidden Gems</p>
-                <p class="description">Explore breathtaking campgrounds, share your experiences, and connect with fellow
-                    outdoor enthusiasts.</p>
-                <a href="/campgrounds" class="explore-button">
-                    View Campgrounds🏕️
-                    <svg class="explore-icon" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z">
-                        </path>
-                    </svg>
-                </a>
-            </section>
-        </main>
+                <!-- Conditional Rendering for User Authentication Links -->
+                <% if (!currentUser) { %> 
+                    <li><a href="/login">Login</a></li> <!-- Login link if no user is logged in -->
+                    <li><a href="/register">Register</a></li> <!-- Registration link -->
+                <% } else { %>
+                    <li><a href="/logout">Logout</a></li> <!-- Logout link if the user is logged in -->
+                <% } %>
+            </ul>
+        </nav>
+    </header>
 
-        <footer>
-            <p>&copy; 2024 CampX</p>
-        </footer>
+    <main>
+        <!-- Hero Section for Homepage Introduction -->
+        <section class="hero">
+            <h1>Camp<span class="animated-x">X</span></h1> <!-- Branded header with animation -->
+            <p class="tagline">Discover Nature's Hidden Gems</p> <!-- Tagline for the site -->
+            <p class="description">
+                Explore breathtaking campgrounds, share your experiences, and connect with fellow outdoor enthusiasts.
+            </p>
+            <a href="/campgrounds" class="explore-button">
+                View Campgrounds 🏕️ <!-- Call-to-action button for viewing campgrounds -->
+                <!-- SVG Arrow Icon for Visual Appeal -->
+                <svg class="explore-icon" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z">
+                    </path>
+                </svg>
+            </a>
+        </section>
+    </main>
 
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 CampX</p> <!-- Copyright notice -->
+    </footer>
 
-        <script src="/javascripts/backgroundChanger.js"></script>
-    </body>
+    <!-- External JavaScript for Dynamic Background Changes -->
+    <script src="/javascripts/backgroundChanger.js"></script>
+</body>
 
 </html>
