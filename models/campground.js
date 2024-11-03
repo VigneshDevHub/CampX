@@ -14,13 +14,13 @@ ImageSchema.virtual('thumbnail').get(function () {
   return this.url.replace('/upload', '/upload/w_200');
 });
 
-// Define options to ensure virtuals are included in JSON output
-const opts = { toJSON: { virtuals: true } };
+// Define options to ensure virtuals are included in JSON output and add timestamps
+const opts = { toJSON: { virtuals: true }, timestamps: true };
 
 // Define the Campground schema
 const CampgroundSchema = new Schema(
   {
-    title: { type: String, required: true }, // Campground title
+    title: { type: String, required: true, minlength: 3 }, // Minimum title length of 3 characters
     images: [ImageSchema], // Array of images using ImageSchema
     geometry: {
       type: {
@@ -30,10 +30,14 @@ const CampgroundSchema = new Schema(
       },
       coordinates: {
         type: [Number], // Array of numbers representing coordinates [longitude, latitude]
-        required: true
+        required: true,
+        validate: {
+          validator: (coords) => coords.length === 2,
+          message: "Coordinates must contain longitude and latitude"
+        }
       }
     },
-    price: { type: Number, required: true }, // Campground price
+    price: { type: Number, required: true, min: 0 }, // Price must be positive
     description: { type: String, required: true }, // Description of the campground
     location: { type: String, required: true }, // Location of the campground
     author: {
@@ -48,7 +52,7 @@ const CampgroundSchema = new Schema(
       }
     ]
   },
-  opts // Pass options to include virtuals in JSON responses
+  opts // Pass options to include virtuals in JSON responses and add timestamps
 );
 
 // Virtual property to generate a small popup HTML snippet for use in maps or previews
@@ -62,11 +66,12 @@ CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
   if (doc) {
     try {
-      await Review.deleteMany({
+      const result = await Review.deleteMany({
         _id: { $in: doc.reviews }
       });
+      console.log(`Successfully deleted ${result.deletedCount} associated reviews for campground ${doc._id}`);
     } catch (err) {
-      console.error('Error deleting associated reviews:', err);
+      console.error(`Error deleting associated reviews for campground ${doc._id}:`, err);
     }
   }
 });
