@@ -1,7 +1,26 @@
 // Import necessary modules
-const mongoose = require('mongoose');
-const Review = require('./review'); // Model for associated reviews
-const Schema = mongoose.Schema; // Extract Schema for easier usage
+const express = require('express');
+const router = express.Router();
+const Campground = require(''./review'');
+
+// Route to handle new campground creation
+router.post('/campgrounds', async (req, res, next) => {
+  try {
+    const campground = new Campground(req.body.campground);
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+  } catch (err) {
+    // Check if the error is a validation error
+    if (err.name === 'ValidationError') {
+      // Render the form again with an error message
+      req.flash('error', 'Title must be at least 3 characters.');
+      return res.redirect('/campgrounds/new');
+    }
+    next(err); // Pass any other errors to the default error handler
+  }
+});
+
+module.exports = router;
 
 // Define the Image schema
 const ImageSchema = new Schema({
