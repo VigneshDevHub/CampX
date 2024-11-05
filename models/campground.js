@@ -1,7 +1,6 @@
-// Import necessary modules
-const express = require('express');
-const router = express.Router();
-const Campground = require(''./review'');
+const mongoose = require('mongoose'); 
+ const Review = require('./review'); // Model for associated reviews 
+ const Schema = mongoose.Schema; // Extract Schema for easier usage
 
 // Route to handle new campground creation
 router.post('/campgrounds', async (req, res, next) => {
