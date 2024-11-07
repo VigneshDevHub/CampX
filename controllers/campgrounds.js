@@ -78,6 +78,20 @@ module.exports = {
      */
     createCampground: async (req, res, next) => {
         try {
+            // Preven the largest input
+            if(req.body.campground.description.length >= 1000 && req.body.campground.title.length >= 70){
+                req.flash("error", "Description & title must be within 1000 & 70 character respectively!");
+                return res.redirect("campgrounds/new");
+            }
+            if(req.body.campground.title.length >= 70){
+                req.flash("error", "Title must be within 70 character!");
+                return res.redirect("campgrounds/new");
+            } 
+            if(req.body.campground.description.length >= 1000){
+                req.flash("error", "Description must be within 1000 character!");
+                return res.redirect("campgrounds/new");
+            } 
+            
             // Geocode the campground location
             const geoData = await geocoder.forwardGeocode({
                 query: req.body.campground.location,
