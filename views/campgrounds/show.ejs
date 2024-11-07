@@ -30,9 +30,6 @@
                     <p class="card-text description">
                         <%= campground.description %>
                     </p>
-                    <p class="card-text">
-                        &#8377; <%= campground.price %>
-                    </p>
                 </div>
 
                 <p class="" id="showlocation">
@@ -107,8 +104,7 @@
             <% } else {%>
                     <% for (let i=0; i<campground.reviews.length; i++) {%>
                         <% let review = campground.reviews[i]; %>
-                        <div class="row">
-                        <div class="col-6">
+                        
                         <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <div class="heading">
@@ -142,48 +138,7 @@
                                 
                             </div>
                         </div>
-                        </div>
-
-
-
-                        <div class="col-6">
-                            <div class="card text-white bg-dark mb-3">
-                                <div class="card-body">
-                                    <div class="heading">
-                                        <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
-                                        <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
-                                            <form
-                                                action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
-                                                method="POST">
-                                                <button class="button cursor-pointer"><img src="/icons/bin.webp" class="bin" alt="delete"></button>
-                                            </form>
-                                        <% } %>
-                                    </div>
-                                    
-                                    <p class="card-text">
-                                        <% for (let i = 1; i <= 5; i++) { %>
-                                            <% if (i <= review.rating) { %>
-                                                <img src="/icons/solid.webp" class="star" alt="star">
-                                            <% } else { %>
-                                                <img src="/icons/outline.webp" class="star" alt="star">
-                                            <% } %>
-                                        <% } %>
-                                        <br> 
-                                        <span class="comment">
-                                            <%= review.body.length > 250 ? review.body.substring(0, 260) + ".... " : review.body%>
-                                            <!-- <%= review.body %></span> -->
-                                             <% if(review.body.length > 250) {%>
-                                                <a class="text-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= i %>" style="cursor: pointer;">Read more</a>
-                                             <% } %>
-                                        </span>
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                            </div>
-
-                            
-                        </div>
+                        
 
                         <!-- Modal with Unique ID for Each Review -->
                         <div class="modal fade" id="modal-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel-<%= i %>" aria-hidden="true">
