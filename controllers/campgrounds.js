@@ -186,6 +186,19 @@ module.exports = {
     updateCampground: async (req, res) => {
         const { id } = req.params;
 
+        if(req.body.campground.description.length >= 1000 && req.body.campground.title.length >= 70){
+            req.flash("error", "Description & title must be within 1000 & 70 character respectively!");
+            return res.redirect(`/campgrounds/${id}/edit`);
+        }
+        if(req.body.campground.title.length >= 70){
+            req.flash("error", "Title must be within 70 character!");
+            return res.redirect(`/campgrounds/${id}/edit`);
+        } 
+        if(req.body.campground.description.length >= 1000){
+            req.flash("error", "Description must be within 1000 character!");
+            return res.redirect(`/campgrounds/${id}/edit`);
+        } 
+
         // Geocode the new location for the campground
         const geoData = await geocoder.forwardGeocode({
             query: req.body.campground.location,
