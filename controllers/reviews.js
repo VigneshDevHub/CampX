@@ -28,6 +28,12 @@ module.exports.createReview = async (req, res) => {
             return res.redirect(`/campgrounds/${campground._id}`);
         }
 
+        // Prevent form submission if review body is gretter than 700 charecter
+        if(req.body.review.body.length >= 700){
+            req.flash("error", "Comment must be within 700 character!");
+            return res.redirect(`/campgrounds/${campground._id}`);
+        }
+
         // Create a new review using the data from the request body
         const review = new Review(req.body.review);
         review.author = req.user._id; // Set the review's author to the current user
