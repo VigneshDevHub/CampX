@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="campground-listing-grid">
+    <div class="campground-listing-grid" id="campground-container">
         <% for(let campground of campgrounds){ %>
             <div class="campground-card">
                 <div class="campground-image-container">
@@ -46,7 +46,7 @@
                             crossorigin="anonymous">
                         <% } else { %>
                             <img class="campground-image"
-                                src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed"
+                                src="https://res.cloudinary.com/dgr21eiov/image/upload/v1723129452/CampX/eajljfmhshlozrm5yams.jpg"
                                 alt="" crossorigin="anonymous">
                             <% } %>
                 </div>
@@ -68,7 +68,7 @@
 
     <a href="#" class="to-top  bg-dark rounded-circle">
         <div class="arrow">
-            <img src="/icons/upload32.png" alt="arrow">
+            <img src="/icons/upload32.webp" alt="arrow">
         </div>
     </a>
 
@@ -158,7 +158,7 @@
             campgrounds.forEach(item => {
                 const imagesHtml = item.images && item.images.length > 0
                     ? `<img crossorigin="anonymous" id="indeximg" alt="" src="${item.images[0].url}">`
-                    : `<img crossorigin="anonymous" class="img-fluid" src="https://res-console.cloudinary.com/dgr21eiov/media_explorer_thumbnails/149d48129829d71b6f4ffd8347709f20/detailed" alt="">`; // Fallback image
+                    : `<img crossorigin="anonymous" class="img-fluid" src="https://res.cloudinary.com/dgr21eiov/image/upload/v1723129452/CampX/eajljfmhshlozrm5yams.jpg" alt="">`; // Fallback image
 
                 const campgroundHtml = `
                 <div class="card text-white bg-dark mb-3" id="campinfo">
