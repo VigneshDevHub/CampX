@@ -26,40 +26,55 @@ If you're new to Git and GitHub, no worries! Here are some useful resources:
 
 ```bash
 CAMPX/
-├── .github/                  # GitHub-related configurations such as workflows, issue templates, etc
-│   
-├── cloudinary/               # Index.js file is stored here
-│   
-├── controllers/              # Files and scripts related to the usage's stored here
-│   
-├── models/                   # Another set of files and scripts related to the usage's stored here
-│     
-├── public/                   # Icons, scripts and stylesheets stored here
-│   
-├── routes/                   # Another set of files and scripts related to the usage's stored here
-│   
-├── seeds/                    # Cities list is stored here through scripts
-│   
-├── utils/                    # Stored different types of utilities
-│   
-├── views/                    # Helps in seeking error files and all
-│   
-├── .gitignore                # Specifies files and directories to be ignored by version control
-│   
-├── .gitpod.yml
-├── app.js
-├── CHANGELOG.md              
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md           # Instructions for the contributors
-├── cron.js
-├── INSTALLATION.md           # Step-by-step guide for setting up and installing the project
-├── LICENSE
-├── middleware.js
-├── package-lock.json
-├── package.json
-├── README.md
-├── schemas.md
-├── SECURITY.md
+├── .github/                  # GitHub-related configurations workflows, issue templates
+├── cloudinary/               # Cloudinary configuration and integration
+├── controllers/              # Handles incoming requests and business logic
+│   ├── campgrounds.js        # Controls campground-related actions e.g., creating, editing, deleting
+│   ├── reviews.js            # Manages review submissions and interactions
+│   ├── users.js              # Handles user authentication, authorization, and profile management
+├── models/                   # Defines data structures for database interactions
+│   ├── campground.js         # Represents campground data (name, description, location, etc.)
+│   ├── review.js             # Represents review data (rating, comment, user reference)
+│   ├── user.js               # Represents user data (username, email, password, role)
+├── public/                   # Static assets
+│   ├── icons/                # Custom icons and font icons
+│   ├── javascripts/           
+│   ├── stylesheets/  
+├── routes/                   # Defines API endpoints and routes
+│   ├── campgrounds.js         
+│   ├── reviews.js 
+│   ├── users.js 
+├── seeds/                    # Scripts for populating the database with initial data
+│   ├── cities.js             
+│   ├── index.js              
+│   ├── seedHelpers.js       
+├── utils/                    # General utility functions
+│   ├── ExpressError.js       # Custom error handling class
+│   ├── catchAsync.js         # Error handling middleware
+│   ├── constant.js           # Defines global constants and configuration
+├── views/                    # Templates for rendering dynamic HTML
+│   ├── campgrounds/         
+│   ├── layouts/  
+│   ├── partials/  
+│   ├── users/  
+│   ├── error.ejs 
+│   ├── home.ejs  
+├── .gitignore                # Files and directories to ignore in Git
+├── .gitpod.yml  
+├── app.js                    # Main application file, initializes the server
+├── CHANGELOG.md 
+├── CODE_OF_CONDUCT.md        # Code of conduct guidelines
+├── CONTRIBUTING.md           # Guidelines for contributing to the project
+├── cron.js                   # Scheduled tasks (e.g., sending emails, cleaning up data)
+├── INSTALLATION.md            
+├── LICENSE 
+├── middleware.js 
+├── package-lock.json      
+├── package.json              # Project dependencies and configuration
+├── README.md                 # Project overview and documentation
+├── schemas.md 
+├── SECURITY.md               # Security considerations and best practices
+
 ```
 
 <br>
