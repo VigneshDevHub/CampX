@@ -128,7 +128,20 @@ html {
     .to-top{
         right:20px;
     }
-}.mapboxgl-popup-content{
+}
+
+.review-popup{
+    background-color: rgb(33, 37, 41);
+    color: #fff;
+}
+.review-popup .popup-comment{
+    opacity: 0.7;
+    margin-top: 0 !important;
+}
+.review-popup .user-credential .user5{
+    height: 2rem;
+}
+.mapboxgl-popup-content{
     color: black !important;
     text-align: center;
 }
