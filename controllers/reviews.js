@@ -28,9 +28,9 @@ module.exports.createReview = async (req, res) => {
             return res.redirect(`/campgrounds/${campground._id}`);
         }
 
-        // Prevent form submission if review body is gretter than 700 charecter
-        if(req.body.review.body.length >= 700){
-            req.flash("error", "Comment must be within 700 character!");
+        // Prevent form submission if review body is gretter than 1000 charecter
+        if(req.body.review.body.length >= 1000){
+            req.flash("error", "Review must be within 1000 character!");
             return res.redirect(`/campgrounds/${campground._id}`);
         }
 
