@@ -40,7 +40,7 @@ db.once("open", () => {
 });
 
 const app = express(); // Initialize the Express app
-
+app.use(express.json());
 // Set EJS as the template engine with ejsMate for layouts
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');

@@ -32,9 +32,29 @@
 }
 
 .form-label {
-	display: block;
+	display: flex;
+	justify-content: space-between;
 	color: white;
 	margin-bottom: 0.5rem;
+}
+
+.password{
+	display: inline-block;
+}
+
+.reset{
+	margin-left: auto;
+	text-decoration: none;
+	color: white;
+}
+
+.hidden{
+	display: none;
+}
+
+.reset:hover{
+	color: #28a745;
+	text-decoration: underline;
 }
 
 .form-input {
