@@ -16,4 +16,7 @@ router.route('/login')
 
 router.get('/logout', users.logout); 
 
+router.post("/sendotp", catchAsync(users.sendOtp))
+router.route("/resetpassword").get(users.renderReset).post(catchAsync(users.resetPassword))
+
 module.exports = router;
