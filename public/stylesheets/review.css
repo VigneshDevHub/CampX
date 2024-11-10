@@ -1,0 +1,9 @@
+.review-container{
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 200px;
+    margin-bottom: 2rem;
+
+    scrollbar-width: 5px;
+    
+}

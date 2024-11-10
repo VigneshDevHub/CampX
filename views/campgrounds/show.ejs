@@ -1,5 +1,6 @@
 <%layout('layouts/boilerplate')%>
     <link rel="stylesheet" href="/stylesheets/stars.css">
+    <link rel="stylesheet" href="/stylesheets/review.css">
 
     <div class="row" id="showinfo">
         <div class="col-md-6">
@@ -105,81 +106,84 @@
                     </div>
                 </div>
             <% } else {%>
-                    <% for (let i=0; i<campground.reviews.length; i++) {%>
-                        <% let review = campground.reviews[i]; %>
-                        
-                        <div class="card text-white bg-dark mb-3">
-                            <div class="card-body">
-                                <div class="heading">
-                                    <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
-                                    <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
-                                        <form
-                                            action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
-                                            method="POST">
-                                            <button class="button cursor-pointer"><img src="/icons/bin.webp" class="bin" alt="delete"></button>
-                                        </form>
-                                    <% } %>
-                                </div>
-                                
-                                <p class="card-text">
-                                    <% for (let i = 1; i <= 5; i++) { %>
-                                        <% if (i <= review.rating) { %>
-                                            <img src="/icons/solid.webp" class="star" alt="star">
-                                        <% } else { %>
-                                            <img src="/icons/outline.webp" class="star" alt="star">
+                    <h1>Reviews :</h1>
+                    <div class="review-container">
+                        <% for (let i=0; i<campground.reviews.length; i++) {%>
+                            <% let review = campground.reviews[i]; %>
+                            
+                            <div class="card text-white bg-dark mb-3">
+                                <div class="card-body">
+                                    <div class="heading">
+                                        <h6 class="card-subtitle mb-2 text-grey"><img src="/icons/user2.webp" alt="" class="user2">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h6>
+                                        <% if((currentUser && review.author.equals(currentUser._id))||(currentUser && currentUser.role === ROLE_ADMIN)) {%>
+                                            <form
+                                                action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                                method="POST">
+                                                <button class="button cursor-pointer"><img src="/icons/bin.webp" class="bin" alt="delete"></button>
+                                            </form>
                                         <% } %>
-                                    <% } %>
-                                    <br> 
-                                    <span class="comment">
-                                        <%= review.body.length > 250 ? review.body.substring(0, 260) + ".... " : review.body%>
-                                        <!-- <%= review.body %></span> -->
-                                         <% if(review.body.length > 250) {%>
-                                            <a class="text-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= i %>" style="cursor: pointer;">Read more</a>
-                                         <% } %>
-                                    </span>
-                                </p>
-                                
-                            </div>
-                        </div>
-                        
-
-                        <!-- Modal with Unique ID for Each Review -->
-                        <div class="modal fade" id="modal-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel-<%= i %>" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content review-popup">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-
-                                        <div class="user-credential">
-                                            <h4><img src="/icons/user2.webp" alt="" class="user5">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h4>
-                                        </div>
-                                        
-
-
-                                        <div class="model-star">
-                                            <% for (let i = 1; i <= 5; i++) { %>
-                                                <% if (i <= review.rating) { %>
-                                                    <img src="/icons/solid.webp" class="star" alt="star">
-                                                <% } else { %>
-                                                    <img src="/icons/outline.webp" class="star" alt="star">
-                                                <% } %>
-                                            <% } %>
-                                        </div>
-
                                     
-                                        <span class="popup-comment"><%= review.body %></span> <!-- Display the full comment here -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <p class="card-text">
+                                        <% for (let i = 1; i <= 5; i++) { %>
+                                            <% if (i <= review.rating) { %>
+                                                <img src="/icons/solid.webp" class="star" alt="star">
+                                            <% } else { %>
+                                                <img src="/icons/outline.webp" class="star" alt="star">
+                                            <% } %>
+                                        <% } %>
+                                        <br> 
+                                        <span class="comment">
+                                            <%= review.body.length > 250 ? review.body.substring(0, 260) + ".... " : review.body%>
+                                            <!-- <%= review.body %></span> -->
+                                             <% if(review.body.length > 250) {%>
+                                                <a class="text-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= i %>" style="cursor: pointer;">Read more</a>
+                                             <% } %>
+                                        </span>
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        
+                            <!-- Modal with Unique ID for Each Review -->
+                            <div class="modal fade" id="modal-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel-<%= i %>" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content review-popup">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+    
+                                            <div class="user-credential">
+                                                <h4><img src="/icons/user2.webp" alt="" class="user5">&nbsp;&nbsp;&nbsp;<%= review.author.username %></h4>
+                                            </div>
+                                            
+    
+    
+                                            <div class="model-star">
+                                                <% for (let i = 1; i <= 5; i++) { %>
+                                                    <% if (i <= review.rating) { %>
+                                                        <img src="/icons/solid.webp" class="star" alt="star">
+                                                    <% } else { %>
+                                                        <img src="/icons/outline.webp" class="star" alt="star">
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+    
+                                        
+                                            <span class="popup-comment"><%= review.body %></span> <!-- Display the full comment here -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    <% } %>
-                <% } %>
+    
+                        <% } %>
+                    </div>
+                <% } 
+            %>
         </div>
     </div>
 
