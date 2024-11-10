@@ -76,7 +76,7 @@
 
     <script>
         const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-        const campgrounds = <%- JSON.stringify(campgrounds) %>;
+        const campgrounds = '<%- JSON.stringify(campgrounds) %>';
         // Nearest button functionality
         document.getElementById('show-nearest-btn').addEventListener('click', () => {
             if (navigator.geolocation) {
